@@ -22,9 +22,9 @@ def home(request: Request):
     )
 
 # Google Search Console 인증 파일
-@app.get("/googlexxxx.html")
+@app.get("/googleb2d5fb5c086ced8d.html")
 def google_verify():
-    return FileResponse("googlexxxx.html")
+    return FileResponse("googleb2d5fb5c086ced8d.html")
 
 # 헬스체크 (선택)
 @app.get("/health", response_class=PlainTextResponse)
