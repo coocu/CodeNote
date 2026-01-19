@@ -5,15 +5,24 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #111;
-  background: #f4f6f9; /* body는 단색 */
+  background: #f4f6f9;
 }
 
 /* =====================
-   페이지 전체 배경 (핵심)
+   페이지 전체 배경 (그라데이션 + 코드)
 ===================== */
 .page-bg {
   min-height: 100vh;
   padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔹 그라데이션 레이어 */
+.page-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 
   background: linear-gradient(
     180deg,
@@ -22,29 +31,10 @@ body {
     #ffffff 100%
   );
 
-  position: relative;      /* 🔥 코드 배경용 */
-  overflow: hidden;        /* 🔥 코드 잘림 방지 */
-}
-
-/* 코드 라인 느낌 */
-.page-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.035),
-    rgba(0, 0, 0, 0.035) 1px,
-    transparent 1px,
-    transparent 28px
-  );
-
-  pointer-events: none;
   z-index: 0;
 }
 
-/* 실제 코드 텍스트 */
+/* 🔹 코드 텍스트 레이어 (확실히 보임) */
 .page-bg::after {
   content:
 "fun main() {\A\
@@ -61,7 +51,7 @@ if (danger) {\A\
 System.out.println(\"CodeNote\")";
 
   position: absolute;
-  top: -300px;
+  top: -400px;
   left: 50%;
   transform: translateX(-50%);
 
@@ -71,23 +61,23 @@ System.out.println(\"CodeNote\")";
   font-size: 14px;
   line-height: 28px;
 
-  color: rgba(0, 120, 255, 0.12);
-  animation: code-fall 45s linear infinite;
+  color: rgba(0, 120, 255, 0.14); /* 👈 확실히 보이게 */
+  animation: code-fall 50s linear infinite;
 
   pointer-events: none;
-  z-index: 0;
-}
-
-/* 카드가 항상 위로 */
-.container {
-  position: relative;
   z-index: 1;
 }
 
-/* 코드 흐름 애니메이션 */
+/* 🔹 카드가 항상 최상단 */
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* 코드 애니메이션 */
 @keyframes code-fall {
   from {
-    transform: translate(-50%, -300px);
+    transform: translate(-50%, -400px);
   }
   to {
     transform: translate(-50%, 1400px);
