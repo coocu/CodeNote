@@ -23,18 +23,16 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     180deg,
     #f7f9fc 0%,
     #eef2f7 40%,
     #e6ebf2 100%
   );
-
   z-index: 0;
 }
 
-/* 🔹 배경 코드 (은은하게) */
+/* 🔹 배경 코드 (두껍고 확실하게 보이게) */
 .page-bg::after {
   content:
 "// ============================================================\A\
@@ -45,9 +43,6 @@ body {
 package com.codenote.backdrop\A\A\
 import kotlin.math.*\A\
 import kotlin.random.Random\A\A\
-/* ──────────────────────────────────────────────────────────── */\A\
-/*  Fake Engine (No-Op) */\A\
-/* ──────────────────────────────────────────────────────────── */\A\
 object PhantomEngine {\A\
     fun gradient(a: String, b: String) {}\A\
     fun blur(amount: Float) {}\A\
@@ -55,106 +50,10 @@ object PhantomEngine {\A\
     fun line(x1: Float, y1: Float, x2: Float, y2: Float, glow: Float) {}\A\
     fun commit() {}\A\
 }\A\A\
-/* ──────────────────────────────────────────────────────────── */\A\
-/*  Random Utils */\A\
-/* ──────────────────────────────────────────────────────────── */\A\
-private fun lerp(a: Float, b: Float, t: Float): Float = a + (b - a) * t\A\
-private fun clamp01(v: Float): Float = max(0f, min(1f, v))\A\
-private fun noise(t: Float, seed: Float): Float = sin(t * 1.37f + seed) * 0.5f + 0.5f\A\A\
-data class Pixel(\A\
-    var x: Float,\A\
-    var y: Float,\A\
-    var vx: Float,\A\
-    var vy: Float,\A\
-    var r: Float,\A\
-    var a: Float,\A\
-    val seed: Float\A\
-)\A\A\
 class CodeNoteBackdropSimulator {\A\
     private val width = 1920f\A\
     private val height = 1080f\A\
-    private val start = System.currentTimeMillis()\A\
-    private val pixels = MutableList(140) {\A\
-        Pixel(\A\
-            x = Random.nextFloat() * width,\A\
-            y = Random.nextFloat() * height,\A\
-            vx = lerp(-18f, 18f, Random.nextFloat()),\A\
-            vy = lerp(-12f, 12f, Random.nextFloat()),\A\
-            r = lerp(4f, 44f, Random.nextFloat()),\A\
-            a = lerp(0.04f, 0.18f, Random.nextFloat()),\A\
-            seed = Random.nextFloat() * 9999f\A\
-        )\A\
-    }\A\A\
-    private fun timeSec(): Float = (System.currentTimeMillis() - start) / 1000f\A\A\
-    private fun wrap(p: Pixel) {\A\
-        if (p.x < -p.r) p.x = width + p.r\A\
-        if (p.y < -p.r) p.y = height + p.r\A\
-        if (p.x > width + p.r) p.x = -p.r\A\
-        if (p.y > height + p.r) p.y = -p.r\A\
-    }\A\A\
-    fun renderFrame() {\A\
-        val t = timeSec()\A\
-        PhantomEngine.gradient(\"#f7f9fc\", \"#e6ebf2\")\A\
-        PhantomEngine.blur(lerp(6f, 14f, noise(t, 1.1f)))\A\A\
-        // Drift particles\A\
-        pixels.forEachIndexed { idx, p ->\A\
-            val wobX = (noise(t * 0.9f, p.seed) - 0.5f) * 1.8f\A\
-            val wobY = (noise(t * 0.8f, p.seed + 13f) - 0.5f) * 1.5f\A\
-            p.x += (p.vx * 0.016f) + wobX\A\
-            p.y += (p.vy * 0.016f) + wobY\A\
-            wrap(p)\A\
-            val alpha = clamp01(p.a + sin(t + idx) * 0.02f)\A\
-            PhantomEngine.glow(p.x, p.y, p.r, alpha)\A\
-        }\A\A\
-        // Sweeping highlight lines\A\
-        val sweep = (t * 90f) % width\A\
-        PhantomEngine.line(sweep, height * 0.32f, sweep + width * 0.55f, height * 0.32f, 0.16f)\A\
-        PhantomEngine.line(width - sweep, height * 0.68f, width - sweep - width * 0.45f, height * 0.68f, 0.12f)\A\A\
-        // Fake logic blocks (pure decorative)\A\
-        if ((t.toInt() % 7) == 0) {\A\
-            val mood = listOf(\"calm\", \"focus\", \"ship\", \"build\", \"repeat\").random()\A\
-            when (mood) {\A\
-                \"calm\" -> PhantomEngine.blur(10f)\A\
-                \"focus\" -> PhantomEngine.blur(12f)\A\
-                \"ship\" -> PhantomEngine.blur(9f)\A\
-                \"build\" -> PhantomEngine.blur(11f)\A\
-                else -> PhantomEngine.blur(8f)\A\
-            }\A\
-        }\A\A\
-        // More meaningless helpers\A\
-        fun checksum(s: String): Int = s.fold(0) { acc, c -> (acc * 31 + c.code) and 0x7fffffff }\A\
-        val name = \"CodeNote\"\A\
-        val hash = checksum(name)\A\
-        val ok = (hash % 2 == 0)\A\
-        if (ok) {\A\
-            PhantomEngine.commit()\A\
-        } else {\A\
-            PhantomEngine.commit()\A\
-        }\A\
-    }\A\
-}\A\A\
-/* ──────────────────────────────────────────────────────────── */\A\
-/*  Even more decorative Kotlin */\A\
-/* ──────────────────────────────────────────────────────────── */\A\
-sealed class Packet {\A\
-    data class Ping(val t: Long): Packet()\A\
-    data class Pong(val t: Long): Packet()\A\
-    data class Note(val msg: String): Packet()\A\
-}\A\A\
-class Queue {\A\
-    private val list = ArrayDeque<Packet>()\A\
-    fun push(p: Packet) { list.addLast(p) }\A\
-    fun pop(): Packet? = if (list.isEmpty()) null else list.removeFirst()\A\
-}\A\A\
-fun main() {\A\
-    val sim = CodeNoteBackdropSimulator()\A\
-    val q = Queue()\A\
-    q.push(Packet.Ping(System.currentTimeMillis()))\A\
-    repeat(120) {\A\
-        sim.renderFrame()\A\
-        q.push(Packet.Note(\"frame=$it\"))\A\
-        if (it % 10 == 0) q.push(Packet.Pong(System.currentTimeMillis()))\A\
-    }\A\
+    fun renderFrame() {}\A\
 }\A";
 
   position: absolute;
@@ -164,22 +63,56 @@ fun main() {\A\
 
   width: 1400px;
   white-space: pre;
+
+  /* 🔥 글자 자체를 두껍게 */
   font-family: Consolas, 'Courier New', monospace;
-  font-size: 13px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
 
-  color: rgba(40, 90, 180, 0.12);
+  /* 🌈 알록달록 그라데이션 */
+  background: linear-gradient(
+    90deg,
+    #3498db,
+    #9b59b6,
+    #1abc9c,
+    #f1c40f,
+    #e74c3c,
+    #3498db
+  );
+  background-size: 500% 500%;
 
-  animation: code-fall 60s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* 🧠 가짜 볼드 + 윤곽선 핵심 */
+  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.25);
+  text-shadow:
+    0 1px 1px rgba(0,0,0,0.20),
+    0 0 4px rgba(0,0,0,0.12),
+    0 0 8px rgba(0,0,0,0.06);
+
+  animation:
+    code-fall 60s linear infinite,
+    code-color 12s linear infinite;
 
   pointer-events: none;
   z-index: 1;
 }
 
-/* 코드 애니메이션 */
+/* 코드 낙하 */
 @keyframes code-fall {
   from { transform: translate(-50%, -400px); }
   to   { transform: translate(-50%, 1400px); }
+}
+
+/* 코드 색상 흐름 (확실히 체감) */
+@keyframes code-color {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
 }
 
 /* =====================
@@ -219,7 +152,7 @@ h1 {
 }
 
 /* =====================
-   앱 카드 영역 (밝은 버튼 카드)
+   앱 카드 영역
 ===================== */
 .images {
   display: grid;
@@ -230,13 +163,7 @@ h1 {
 
 .image-box {
   height: 160px;
-
-  background: linear-gradient(
-    135deg,
-    #ffffff,
-    #f3f6fb
-  );
-
+  background: linear-gradient(135deg, #ffffff, #f3f6fb);
   border-radius: 16px;
   border: 1px solid #e3e7ee;
 
