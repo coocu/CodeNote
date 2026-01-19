@@ -3,36 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- 🔥 캐시 무력화 (중요) -->
+  <link rel="stylesheet" href="/static/style.css?v=3">
 </head>
 <body>
 
-<div class="container">
-  <h1>CodeNote</h1>
+  <!-- 🔥 배경을 담당하는 래퍼 -->
+  <div class="page-bg">
 
-  <p class="description">
-    CodeNote는 안드로이드 애플리케이션 및 PC 프로그램 개발 브랜드입니다.<br>
-    실사용 환경을 기준으로 한 유틸리티 및 관리 목적의 모바일 앱 및 PC 프로그램을 기획·개발·운영하고 있습니다.
-  </p>
+    <!-- 🔥 카드 컨테이너 -->
+    <div class="container">
 
-  <div class="images">
-    <a href="/pocket-blackbox" class="image-box">
-      포켓 블랙박스
-    </a>
+      <h1>CodeNote</h1>
 
-    <a href="/appblock" class="image-box">
-    학습용 스마트폰 전환 앱
-    </a>
+      <p class="description">
+        CodeNote는 안드로이드 애플리케이션 및 PC 프로그램 개발 브랜드입니다.<br>
+        실사용 환경을 기준으로 한 유틸리티 및 관리 목적의 모바일 앱 및 PC 프로그램을
+        기획·개발·운영하고 있습니다.
+      </p>
 
-    <div class="image-box">준비중</div>
+      <div class="images">
+        <a href="/pocket-blackbox" class="image-box">
+          포켓 블랙박스
+        </a>
+
+        <a href="/appblock" class="image-box">
+          학습용 스마트폰 전환 앱
+        </a>
+
+        <div class="image-box">준비중</div>
+      </div>
+
+      <div class="contact">
+        <strong>Contact</strong><br>
+        Email:
+        <a href="mailto:code_note95@naver.com">code_note95@naver.com</a>
+      </div>
+
+    </div>
   </div>
-
-  <div class="contact">
-    <strong>Contact</strong><br>
-    Email:
-    <a href="mailto:code_note95@naver.com">code_note95@naver.com</a>
-  </div>
-</div>
 
 </body>
 </html>
