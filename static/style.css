@@ -26,53 +26,148 @@ body {
 
   background: linear-gradient(
     180deg,
-    #f4f6f9 0%,
-    #eef1f6 40%,
-    #ffffff 100%
+    #585858 0%,
+    #414141 40%,
+    #000000 100%
   );
 
   z-index: 0;
 }
 
-/* 🔹 코드 텍스트 레이어 (확실히 보임) */
+/* 🔹 코드 텍스트 레이어 (Kotlin / 알록달록) */
 .page-bg::after {
   content:
-"fun main() {\A\
-    val developer = true\A\
-    if (developer) CodeNote()\A\
+"// ============================================================\A\
+/* CodeNote Decorative Kotlin Code (DISPLAY ONLY / NOT FOR USE) */\A\
+/* 이 코드는 \"보여주기용 장식\" 목적의 더미 코드입니다. */\A\
+/* 실제 앱/웹에서 사용하지 않아도 됩니다. */\A\
+/* ============================================================ */\A\A\
+package com.codenote.showcase\A\A\
+import kotlin.math.*\A\
+import kotlin.random.Random\A\A\
+// ────────────────────────────────────────────────────────────\A\
+// 가상의 렌더 엔진 (실제 동작 없음)\A\
+// ────────────────────────────────────────────────────────────\A\
+object PhantomRenderer {\A\
+    fun drawGradient(from: String, to: String) {}\A\
+    fun drawGlassLayer(alpha: Float, blur: Float) {}\A\
+    fun drawParticle(x: Float, y: Float, r: Float, a: Float) {}\A\
+    fun drawLine(x1: Float, y1: Float, x2: Float, y2: Float, glow: Float) {}\A\
+    fun commitFrame() {}\A\
 }\A\A\
-class PocketBlackbox {\A\
-    fun detectSound() {}\A\
-    fun detectShock() {}\A\
+// ────────────────────────────────────────────────────────────\A\
+// 장식용 배경 시뮬레이터\A\
+// ────────────────────────────────────────────────────────────\A\
+class CodeNoteBackdropSimulator {\A\A\
+    private val width = 1920f\A\
+    private val height = 1080f\A\
+    private val startTime = System.currentTimeMillis()\A\A\
+    private data class Particle(\A\
+        var x: Float,\A\
+        var y: Float,\A\
+        val r: Float,\A\
+        val speed: Float,\A\
+        val phase: Float,\A\
+        val alpha: Float\A\
+    )\A\A\
+    private val particles = mutableListOf<Particle>()\A\A\
+    init {\A\
+        repeat(120) {\A\
+            particles += Particle(\A\
+                x = Random.nextFloat() * width,\A\
+                y = Random.nextFloat() * height,\A\
+                r = Random.nextFloat() * 40f + 6f,\A\
+                speed = Random.nextFloat() * 0.6f + 0.2f,\A\
+                phase = Random.nextFloat() * 10f,\A\
+                alpha = Random.nextFloat() * 0.25f + 0.05f\A\
+            )\A\
+        }\A\
+    }\A\A\
+    fun renderFrame() {\A\
+        val t = (System.currentTimeMillis() - startTime) / 1000f\A\
+        PhantomRenderer.drawGradient(\"#0B1220\", \"#05070C\")\A\
+        PhantomRenderer.drawGlassLayer(\A\
+            alpha = 0.12f + sin(t * 0.4f) * 0.02f,\A\
+            blur = 22f\A\
+        )\A\
+        particles.forEach { p ->\A\
+            val dx = cos(t * p.speed + p.phase) * 0.4f\A\
+            val dy = sin(t * p.speed + p.phase) * 0.4f\A\
+            p.x += dx\A\
+            p.y += dy\A\
+        }\A\
+        PhantomRenderer.commitFrame()\A\
+    }\A\
 }\A\A\
-if (danger) {\A\
-    startRecording()\A\
-}\A\A\
-System.out.println(\"CodeNote\")";
+// ────────────────────────────────────────────────────────────\A\
+// 실행 시뮬레이터 (의미 없음, 장식용)\A\
+// ────────────────────────────────────────────────────────────\A\
+fun main() {\A\
+    val backdrop = CodeNoteBackdropSimulator()\A\
+    repeat(300) {\A\
+        backdrop.renderFrame()\A\
+        Thread.sleep(16)\A\
+    }\A\
+}";
 
   position: absolute;
-  top: -400px;
+  top: -600px;
   left: 50%;
   transform: translateX(-50%);
 
-  width: 1200px;
+  width: 1400px;
   white-space: pre;
   font-family: Consolas, 'Courier New', monospace;
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 13.5px;
+  line-height: 26px;
 
-  color: rgba(0, 120, 255, 0.14); /* 👈 확실히 보이게 */
-  animation: code-fall 50s linear infinite;
+  /* 🌈 코드 컬러 효과 */
+  background: linear-gradient(
+    90deg,
+    #4fc3f7,
+    #81c784,
+    #ffd54f,
+    #f48fb1,
+    #b39ddb,
+    #4fc3f7
+  );
+  background-size: 400% 400%;
+  animation:
+    code-fall 60s linear infinite,
+    code-color 18s ease infinite;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 
   pointer-events: none;
   z-index: 1;
 }
 
-/* 🔹 카드가 항상 최상단 */
+/* 코드 낙하 애니메이션 */
+@keyframes code-fall {
+  from {
+    transform: translate(-50%, -600px);
+  }
+  to {
+    transform: translate(-50%, 1600px);
+  }
+}
+
+/* 코드 색상 흐름 */
+@keyframes code-color {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =====================
+   카드가 항상 최상단
+===================== */
 .container {
-  max-width: 1100px;          /* 카드 전체 폭 */
-  margin: 0 auto;             /* 가운데 정렬 */
-  padding: 80px 60px;         /* 카드 내부 여백 */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 60px;
 
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
@@ -83,16 +178,6 @@ System.out.println(\"CodeNote\")";
 
   position: relative;
   z-index: 2;
-}
-
-/* 코드 애니메이션 */
-@keyframes code-fall {
-  from {
-    transform: translate(-50%, -400px);
-  }
-  to {
-    transform: translate(-50%, 1400px);
-  }
 }
 
 /* =====================
