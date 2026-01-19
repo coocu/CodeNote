@@ -21,22 +21,77 @@ body {
     #eef1f6 40%,
     #ffffff 100%
   );
+
+  position: relative;      /* 🔥 코드 배경용 */
+  overflow: hidden;        /* 🔥 코드 잘림 방지 */
 }
 
-/* =====================
-   메인 카드 컨테이너
-===================== */
+/* 코드 라인 느낌 */
+.page-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.035),
+    rgba(0, 0, 0, 0.035) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 실제 코드 텍스트 */
+.page-bg::after {
+  content:
+"fun main() {\A\
+    val developer = true\A\
+    if (developer) CodeNote()\A\
+}\A\A\
+class PocketBlackbox {\A\
+    fun detectSound() {}\A\
+    fun detectShock() {}\A\
+}\A\A\
+if (danger) {\A\
+    startRecording()\A\
+}\A\A\
+System.out.println(\"CodeNote\")";
+
+  position: absolute;
+  top: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 1200px;
+  white-space: pre;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 28px;
+
+  color: rgba(0, 120, 255, 0.12);
+  animation: code-fall 45s linear infinite;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 카드가 항상 위로 */
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 60px 40px;
+  position: relative;
+  z-index: 1;
+}
 
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+/* 코드 흐름 애니메이션 */
+@keyframes code-fall {
+  from {
+    transform: translate(-50%, -300px);
+  }
+  to {
+    transform: translate(-50%, 1400px);
+  }
 }
 
 /* =====================
