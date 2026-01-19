@@ -1,21 +1,27 @@
 /* =====================
-   기본 배경 / 폰트
+   기본 폰트 / 리셋
 ===================== */
 body {
   margin: 0;
-  padding: 60px 0;   /* 🔥 핵심: 배경이 보이게 만드는 여백 */
   font-family: Arial, sans-serif;
   color: #111;
+  background: #f4f6f9; /* body는 단색 */
+}
 
-  /* 🔥 전체 배경 그라데이션 */
+/* =====================
+   페이지 전체 배경 (핵심)
+===================== */
+.page-bg {
+  min-height: 100vh;
+  padding: 80px 0;
+
+  /* 🔥 여기서 배경을 깐다 */
   background: linear-gradient(
     180deg,
     #f4f6f9 0%,
     #eef1f6 40%,
     #ffffff 100%
   );
-
-  min-height: 100vh;
 }
 
 /* =====================
@@ -23,11 +29,10 @@ body {
 ===================== */
 .container {
   max-width: 900px;
-  margin: 0 auto;    /* 🔥 위아래는 body가 담당 */
+  margin: 0 auto;
   padding: 60px 40px;
 
-  /* 카드 느낌 */
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
@@ -77,13 +82,7 @@ h3 {
 
 .image-box {
   height: 160px;
-
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #f5f7fa 100%
-  );
-
+  background: linear-gradient(135deg, #ffffff, #f5f7fa);
   border-radius: 14px;
   border: 1px solid #e3e6eb;
 
@@ -122,15 +121,10 @@ h3 {
   display: block;
   margin: 50px auto 0;
   padding: 18px 24px;
-
   max-width: 420px;
-  text-align: center;
 
-  background: linear-gradient(
-    135deg,
-    #1a73e8,
-    #1558c0
-  );
+  text-align: center;
+  background: linear-gradient(135deg, #1a73e8, #1558c0);
 
   color: #fff;
   text-decoration: none;
@@ -139,7 +133,6 @@ h3 {
 
   border-radius: 12px;
   box-shadow: 0 15px 30px rgba(26,115,232,0.35);
-
   transition: transform 0.2s ease;
 }
 
