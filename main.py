@@ -32,6 +32,13 @@ def pocket_blackbox(request: Request):
         }
     )
 
+@app.get("/appblock", response_class=HTMLResponse)
+def appblock(request: Request):
+    return templates.TemplateResponse(
+        "appblock.html",
+        {"request": request, "title": "공신폰 앱(AppBlock) | CodeNote"}
+    )
+
 # Google Search Console 인증 파일
 @app.get("/googleb2d5fb5c086ced8d.html")
 def google_verify():
