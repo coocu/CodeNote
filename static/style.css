@@ -70,6 +70,17 @@ System.out.println(\"CodeNote\")";
 
 /* 🔹 카드가 항상 최상단 */
 .container {
+  max-width: 1100px;          /* 카드 전체 폭 */
+  margin: 0 auto;             /* 가운데 정렬 */
+  padding: 80px 60px;         /* 카드 내부 여백 */
+
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+
   position: relative;
   z-index: 2;
 }
