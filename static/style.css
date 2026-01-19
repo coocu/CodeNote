@@ -4,8 +4,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  color: #111;
-  background: #f4f6f9;
+  color: #e6e6e6;
+  background: #000;
 }
 
 /* =====================
@@ -26,114 +26,53 @@ body {
 
   background: linear-gradient(
     180deg,
-    #585858 0%,
-    #414141 40%,
+    #2b2b2b 0%,
+    #151515 40%,
     #000000 100%
   );
 
   z-index: 0;
 }
 
-/* 🔹 코드 텍스트 레이어 (Kotlin / 톤다운된 컬러) */
+/* 🔹 코드 텍스트 레이어 */
 .page-bg::after {
   content:
-"// ============================================================\A\
-/* CodeNote Decorative Kotlin Code (DISPLAY ONLY / NOT FOR USE) */\A\
-/* 이 코드는 \"보여주기용 장식\" 목적의 더미 코드입니다. */\A\
-/* 실제 앱/웹에서 사용하지 않아도 됩니다. */\A\
-/* ============================================================ */\A\A\
-package com.codenote.showcase\A\A\
+"// CodeNote Decorative Kotlin Code (DISPLAY ONLY)\A\
+package com.codenote.showcase\A\
 import kotlin.math.*\A\
 import kotlin.random.Random\A\A\
-// ────────────────────────────────────────────────────────────\A\
-// 가상의 렌더 엔진 (실제 동작 없음)\A\
-// ────────────────────────────────────────────────────────────\A\
 object PhantomRenderer {\A\
     fun drawGradient(from: String, to: String) {}\A\
     fun drawGlassLayer(alpha: Float, blur: Float) {}\A\
-    fun drawParticle(x: Float, y: Float, r: Float, a: Float) {}\A\
-    fun drawLine(x1: Float, y1: Float, x2: Float, y2: Float, glow: Float) {}\A\
     fun commitFrame() {}\A\
 }\A\A\
-// ────────────────────────────────────────────────────────────\A\
-// 장식용 배경 시뮬레이터\A\
-// ────────────────────────────────────────────────────────────\A\
-class CodeNoteBackdropSimulator {\A\A\
+class CodeNoteBackdropSimulator {\A\
     private val width = 1920f\A\
     private val height = 1080f\A\
-    private val startTime = System.currentTimeMillis()\A\A\
-    private data class Particle(\A\
-        var x: Float,\A\
-        var y: Float,\A\
-        val r: Float,\A\
-        val speed: Float,\A\
-        val phase: Float,\A\
-        val alpha: Float\A\
-    )\A\A\
-    private val particles = mutableListOf<Particle>()\A\A\
-    init {\A\
-        repeat(120) {\A\
-            particles += Particle(\A\
-                x = Random.nextFloat() * width,\A\
-                y = Random.nextFloat() * height,\A\
-                r = Random.nextFloat() * 40f + 6f,\A\
-                speed = Random.nextFloat() * 0.6f + 0.2f,\A\
-                phase = Random.nextFloat() * 10f,\A\
-                alpha = Random.nextFloat() * 0.25f + 0.05f\A\
-            )\A\
-        }\A\
-    }\A\A\
-    fun renderFrame() {\A\
-        val t = (System.currentTimeMillis() - startTime) / 1000f\A\
-        PhantomRenderer.drawGradient(\"#0B1220\", \"#05070C\")\A\
-        PhantomRenderer.drawGlassLayer(\A\
-            alpha = 0.12f + sin(t * 0.4f) * 0.02f,\A\
-            blur = 22f\A\
-        )\A\
-        particles.forEach { p ->\A\
-            val dx = cos(t * p.speed + p.phase) * 0.4f\A\
-            val dy = sin(t * p.speed + p.phase) * 0.4f\A\
-            p.x += dx\A\
-            p.y += dy\A\
-        }\A\
-        PhantomRenderer.commitFrame()\A\
-    }\A\
-}\A\A\
-// ────────────────────────────────────────────────────────────\A\
-// 실행 시뮬레이터 (의미 없음, 장식용)\A\
-// ────────────────────────────────────────────────────────────\A\
-fun main() {\A\
-    val backdrop = CodeNoteBackdropSimulator()\A\
-    repeat(300) {\A\
-        backdrop.renderFrame()\A\
-        Thread.sleep(16)\A\
-    }\A\
-}";
+}\A";
 
   position: absolute;
-  top: -600px;
+  top: -500px;
   left: 50%;
   transform: translateX(-50%);
 
   width: 1400px;
   white-space: pre;
   font-family: Consolas, 'Courier New', monospace;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 26px;
 
-  /* 🌈 톤 통일된 코드 컬러 */
   background: linear-gradient(
     90deg,
-    rgba(79,195,247,0.9),
-    rgba(108,140,255,0.9),
-    rgba(154,124,255,0.9),
-    rgba(108,140,255,0.9),
-    rgba(79,195,247,0.9)
+    rgba(120,180,255,0.6),
+    rgba(160,140,255,0.6),
+    rgba(120,180,255,0.6)
   );
-  background-size: 400% 400%;
+  background-size: 300% 300%;
+
   animation:
-    code-fall 60s linear infinite,
-    code-color 18s ease infinite;
+    code-fall 70s linear infinite,
+    code-color 22s ease infinite;
 
   -webkit-background-clip: text;
   background-clip: text;
@@ -143,17 +82,12 @@ fun main() {\A\
   z-index: 1;
 }
 
-/* 코드 낙하 애니메이션 */
+/* 애니메이션 */
 @keyframes code-fall {
-  from {
-    transform: translate(-50%, -600px);
-  }
-  to {
-    transform: translate(-50%, 1600px);
-  }
+  from { transform: translate(-50%, -500px); }
+  to   { transform: translate(-50%, 1600px); }
 }
 
-/* 코드 색상 흐름 */
 @keyframes code-color {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -161,20 +95,23 @@ fun main() {\A\
 }
 
 /* =====================
-   카드가 항상 최상단
+   메인 유리 컨테이너 (다크 글래스)
 ===================== */
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 80px 60px;
+  padding: 90px 70px;
 
-  /* 🔹 살짝 반투명 + 유리 느낌 */
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  background: rgba(20, 20, 20, 0.72);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
 
-  border-radius: 28px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+  border-radius: 32px;
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(255,255,255,0.06);
 
   position: relative;
   z-index: 2;
@@ -184,68 +121,63 @@ fun main() {\A\
    타이틀 / 설명
 ===================== */
 h1 {
-  font-size: 42px;
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
+  font-size: 44px;
+  margin-bottom: 24px;
   text-align: center;
+  color: #ffffff;
 }
 
-.description {
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 36px;
-  color: #333;
-  text-align: center;
-}
-
+.description,
 .subtitle {
-  color: #555;
-  margin-bottom: 30px;
-  line-height: 1.6;
+  text-align: center;
+  color: #cfcfcf;
+  line-height: 1.7;
 }
 
 /* =====================
-   앱 카드 영역
+   앱 카드 영역 (다크 버튼 카드)
 ===================== */
 .images {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  margin-bottom: 50px;
+  gap: 28px;
+  margin: 60px 0;
 }
 
 .image-box {
   height: 160px;
-  background: linear-gradient(135deg, #ffffff, #f5f7fa);
-  border-radius: 14px;
-  border: 1px solid #e3e6eb;
+
+  background: linear-gradient(
+    145deg,
+    rgba(40,40,40,0.85),
+    rgba(20,20,20,0.85)
+  );
+
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: #333;
+  color: #f1f1f1;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
   transition: all 0.25s ease;
 }
 
 .image-box:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-}
-
-/* =====================
-   상세 페이지 이미지
-===================== */
-.detail-img {
-  width: 100%;
-  margin: 32px 0;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 /* =====================
@@ -253,37 +185,27 @@ h1 {
 ===================== */
 .download-btn {
   display: block;
-  margin: 50px auto 40px;
+  margin: 60px auto 40px;
   padding: 18px 24px;
   max-width: 420px;
 
   text-align: center;
-  background: linear-gradient(135deg, #1a73e8, #1558c0);
-
+  background: linear-gradient(135deg, #2d6cff, #1b3fa8);
   color: #fff;
-  text-decoration: none;
-  font-size: 16px;
   font-weight: bold;
+  border-radius: 14px;
 
-  border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(26,115,232,0.35);
+  box-shadow: 0 18px 40px rgba(45,108,255,0.4);
 }
 
 /* =====================
    기타
 ===================== */
-.back {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #666;
-  text-decoration: none;
-}
-
 .contact {
   margin-top: 50px;
   padding-top: 30px;
-  border-top: 1px solid #e5e8ee;
+  border-top: 1px solid rgba(255,255,255,0.1);
   font-size: 14px;
-  color: #555;
+  color: #aaa;
   text-align: center;
 }
