@@ -187,8 +187,8 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   color: transparent;
 
   animation:
-    desc-loop-fall 10s linear infinite,
-    desc-color-flow 4s linear infinite;
+    desc-loop-fall 15s linear infinite,
+    desc-color-flow 3s linear infinite;
 
   pointer-events: none;
 }
