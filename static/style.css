@@ -289,103 +289,6 @@ h1 {
   }
 }
 
-/* =====================
-   📜 중간 설명 영역 전용 코드 낙하 (FAST)
-===================== */
-.code-desc {
-  position: relative;
-  overflow: hidden;          /* 버튼 영역 넘어가면 컷 */
-  padding: 32px 0;
-}
-
-/* 🔹 설명 영역 코드 레이어 */
-.code-desc::before {
-  content:
-"// ------------------------------------------------------\A\
-/* CodeNote Runtime Description Layer */\A\
-/* Fast Falling Decorative Code */\A\
-\A\
-class CodeNote {\A\
-    fun android() {}\A\
-    fun pc() {}\A\
-    fun practicalOnly() {}\A\
-}\A\A\
-if (problem.isReal) {\A\
-    solve()\A\
-}\A\
-\A\
-// ------------------------------------------------------";
-
-  position: absolute;
-  top: -120%;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 140%;
-  white-space: pre;
-
-  font-family: Consolas, 'Courier New', monospace;
-  font-size: 12px;
-  line-height: 22px;
-  font-weight: 400;
-
-  /* 🌈 알록달록 코드 */
-  background: linear-gradient(
-    90deg,
-    rgba(52,152,219,0.9),
-    rgba(155,89,182,0.9),
-    rgba(26,188,156,0.9),
-    rgba(241,196,15,0.85),
-    rgba(231,76,60,0.85),
-    rgba(52,152,219,0.9)
-  );
-  background-size: 400% 400%;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-
-  -webkit-text-stroke: 0.2px rgba(0,0,0,0.25);
-  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
-
-  pointer-events: none;
-  z-index: 0;
-
-  /* 🔥 핵심: 버튼 도달 전에 사라지고 다시 위로 */
-  animation:
-    desc-fast-fall 10s linear infinite,
-    desc-color-flow 5s linear infinite;
-}
-
-/* 실제 설명 텍스트는 항상 위 */
-.code-desc {
-  z-index: 1;
-}
-
-/* ⬇️ 빠르게 아래로 → 완전히 벗어나면 리셋 */
-@keyframes desc-fast-fall {
-  0% {
-    transform: translate(-50%, -120%);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, 120%);
-    opacity: 0;
-  }
-}
-
-/* 🌈 색상 빠른 흐름 */
-@keyframes desc-color-flow {
-  0%   { background-position:   0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
 /* 📱 모바일에서는 조금만 약하게 */
 @media (max-width: 768px) {
   .code-desc::before {
@@ -395,4 +298,101 @@ if (problem.isReal) {\A\
   }
 }
 
+/* =====================
+   📜 설명 문구 자체를 코드처럼 흐르게
+===================== */
+.code-desc {
+  position: relative;
+  overflow: hidden;
+  color: transparent;           /* 실제 텍스트 숨김 */
+}
+
+/* 코드처럼 흐르는 설명 복제본 */
+.code-desc::before {
+  content:
+"// CodeNote Runtime Description\n\
+\n\
+if (problem.isReal) {\n\
+    define()\n\
+    simplify()\n\
+    implementOnlyNecessary()\n\
+}\n\
+\n\
+AndroidApp()\n\
+PCProgram()\n\
+Utility()\n\
+Automation()\n\
+Protection()\n\
+\n\
+contact(\"code_note95@naver.com\")";
+
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+  white-space: pre;
+  text-align: center;
+
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 15px;
+  line-height: 30px;
+  font-weight: 500;
+
+  /* 🌈 코드 컬러 */
+  background: linear-gradient(
+    90deg,
+    #3498db,
+    #9b59b6,
+    #1abc9c,
+    #f1c40f,
+    #e74c3c,
+    #3498db
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
+
+  animation:
+    desc-loop-fall 6s linear infinite,
+    desc-color-flow 3s linear infinite;
+
+  pointer-events: none;
+}
+
+/* 위 → 아래 → 바로 리셋 */
+@keyframes desc-loop-fall {
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+}
+
+/* 색상 흐름 */
+@keyframes desc-color-flow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* 📱 모바일 최적화 */
+@media (max-width: 768px) {
+  .code-desc::before {
+    font-size: 13px;
+    line-height: 26px;
+  }
+}
 
