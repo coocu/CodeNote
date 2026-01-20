@@ -38,7 +38,7 @@ body {
 "// ============================================================\A\
 /* CodeNote Decorative Kotlin Code (DISPLAY ONLY / NOT FOR USE) */\A\
 /* 이 코드는 배경에 흘러가는 '장식용 코드' 입니다. */\A\
-/* 의미 없어도 됩니다. 그냥 개발 감성용 */\A\
+/* 의미 없는코드. 그냥 개발 감성용 */\A\
 /* ============================================================ */\A\A\
 package com.codenote.backdrop\A\A\
 import kotlin.math.*\A\
@@ -144,18 +144,19 @@ h1 {
 /* 코드처럼 흐르는 설명 */
 .code-desc::before {
   content:
-"// CodeNote Runtime Description\A\
+"contact(\"code_note95@naver.com\")\A\
 \A\
-CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
-불필요한 기능은 제거하고 필요한 기능만 구현하는 개발 브랜드입니다.\A\
-\A\
-Android 애플리케이션 및 PC 프로그램을 중심으로\A\
-관리 · 자동화 · 보호 목적의 실전형 소프트웨어를 설계·개발합니다.\A\
-\A\
-모바일 앱 또는 PC 프로그램 제작 문의는\A\
 아래 메일을 통해 직접 연락주세요.\A\
+모바일 앱 또는 PC 프로그램 제작 문의는\A\
 \A\
-contact(\"code_note95@naver.com\")";
+관리 · 자동화 · 보호 목적의 실전형 소프트웨어를 설계·개발합니다.\A\
+Android 애플리케이션 및 PC 프로그램을 중심으로\A\
+\A\
+불필요한 기능은 제거하고 필요한 기능만 구현하는 개발 브랜드입니다.\A\
+CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
+\A\
+//                CodeNote";
+
 
 
   position: absolute;
@@ -186,8 +187,8 @@ contact(\"code_note95@naver.com\")";
   color: transparent;
 
   animation:
-    desc-loop-fall 5s linear infinite,
-    desc-color-flow 2.5s linear infinite;
+    desc-loop-fall 10s linear infinite,
+    desc-color-flow 4s linear infinite;
 
   pointer-events: none;
 }
