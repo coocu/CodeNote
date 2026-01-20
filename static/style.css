@@ -294,7 +294,8 @@ h1 {
 ===================== */
 .code-desc {
   position: relative;
-  overflow: hidden;   /* 버튼 영역 넘어서면 바로 사라지게 */
+  overflow: hidden;          /* 버튼 영역 넘어가면 컷 */
+  padding: 32px 0;
 }
 
 /* 🔹 설명 영역 코드 레이어 */
@@ -316,7 +317,7 @@ if (problem.isReal) {\A\
 // ------------------------------------------------------";
 
   position: absolute;
-  top: -300px;
+  top: -120%;
   left: 50%;
   transform: translateX(-50%);
 
@@ -344,17 +345,16 @@ if (problem.isReal) {\A\
   background-clip: text;
   color: transparent;
 
-  /* 살짝 윤곽 */
   -webkit-text-stroke: 0.2px rgba(0,0,0,0.25);
   text-shadow: 0 1px 1px rgba(0,0,0,0.15);
 
   pointer-events: none;
   z-index: 0;
 
-  /* 🔥 핵심: 빠른 낙하 + 무한 반복 */
+  /* 🔥 핵심: 버튼 도달 전에 사라지고 다시 위로 */
   animation:
-    desc-fast-fall 14s linear infinite,
-    desc-color-flow 6s linear infinite;
+    desc-fast-fall 10s linear infinite,
+    desc-color-flow 5s linear infinite;
 }
 
 /* 실제 설명 텍스트는 항상 위 */
@@ -362,13 +362,21 @@ if (problem.isReal) {\A\
   z-index: 1;
 }
 
-/* ⬇️ 빠르게 아래로 떨어졌다가 다시 위로 */
+/* ⬇️ 빠르게 아래로 → 완전히 벗어나면 리셋 */
 @keyframes desc-fast-fall {
-  from {
-    transform: translate(-50%, -300px);
+  0% {
+    transform: translate(-50%, -120%);
+    opacity: 0;
   }
-  to {
-    transform: translate(-50%, 100%);
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 120%);
+    opacity: 0;
   }
 }
 
@@ -386,4 +394,5 @@ if (problem.isReal) {\A\
     opacity: 0.55;
   }
 }
+
 
