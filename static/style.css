@@ -224,3 +224,45 @@ h1 {
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
+/* =====================
+   📱 모바일 전용 안정화 (추가)
+===================== */
+@media (max-width: 768px) {
+
+  /* 전체 박스 계산 안정화 */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 배경 코드 폭 축소 */
+  .page-bg::after {
+    width: 100%;
+    font-size: 12px;
+    line-height: 24px;
+  }
+
+  /* 메인 카드 모바일 대응 */
+  .container {
+    max-width: calc(100% - 24px);
+    padding: 48px 20px;     /* 🔥 핵심 */
+    border-radius: 22px;
+    overflow: hidden;       /* 🔥 이미지 튐 차단 */
+  }
+
+  /* 상세 이미지 모바일 대응 */
+  .detail-img {
+    max-width: 100%;
+    width: 100%;
+    margin: 24px auto;
+    border-radius: 14px;
+  }
+
+  /* 카드 버튼 높이 보정 */
+  .image-box {
+    height: 140px;
+  }
+}
+
+
