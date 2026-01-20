@@ -195,10 +195,12 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
 
 /* 설명 코드 무한 낙하 */
 @keyframes desc-loop-fall {
-  0%   { transform: translate(-50%, -100%); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translate(-50%, 120%); opacity: 0; }
+  0% {
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    transform: translate(-50%, 100%);
+  }
 }
 
 @keyframes desc-color-flow {
