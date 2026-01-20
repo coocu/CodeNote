@@ -211,3 +211,16 @@ h1 {
   color: #555;
   text-align: center;
 }
+
+.detail-img {
+  display: block;        /* 🔥 inline 이미지 버그 제거 */
+  max-width: 100%;       /* 🔥 절대 카드 밖으로 안 나감 */
+  width: 100%;
+  height: auto;
+
+  margin: 32px auto;
+  border-radius: 16px;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
