@@ -313,3 +313,28 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
 .image-box:hover {
   transform: translateY(-6px);
 }
+
+.video-section {
+  margin: 40px 0;
+}
+
+.video-section h3 {
+  margin: 24px 0 10px;
+  font-size: 18px;
+}
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 비율 */
+  margin-bottom: 20px;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
