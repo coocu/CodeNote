@@ -176,15 +176,9 @@
 
 
 
-개발자: UNO (쿠쿠)
+개발자: 코드노트 (CodeNote)
 
 
-
-연락처: 카카오톡 오픈채팅 — https://open.kakao.com/o/s1q5ZI2h
-
-
-
-GitHub: https://github.com/GalaxyConsultant
 
 
 
