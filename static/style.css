@@ -315,6 +315,43 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   }
 }
 
+/* =========================
+   📱 모바일 코드 흐름 안정화 (하단 추가 전용)
+========================= */
+@media (max-width: 768px) {
+
+  /* 모바일에서 코드 낙하 범위만 제한 */
+  .code-desc::before {
+    animation:
+      desc-loop-fall-mobile 70s linear infinite,
+      desc-color-flow 8s linear infinite;
+  }
+
+  @keyframes desc-loop-fall-mobile {
+    0% {
+      transform: translate(-50%, -100%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, 100%);
+      opacity: 0;
+    }
+  }
+
+  /* 버튼/카드가 항상 위에 오도록 보험 */
+  .images {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+
 
 
 
