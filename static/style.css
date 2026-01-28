@@ -349,6 +349,56 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
     position: relative;
     z-index: 3;
   }
+
+  /* =========================
+   📱 모바일 전용 버튼 (사진/영상 무관)
+========================= */
+.mobile-only-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .mobile-only-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+
+    width: calc(100% - 32px);
+    max-width: 420px;
+    height: 54px;
+
+    background: linear-gradient(
+      90deg,
+      #3498db,
+      #9b59b6,
+      #1abc9c
+    );
+
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+
+    border-radius: 999px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+
+    z-index: 9999; /* 🔥 모든 레이어 위 */
+  }
+
+  /* iOS 하단 홈바 대응 */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .mobile-only-btn {
+      bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+  }
+}
+
 }
 
 
