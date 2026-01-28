@@ -93,19 +93,8 @@ class CodeNoteBackdropSimulator {\A\
   z-index: 1;
 }
 
-/* 배경 코드 낙하 */
-@keyframes code-fall {
-  from { transform: translate(-50%, -400px); }
-  to   { transform: translate(-50%, 1400px); }
-}
-
-@keyframes code-color {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
 /* =====================
-   메인 카드 (밝은 유리)
+   메인 카드
 ===================== */
 .container {
   max-width: 1100px;
@@ -118,12 +107,11 @@ class CodeNoteBackdropSimulator {\A\
   position: relative;
   z-index: 2;
 
-  /* ✅ 텍스트 중앙 정렬 기준 */
   text-align: center;
 }
 
 /* =====================
-   타이틀 / 설명
+   타이틀
 ===================== */
 h1 {
   font-size: 44px;
@@ -133,7 +121,7 @@ h1 {
 }
 
 /* =====================
-   📜 설명 문구 코드 낙하 영역
+   📜 설명 문구 (왼쪽 정렬로 변경)
 ===================== */
 .code-desc {
   position: relative;
@@ -143,8 +131,8 @@ h1 {
   color: transparent;
   user-select: none;
 
-  /* ✅ 기준 중앙 */
-  text-align: center;
+  /* ✅ 설명글만 왼쪽 정렬 */
+  text-align: left;
 }
 
 .code-desc::after {
@@ -154,6 +142,18 @@ h1 {
 }
 
 .code-desc::before {
+  position: absolute;
+  left: 0;                     /* ✅ 중앙 기준 제거 */
+  top: 0;
+  transform: translateY(-100%);
+  width: 100%;
+  white-space: pre;
+  text-align: left;            /* ✅ 왼쪽 정렬 */
+
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 15px;
+  line-height: 30px;
+
   content:
 "아래 메일을 통해 직접 연락주세요.\A\
 모바일 앱 또는 PC 프로그램 제작 문의는\A\
@@ -164,18 +164,6 @@ Android 애플리케이션 및 PC 프로그램을 중심으로\A\
 불필요한 기능은 제거하고 필요한 기능만 구현하는 개발 브랜드입니다.\A\
 CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
 ";
-
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translate(-50%, -100%);
-  width: 100%;
-  white-space: pre;
-  text-align: center;
-
-  font-family: Consolas, 'Courier New', monospace;
-  font-size: 15px;
-  line-height: 30px;
 
   background: linear-gradient(
     90deg,
@@ -198,116 +186,70 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   pointer-events: none;
 }
 
-@keyframes desc-loop-fall {
-  0%   { transform: translate(-50%, -120vh); opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { transform: translate(-50%, 120vh); opacity: 0; }
-}
-
-@keyframes desc-color-flow {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
 /* =====================
    앱 카드 영역
 ===================== */
 .images {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 28px;
   margin: 60px 0;
-
-  /* ✅ 가운데 기준 */
   justify-items: center;
 }
 
 /* =====================
-   📱 모바일 전용 처리
+   🎥 동영상 / 📸 사진 (PC에서 크게 통일)
+===================== */
+.video-wrap,
+.detail-img {
+  width: 100%;
+  max-width: 1000px;   /* ✅ PC에서 충분히 크게 */
+  margin: 40px auto;
+}
+
+/* =====================
+   📱 모바일 처리 (기존 유지)
 ===================== */
 @media (max-width: 768px) {
 
-  html,
-  body {
+  html, body {
     overflow-x: hidden;
     width: 100%;
   }
 
   .page-bg {
     padding: 40px 0;
-    overflow-x: hidden;
   }
 
   .container {
     width: calc(100% - 32px);
-    max-width: 100%;
-    margin: 0 auto;
     padding: 50px 20px;
-    border-radius: 18px;
-    text-align: center;
   }
 
   h1 {
     font-size: 28px;
   }
 
-  /* ✅ 모바일 썸네일/영상 좌우 잘림 방지 */
   img,
   iframe {
     max-width: 100%;
     height: auto;
+    margin: 0 auto;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .code-desc::before {
-    animation:
-      desc-loop-fall-mobile 70s linear infinite,
-      desc-color-flow 8s linear infinite;
-  }
-
-  .images {
-    position: relative;
-    z-index: 3;
-    justify-items: center;
-  }
-
-  .mobile-only-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    width: calc(100% - 32px);
-    max-width: 420px;
-    height: 54px;
-    background: linear-gradient(90deg,#3498db,#9b59b6,#1abc9c);
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 999px;
-    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-    z-index: 9999;
   }
 }
 
-/* 모바일 전용 낙하 애니메이션 */
-@keyframes desc-loop-fall-mobile {
-  0%   { transform: translate(-50%, -100%); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translate(-50%, 100%); opacity: 0; }
+/* =====================
+   애니메이션
+===================== */
+@keyframes desc-loop-fall {
+  0%   { transform: translateY(-120vh); opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translateY(120vh); opacity: 0; }
 }
 
-/* 모바일 배경 코드 폭 보정 */
-@media (max-width: 768px) {
-  .page-bg::after {
-    max-width: 100vw;
-    width: 100%;
-  }
+@keyframes desc-color-flow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
