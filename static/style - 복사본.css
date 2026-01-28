@@ -60,6 +60,7 @@ class CodeNoteBackdropSimulator {\A\
   top: -400px;
   left: 50%;
   transform: translateX(-50%);
+
   width: 1400px;
   white-space: pre;
 
@@ -130,26 +131,48 @@ h1 {
 }
 
 /* =====================
-   📜 설명 문구 코드 낙하 영역
+   📜 설명 문구 코드 낙하 영역 (핵심)
 ===================== */
 .code-desc {
   position: relative;
-  height: 220px;
-  min-height: 220px;
+  height: 220px;          /* 🔥 기존 유지 */
+  min-height: 220px;      /* ✅ 레이아웃 고정용 (추가) */
   overflow: hidden;
-  color: transparent;
-  user-select: none;
+  color: transparent;     /* 실제 텍스트 숨김 */
+  user-select: none;      /* 🔥 파란 선택 방지 */
 }
 
+/* ✅ 레이아웃 높이 보정용 더미 (핵심 추가) */
 .code-desc::after {
   content: "";
   display: block;
   height: 220px;
 }
 
+/* 코드처럼 흐르는 설명 */
 .code-desc::before {
   content:
 "아래 메일을 통해 직접 연락주세요.\A\
+모바일 앱 또는 PC 프로그램 제작 문의는\A\
+\A\
+관리 · 자동화 · 보호 목적의 실전형 소프트웨어를 설계·개발합니다.\A\
+Android 애플리케이션 및 PC 프로그램을 중심으로\A\
+\A\
+불필요한 기능은 제거하고 필요한 기능만 구현하는 개발 브랜드입니다.\A\
+CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
+\A\
+\A\
+아래 메일을 통해 직접 연락주세요.\A\
+모바일 앱 또는 PC 프로그램 제작 문의는\A\
+\A\
+관리 · 자동화 · 보호 목적의 실전형 소프트웨어를 설계·개발합니다.\A\
+Android 애플리케이션 및 PC 프로그램을 중심으로\A\
+\A\
+불필요한 기능은 제거하고 필요한 기능만 구현하는 개발 브랜드입니다.\A\
+CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
+\A\
+\A\
+아래 메일을 통해 직접 연락주세요.\A\
 모바일 앱 또는 PC 프로그램 제작 문의는\A\
 \A\
 관리 · 자동화 · 보호 목적의 실전형 소프트웨어를 설계·개발합니다.\A\
@@ -163,6 +186,7 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   left: 50%;
   top: 0;
   transform: translate(-50%, -100%);
+
   width: 100%;
   white-space: pre;
   text-align: center;
@@ -192,20 +216,32 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   pointer-events: none;
 }
 
+/* 설명 코드 무한 낙하 */
 @keyframes desc-loop-fall {
-  0%   { transform: translate(-50%, -120vh); opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { transform: translate(-50%, 120vh); opacity: 0; }
+  0% {
+    transform: translate(-50%, -120vh);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 120vh);
+    opacity: 0;
+  }
 }
+
+
 
 @keyframes desc-color-flow {
   0%   { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
-
 /* =====================
-   앱 카드 영역
+   앱 카드 영역 (원본 유지)
 ===================== */
 .images {
   display: grid;
@@ -214,26 +250,52 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   margin: 60px 0;
 }
 
-/* =====================
-   📱 모바일 전용 처리 (단일 media)
-===================== */
+/* =========================
+   🔥 영상 영역 (PC / 모바일 공통 안정화)
+========================= */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto 20px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+}
+
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+}
+
+
+/* =========================
+   📸 이미지 프레임 고정 (PC + 모바일 공통)
+========================= */
+.detail-img {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;          /* 🔥 프레임 비율 고정 */
+  margin: 40px auto;
+
+  background-color: #fff;        /* 세로 사진 여백 자연스럽게 */
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+
+  object-fit: contain;           /* 🔥 절대 안 잘림 */
+}
+
+/* =========================
+   📱 모바일 최적화 + 하단 잘림 방지 (정리본)
+========================= */
 @media (max-width: 768px) {
 
-  html,
-  body {
-    overflow-x: hidden;
-    width: 100%;
-  }
-
-  .page-bg {
-    padding: 40px 0;
-    overflow-x: hidden;
-  }
-
   .container {
-    width: calc(100% - 32px);
-    max-width: 100%;
-    margin: 0 auto;
     padding: 50px 20px;
     border-radius: 18px;
   }
@@ -242,43 +304,127 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
     font-size: 28px;
   }
 
+  /* 모바일에서 여백만 조정 (프레임 유지) */
+  .detail-img {
+    margin: 28px auto;
+  }
+
+  /* 🔥 모바일에서 버튼/카드 잘림 방지 */
+  .page-bg {
+    overflow: visible;
+  }
+}
+
+/* =========================
+   📱 모바일 코드 흐름 안정화 (하단 추가 전용)
+========================= */
+@media (max-width: 768px) {
+
+  /* 모바일에서 코드 낙하 범위만 제한 */
   .code-desc::before {
     animation:
       desc-loop-fall-mobile 70s linear infinite,
       desc-color-flow 8s linear infinite;
   }
 
+  @keyframes desc-loop-fall-mobile {
+    0% {
+      transform: translate(-50%, -100%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, 100%);
+      opacity: 0;
+    }
+  }
+
+  /* 버튼/카드가 항상 위에 오도록 보험 */
   .images {
     position: relative;
     z-index: 3;
   }
 
+  /* =========================
+   📱 모바일 전용 버튼 (사진/영상 무관)
+========================= */
+.mobile-only-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
   .mobile-only-btn {
     display: flex;
     align-items: center;
     justify-content: center;
+
     position: fixed;
     left: 50%;
     bottom: 20px;
     transform: translateX(-50%);
+
     width: calc(100% - 32px);
     max-width: 420px;
     height: 54px;
-    background: linear-gradient(90deg,#3498db,#9b59b6,#1abc9c);
+
+    background: linear-gradient(
+      90deg,
+      #3498db,
+      #9b59b6,
+      #1abc9c
+    );
+
     color: #fff;
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
+
     border-radius: 999px;
     box-shadow: 0 12px 28px rgba(0,0,0,0.25);
-    z-index: 9999;
+
+    z-index: 9999; /* 🔥 모든 레이어 위 */
+  }
+
+  /* iOS 하단 홈바 대응 */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .mobile-only-btn {
+      bottom: calc(20px + env(safe-area-inset-bottom));
+    }
   }
 }
 
-/* 모바일 전용 낙하 애니메이션 */
-@keyframes desc-loop-fall-mobile {
-  0%   { transform: translate(-50%, -100%); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translate(-50%, 100%); opacity: 0; }
+/* =========================
+   📱 모바일 레이아웃 중앙 정렬 보정 (핵심)
+========================= */
+@media (max-width: 768px) {
+
+  .page-bg {
+    padding: 40px 0;          /* 모바일에서는 패딩 축소 */
+    display: flex;
+    justify-content: center;  /* 🔥 가로 중앙 */
+  }
+
+  .container {
+    width: calc(100% - 32px); /* 좌우 여백 확보 */
+    max-width: 100%;
+    margin: 0 auto;
+  }
 }
+
+
+}
+
+
+
+
+
+
+
+
+
