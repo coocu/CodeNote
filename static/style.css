@@ -117,6 +117,9 @@ class CodeNoteBackdropSimulator {\A\
   box-shadow: 0 30px 80px rgba(0,0,0,0.12);
   position: relative;
   z-index: 2;
+
+  /* ✅ 텍스트 중앙 정렬 기준 */
+  text-align: center;
 }
 
 /* =====================
@@ -139,6 +142,9 @@ h1 {
   overflow: hidden;
   color: transparent;
   user-select: none;
+
+  /* ✅ 기준 중앙 */
+  text-align: center;
 }
 
 .code-desc::after {
@@ -212,10 +218,13 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 28px;
   margin: 60px 0;
+
+  /* ✅ 가운데 기준 */
+  justify-items: center;
 }
 
 /* =====================
-   📱 모바일 전용 처리 (단일 media)
+   📱 모바일 전용 처리
 ===================== */
 @media (max-width: 768px) {
 
@@ -236,10 +245,21 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
     margin: 0 auto;
     padding: 50px 20px;
     border-radius: 18px;
+    text-align: center;
   }
 
   h1 {
     font-size: 28px;
+  }
+
+  /* ✅ 모바일 썸네일/영상 좌우 잘림 방지 */
+  img,
+  iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .code-desc::before {
@@ -251,6 +271,7 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   .images {
     position: relative;
     z-index: 3;
+    justify-items: center;
   }
 
   .mobile-only-btn {
@@ -281,4 +302,12 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   10%  { opacity: 1; }
   90%  { opacity: 1; }
   100% { transform: translate(-50%, 100%); opacity: 0; }
+}
+
+/* 모바일 배경 코드 폭 보정 */
+@media (max-width: 768px) {
+  .page-bg::after {
+    max-width: 100vw;
+    width: 100%;
+  }
 }
