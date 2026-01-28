@@ -32,28 +32,15 @@ body {
   z-index: 0;
 }
 
-/* 🔹 배경 코드 (얇고 선명하게) */
+/* 🔹 배경 코드 */
 .page-bg::after {
   content:
 "// ============================================================\A\
-/* CodeNote Decorative Kotlin Code (DISPLAY ONLY / NOT FOR USE) */\A\
-/* 이 코드는 배경에 흘러가는 '장식용 코드' 입니다. */\A\
-/* 의미 없는코드. 그냥 개발 감성용 */\A\
-/* ============================================================ */\A\A\
+/* CodeNote Decorative Kotlin Code */\A\
+/* DISPLAY ONLY */\A\
 package com.codenote.backdrop\A\A\
-import kotlin.math.*\A\
-import kotlin.random.Random\A\A\
 object PhantomEngine {\A\
-    fun gradient(a: String, b: String) {}\A\
-    fun blur(amount: Float) {}\A\
-    fun glow(x: Float, y: Float, r: Float, a: Float) {}\A\
-    fun line(x1: Float, y1: Float, x2: Float, y2: Float, glow: Float) {}\A\
     fun commit() {}\A\
-}\A\A\
-class CodeNoteBackdropSimulator {\A\
-    private val width = 1920f\A\
-    private val height = 1080f\A\
-    fun renderFrame() {}\A\
 }\A";
 
   position: absolute;
@@ -71,10 +58,7 @@ class CodeNoteBackdropSimulator {\A\
     90deg,
     rgba(52,152,219,0.75),
     rgba(155,89,182,0.75),
-    rgba(26,188,156,0.75),
-    rgba(241,196,15,0.70),
-    rgba(231,76,60,0.70),
-    rgba(52,152,219,0.75)
+    rgba(26,188,156,0.75)
   );
   background-size: 400% 400%;
 
@@ -82,15 +66,14 @@ class CodeNoteBackdropSimulator {\A\
   background-clip: text;
   color: transparent;
 
-  -webkit-text-stroke: 0.15px rgba(0, 0, 0, 0.25);
-  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
-
-  animation:
-    code-fall 60s linear infinite,
-    code-color 16s ease-in-out infinite;
-
+  animation: code-fall 60s linear infinite;
   pointer-events: none;
   z-index: 1;
+}
+
+@keyframes code-fall {
+  from { transform: translate(-50%, -400px); }
+  to   { transform: translate(-50%, 1400px); }
 }
 
 /* =====================
@@ -100,13 +83,14 @@ class CodeNoteBackdropSimulator {\A\
   max-width: 1100px;
   margin: 0 auto;
   padding: 90px 70px;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255,255,255,0.88);
   backdrop-filter: blur(10px);
   border-radius: 28px;
   box-shadow: 0 30px 80px rgba(0,0,0,0.12);
   position: relative;
   z-index: 2;
 
+  /* 🔥 기본은 중앙 */
   text-align: center;
 }
 
@@ -117,40 +101,29 @@ h1 {
   font-size: 44px;
   margin-bottom: 24px;
   text-align: center;
-  color: #111;
 }
 
 /* =====================
-   📜 설명 문구 (왼쪽 정렬로 변경)
+   📜 코드 설명 (왼쪽)
 ===================== */
 .code-desc {
   position: relative;
   height: 220px;
-  min-height: 220px;
   overflow: hidden;
   color: transparent;
-  user-select: none;
-
-  /* ✅ 설명글만 왼쪽 정렬 */
   text-align: left;
-}
-
-.code-desc::after {
-  content: "";
-  display: block;
-  height: 220px;
 }
 
 .code-desc::before {
   position: absolute;
-  left: 0;                     /* ✅ 중앙 기준 제거 */
+  left: 0;
   top: 0;
   transform: translateY(-100%);
   width: 100%;
   white-space: pre;
-  text-align: left;            /* ✅ 왼쪽 정렬 */
+  text-align: left;
 
-  font-family: Consolas, 'Courier New', monospace;
+  font-family: Consolas, monospace;
   font-size: 15px;
   line-height: 30px;
 
@@ -159,35 +132,42 @@ h1 {
 모바일 앱 또는 PC 프로그램 제작 문의는\A\
 \A\
 관리 · 자동화 · 보호 목적의 실전형 소프트웨어를 설계·개발합니다.\A\
-Android 애플리케이션 및 PC 프로그램을 중심으로\A\
-\A\
-불필요한 기능은 제거하고 필요한 기능만 구현하는 개발 브랜드입니다.\A\
-CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
 ";
 
   background: linear-gradient(
-    90deg,
-    #3498db,
-    #9b59b6,
-    #1abc9c,
-    #f1c40f,
-    #e74c3c,
-    #3498db
+    90deg,#3498db,#9b59b6,#1abc9c
   );
-  background-size: 400% 400%;
   -webkit-background-clip: text;
-  background-clip: text;
   color: transparent;
 
-  animation:
-    desc-loop-fall 70s linear infinite,
-    desc-color-flow 8s linear infinite;
+  animation: desc-loop-fall 70s linear infinite;
+}
 
-  pointer-events: none;
+@keyframes desc-loop-fall {
+  from { transform: translateY(-120vh); opacity: 0; }
+  to   { transform: translateY(120vh); opacity: 1; }
 }
 
 /* =====================
-   앱 카드 영역
+   ✅ 본문 텍스트만 왼쪽 정렬 (핵심)
+===================== */
+.container h2,
+.container h3,
+.container p,
+.container ul,
+.container ol,
+.container li {
+  text-align: left;
+}
+
+/* 리스트 중앙 밀림 방지 */
+.container ul,
+.container ol {
+  padding-left: 20px;
+}
+
+/* =====================
+   앱 카드
 ===================== */
 .images {
   display: grid;
@@ -198,58 +178,30 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
 }
 
 /* =====================
-   🎥 동영상 / 📸 사진 (PC에서 크게 통일)
+   영상 / 이미지
 ===================== */
 .video-wrap,
 .detail-img {
   width: 100%;
-  max-width: 1000px;   /* ✅ PC에서 충분히 크게 */
+  max-width: 1000px;
   margin: 40px auto;
 }
 
 /* =====================
-   📱 모바일 처리 (기존 유지)
+   모바일
 ===================== */
 @media (max-width: 768px) {
-
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-  }
-
-  .page-bg {
-    padding: 40px 0;
-  }
 
   .container {
     width: calc(100% - 32px);
     padding: 50px 20px;
   }
 
-  h1 {
-    font-size: 28px;
-  }
+  h1 { font-size: 28px; }
 
-  img,
-  iframe {
+  img, iframe {
     max-width: 100%;
-    height: auto;
-    margin: 0 auto;
     display: block;
+    margin: 0 auto;
   }
-}
-
-/* =====================
-   애니메이션
-===================== */
-@keyframes desc-loop-fall {
-  0%   { transform: translateY(-120vh); opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { transform: translateY(120vh); opacity: 0; }
-}
-
-@keyframes desc-color-flow {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
 }
