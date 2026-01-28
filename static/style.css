@@ -317,18 +317,6 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
   border-radius: 14px;
 }
 
-/* =========================
-   이미지 통일
-========================= */
-.detail-img {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  margin: 40px auto;
-  border-radius: 16px;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
-  object-fit: contain;
-}
 
 /* =========================
    📱 모바일 최적화
@@ -344,8 +332,31 @@ CodeNote는 실사용 환경을 기준으로 문제를 정의하고,\A\
     font-size: 28px;
   }
 
+  /* =========================
+   📸 이미지 프레임 고정 (세로 사진 대응)
+========================= */
+
+/* 이미지 프레임 */
+.detail-img {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;          /* 🔥 프레임 비율 고정 */
+  margin: 40px auto;
+
+  background-color: #fff;        /* 세로 사진 여백 자연스럽게 */
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+
+  object-fit: contain;           /* 🔥 절대 안 잘림 */
+}
+
+/* 모바일에서도 동일한 프레임 유지 */
+@media (max-width: 768px) {
   .detail-img {
-    max-height: 240px;
-    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    margin: 28px auto;
   }
+}
+
 }
