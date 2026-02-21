@@ -108,19 +108,19 @@ h1 {
 ===================== */
 .code-desc {
   position: relative;
-  height: 220px;
-  overflow: hidden;
-  color: transparent;
+  /* height 제거 */
+  /* overflow 제거 */
   text-align: left;
+  color: transparent;
 }
 
 .code-desc::before {
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: relative;        /* absolute 제거 */
+  display: block;
   width: 100%;
-  white-space: pre;
-  text-align: left;
+
+  white-space: pre-line;     /* 자동 줄바꿈 + \A 유지 */
+  word-break: keep-all;
 
   font-family: Consolas, monospace;
   font-size: 15px;
