@@ -104,11 +104,11 @@ h1 {
 }
 
 /* =====================
-   📜 코드 설명 (왼쪽)
+   📜 코드 설명
 ===================== */
 .code-desc {
   position: relative;
-  text-align: left;
+  text-align: center;
   color: transparent;
 }
 
@@ -120,10 +120,12 @@ h1 {
   white-space: pre-line;      /* \A 유지 + 자동 줄바꿈 */
   word-break: keep-all;
 
+  text-align: center;
+
   font-family: Consolas, monospace;
 
   /* 🔥 해상도에 맞게 자동 조절 */
-  font-size: clamp(10px, 2vw, 16px);
+  font-size: clamp(12px, 2vw, 16px);
   line-height: 1.8;
 
   content:
