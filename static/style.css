@@ -114,18 +114,17 @@ h1 {
   text-align: left;
 }
 
-.code-desc {
-  position: relative;
-  color: #333;
+.code-desc::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  white-space: pre;
   text-align: left;
 
   font-family: Consolas, monospace;
   font-size: 15px;
   line-height: 30px;
-
-  white-space: normal;
-  word-break: keep-all;
-
 
   content:
 "삼성 기기 환경에 최적화된 전용 앱도 개발합니다.\A\
