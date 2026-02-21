@@ -44,7 +44,7 @@ object PhantomEngine {\A\
 }\A";
 
   position: absolute;
-  top: -400px;
+  top: 0px;
   left: 50%;
   transform: translateX(-50%);
   width: 1400px;
@@ -118,7 +118,6 @@ h1 {
   position: absolute;
   left: 0;
   top: 0;
-  transform: translateY(-100%);
   width: 100%;
   white-space: pre;
   text-align: left;
@@ -129,8 +128,11 @@ h1 {
 
   content:
 "아래 메일을 통해 직접 연락주세요.\A\
-모바일 앱 또는 PC 프로그램 제작 문의는\A\
+실사용 기준으로 기획·개발 문의를 받습니다.\A\
 \A\
+삼성 기기 환경에 최적화된 전용 앱도 개발합니다.\A\
+키오스크 운영/현장용 앱과 PC 프로그램을 제작합니다.\A\
+포렌식 분석·로그 추출·증거 보존을 위한 툴을 만듭니다.\A\
 관리 · 자동화 · 보호 목적의 실전형 소프트웨어를 설계·개발합니다.\A\
 ";
 
@@ -144,8 +146,8 @@ h1 {
 }
 
 @keyframes desc-loop-fall {
-  from { transform: translateY(-120vh); opacity: 0; }
-  to   { transform: translateY(120vh); opacity: 1; }
+  from { transform: translateY(0); }
+  to   { transform: translateY(120vh); }
 }
 
 /* =====================
