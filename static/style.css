@@ -126,7 +126,9 @@ h1 {
   font-size: 15px;
   line-height: 30px;
 
-content:
+  animation: desc-loop-fall 20s linear infinite;
+
+  content:
 "아래 메일을 통해 직접 연락주세요.\A\
 실사용 기준으로 기획·개발 문의를 받습니다.\A\
 \A\
@@ -174,8 +176,8 @@ content:
 }
 
 @keyframes desc-loop-fall {
-  from { transform: translateY(-50); }
-  to   { transform: translateY(0%); }
+  from { transform: translateY(0); }
+  to   { transform: translateY(50%); }
 }
 
 /* =====================
