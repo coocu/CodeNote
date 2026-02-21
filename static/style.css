@@ -174,8 +174,8 @@ content:
 }
 
 @keyframes desc-loop-fall {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-50%); }
+  from { transform: translateY(-50); }
+  to   { transform: translateY(0%); }
 }
 
 /* =====================
