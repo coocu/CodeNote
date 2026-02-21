@@ -205,3 +205,88 @@ h1 {
     margin: 0 auto;
   }
 }
+
+/* =========================
+   🔥 앱 버튼 카드 스타일
+========================= */
+
+.image-box {
+  width: 100%;
+  max-width: 320px;
+  padding: 30px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.08),
+    0 4px 10px rgba(0,0,0,0.04);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* 🔥 위에 얇은 그라데이션 라인 */
+.image-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #3498db,
+    #9b59b6,
+    #1abc9c
+  );
+}
+
+/* 🔥 호버 효과 */
+.image-box:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.15),
+    0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* 🔥 링크 색상 제거 */
+.image-box:link,
+.image-box:visited {
+  color: #222;
+}
+
+/* =========================
+   준비중 버튼
+========================= */
+
+.image-box.disabled {
+  background: rgba(240,240,240,0.9);
+  color: #999;
+  cursor: default;
+}
+
+.image-box.disabled::before {
+  background: linear-gradient(
+    90deg,
+    #ccc,
+    #bbb
+  );
+}
+
+.image-box.disabled:hover {
+  transform: none;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.06);
+}
