@@ -170,12 +170,12 @@ content:
   -webkit-background-clip: text;
   color: transparent;
 
-  animation: desc-loop-fall 70s linear infinite;
+  animation: desc-loop-fall 20s linear infinite;
 }
 
 @keyframes desc-loop-fall {
   from { transform: translateY(0); }
-  to   { transform: translateY(120vh); }
+  to   { transform: translateY(-50%); }
 }
 
 /* =====================
