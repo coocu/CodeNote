@@ -290,3 +290,7 @@ h1 {
   box-shadow:
     0 10px 25px rgba(0,0,0,0.06);
 }
+
+.contact {
+  text-align: center !important;
+}
