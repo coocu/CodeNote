@@ -141,14 +141,8 @@ h1 {
   );
   -webkit-background-clip: text;
   color: transparent;
-
-  animation: desc-loop-fall 20s linear infinite;
 }
 
-@keyframes desc-loop-fall {
-  from { transform: translateY(0); }
-  to   { transform: translateY(50%); }
-}
 
 /* =====================
    ✅ 본문 텍스트만 왼쪽 정렬 (핵심)
