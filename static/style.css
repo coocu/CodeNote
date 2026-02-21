@@ -108,23 +108,23 @@ h1 {
 ===================== */
 .code-desc {
   position: relative;
-  /* height 제거 */
-  /* overflow 제거 */
   text-align: left;
   color: transparent;
 }
 
 .code-desc::before {
-  position: relative;        /* absolute 제거 */
+  position: relative;
   display: block;
   width: 100%;
 
-  white-space: pre-line;     /* 자동 줄바꿈 + \A 유지 */
+  white-space: pre-line;      /* \A 유지 + 자동 줄바꿈 */
   word-break: keep-all;
 
   font-family: Consolas, monospace;
-  font-size: 15px;
-  line-height: 30px;
+
+  /* 🔥 해상도에 맞게 자동 조절 */
+  font-size: clamp(10px, 2vw, 16px);
+  line-height: 1.8;
 
   content:
 "CodeNote는 사용자의 안전을 위한 포켓 블랙박스,\A\
