@@ -14,8 +14,9 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse(
-        "index.html",
-        {
+        request=request,
+        name="index.html",
+        context={
             "request": request,
             "title": "CodeNote"
         }
@@ -25,8 +26,9 @@ def home(request: Request):
 @app.get("/pocket-blackbox", response_class=HTMLResponse)
 def pocket_blackbox(request: Request):
     return templates.TemplateResponse(
-        "pocket_blackbox.html",
-        {
+        request=request,
+        name="pocket_blackbox.html",
+        context={
             "request": request,
             "title": "포켓 블랙박스 | CodeNote"
         }
@@ -35,8 +37,9 @@ def pocket_blackbox(request: Request):
 @app.get("/appblock", response_class=HTMLResponse)
 def appblock(request: Request):
     return templates.TemplateResponse(
-        "appblock.html",
-        {"request": request, "title": "공신폰 앱(AppBlock) | CodeNote"}
+        request=request,
+        name="appblock.html",
+        context={"request": request, "title": "공신폰 앱(AppBlock) | CodeNote"}
     )
 
 # Google Search Console 인증 파일
