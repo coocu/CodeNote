@@ -42,6 +42,19 @@ def appblock(request: Request):
         context={"request": request, "title": "공신폰 앱(AppBlock) | CodeNote"}
     )
 
+
+# 학원 예약 서비스 시스템 사용 안내
+@app.get("/recording-reservation", response_class=HTMLResponse)
+def recording_reservation(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="recording_reservation.html",
+        context={
+            "request": request,
+            "title": "학원 예약 서비스 시스템 | CodeNote"
+        }
+    )
+
 # Google Search Console 인증 파일
 @app.get("/googleb2d5fb5c086ced8d.html")
 def google_verify():
