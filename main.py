@@ -55,6 +55,19 @@ def recording(request: Request):
         }
     )
 
+
+# 기업용 대기표 키오스크 시스템
+@app.get("/kiosk-system", response_class=HTMLResponse)
+def kiosk_system(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="kiosk_system.html",
+        context={
+            "request": request,
+            "title": "기업용 대기표 키오스크 시스템 | CodeNote"
+        }
+    )
+
 # Google Search Console 인증 파일
 @app.get("/googleb2d5fb5c086ced8d.html")
 def google_verify():
