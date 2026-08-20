@@ -43,7 +43,7 @@ def appblock(request: Request):
     )
 
 
-# 학원 예약 서비스 시스템 사용 안내
+# 예약 서비스 시스템 사용 안내
 @app.get("/recording", response_class=HTMLResponse)
 def recording(request: Request):
     return templates.TemplateResponse(
@@ -51,7 +51,7 @@ def recording(request: Request):
         name="recording.html",
         context={
             "request": request,
-            "title": "학원 예약 서비스 시스템 | CodeNote"
+            "title": "예약 서비스 시스템 | CodeNote"
         }
     )
 
