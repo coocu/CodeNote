@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="학원 출석 관리 시스템의 학생 등록, NFC 출석, 출석번호 입력과 학부모 통합 출결 확인 안내">
+  <meta name="description" content="학원 출석 관리 시스템 - 여러 학원 학생 등록, NFC 출석, 출석번호 입력, 학부모 통합 출결 확인, PC 관리자 지원">
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/static/style.css?v=8">
 </head>
@@ -17,15 +17,17 @@
     <span class="eyebrow">ACADEMY ATTENDANCE SYSTEM</span>
     <h1>학원 출석 관리 시스템</h1>
     <p class="subtitle">
-      여러 학원에서 학생 등록과 출석체크를 함께 사용할 수 있고,<br>
-      학부모는 하나의 앱에서 등록된 학원의 출결을 통합해 확인할 수 있는 출석 관리 시스템입니다.
+      학생은 여러 학원을 다녀도 하나의 출석 방식으로 간편하게 이용하고,<br>
+      학부모는 하나의 앱에서 등록된 모든 학원의 입실·퇴실을 통합해서 확인할 수 있습니다.<br>
+      학원은 학생 등록부터 출석 현황까지 한 시스템으로 관리할 수 있습니다.
     </p>
     <div class="hero-badges">
-      <span>학생 등록</span>
-      <span>NFC 출석</span>
-      <span>출석번호 입력</span>
-      <span>학부모 출결 확인</span>
       <span>다중 학원 지원</span>
+      <span>NFC 카드 출석</span>
+      <span>4자리 출석번호</span>
+      <span>입실·퇴실 알림</span>
+      <span>학부모 통합 확인</span>
+      <span>PC 관리자</span>
     </div>
   </section>
 
@@ -42,40 +44,31 @@
     <div class="section-heading">
       <span class="step-number">01</span>
       <div>
-        <h2>학원별 학생 등록</h2>
-        <p>학원 관리자가 학생을 등록하면 해당 학원에서 출석 시스템을 사용할 수 있습니다.</p>
+        <h2>학원을 여러 곳 다녀도 출석 앱은 하나</h2>
+        <p>우리학원과 서울학원을 함께 다니는 학생도 학부모 앱 하나에서 학원별 출결을 구분해 확인할 수 있습니다.</p>
       </div>
     </div>
 
-    <figure class="screenshot-card wide-shot">
-      <img src="/static/images/attendance/student_registration.jpg" alt="학생 등록 화면">
-      <figcaption>
-        <strong>학생 등록</strong>
-        <span>학생 이름, 보호자 연락처와 출석번호를 등록하고 필요에 따라 NFC 카드를 연결할 수 있습니다.</span>
-      </figcaption>
-    </figure>
+    <div class="screenshot-grid two">
+      <figure class="screenshot-card phone-shot">
+        <img src="/static/images/attendance/parent_multi_academy.jpg" alt="우리학원과 서울학원의 출결을 한 앱에서 확인하는 예시 화면">
+        <figcaption>
+          <strong>여러 학원을 한 화면에서</strong>
+          <span>예시 학생 홍길동이 우리학원과 서울학원에 각각 등록된 경우, 학원별 최근 출결을 한 앱에서 확인할 수 있습니다.</span>
+        </figcaption>
+      </figure>
+      <figure class="screenshot-card phone-shot">
+        <img src="/static/images/attendance/parent_attendance_history.jpg" alt="우리학원 출결 기록 예시 화면">
+        <figcaption>
+          <strong>학원별 출결 기록 확인</strong>
+          <span>각 학원의 입실·퇴실 기록을 분리해서 확인할 수 있어 여러 학원을 이용해도 기록이 섞이지 않습니다.</span>
+        </figcaption>
+      </figure>
+    </div>
 
-    <div class="feature-grid">
-      <article>
-        <span class="feature-icon">1</span>
-        <h3>학원별 등록</h3>
-        <p>같은 학생이라도 각 학원에서 등록되어야 해당 학원의 출석 알림과 출결 확인을 사용할 수 있습니다.</p>
-      </article>
-      <article>
-        <span class="feature-icon">2</span>
-        <h3>여러 학원 이용</h3>
-        <p>학생이 여러 학원을 다니는 경우 각 학원에서 등록한 뒤 하나의 출석 시스템으로 이용할 수 있습니다.</p>
-      </article>
-      <article>
-        <span class="feature-icon">3</span>
-        <h3>출석번호 지원</h3>
-        <p>NFC 카드가 없어도 등록된 출석번호를 이용해 출석체크를 할 수 있습니다.</p>
-      </article>
-      <article>
-        <span class="feature-icon">4</span>
-        <h3>NFC 카드 연결</h3>
-        <p>학생에게 NFC 카드를 등록해 빠르게 출석체크할 수 있습니다.</p>
-      </article>
+    <div class="guide-callout">
+      <strong>학부모 입장에서 편리한 이유</strong>
+      <span>학원마다 별도의 출석 앱을 설치하고 각각 로그인할 필요 없이, 등록된 학원의 출결을 하나의 앱에서 확인할 수 있습니다.</span>
     </div>
   </section>
 
@@ -83,21 +76,40 @@
     <div class="section-heading">
       <span class="step-number">02</span>
       <div>
-        <h2>NFC 카드 하나로 여러 학원 출석</h2>
-        <p>같은 시스템을 사용하는 학원이라면 학생이 각 학원에 등록된 뒤 하나의 NFC 카드를 계속 사용할 수 있습니다.</p>
+        <h2>한 번 등록한 학생을 여러 학원에서 편리하게 관리</h2>
+        <p>이 시스템을 사용하는 학원에서는 학생을 각 학원에 등록해 출석 기능을 사용할 수 있습니다.</p>
       </div>
     </div>
 
-    <div class="system-flow">
-      <div><strong>학생 등록</strong><span>각 학원에서 등록</span></div><b>→</b>
-      <div><strong>NFC 연결</strong><span>학생 카드 등록</span></div><b>→</b>
-      <div><strong>출석체크</strong><span>등록 학원에서 태그</span></div><b>→</b>
-      <div><strong>출결 확인</strong><span>학부모 앱에서 확인</span></div>
-    </div>
+    <figure class="screenshot-card wide-shot">
+      <img src="/static/images/attendance/student_registration.jpg" alt="학생 등록 기능 화면">
+      <figcaption>
+        <strong>학생 등록 기능</strong>
+        <span>학생 이름과 보호자 연락처, 출석번호를 등록하고 필요하면 NFC 카드를 연결할 수 있습니다.</span>
+      </figcaption>
+    </figure>
 
-    <div class="guide-callout">
-      <strong>NFC 카드 사용</strong>
-      <span>카드에는 학생 이름이나 보호자 전화번호 같은 학생정보를 직접 기록하지 않고, 시스템에서 사용하는 식별값으로 출석을 처리합니다.</span>
+    <div class="feature-grid">
+      <article>
+        <span class="feature-icon">1</span>
+        <h3>학원별 등록</h3>
+        <p>우리학원에 등록한 학생은 우리학원의 출석 기능을, 서울학원에도 등록하면 서울학원의 출석 기능까지 이용할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">2</span>
+        <h3>여러 학원 이용</h3>
+        <p>한 학생이 여러 학원을 다니는 경우 학원별로 등록한 뒤 같은 시스템 안에서 각각의 출석 기록을 관리할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">3</span>
+        <h3>학생별 출석번호</h3>
+        <p>NFC 카드를 사용하지 않는 학생에게는 4자리 출석번호를 부여해 카드 없이도 출석체크가 가능합니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">4</span>
+        <h3>NFC 카드 등록</h3>
+        <p>NFC 카드를 사용하는 학생은 카드를 등록해 번호를 입력하지 않고 빠르게 출석처리를 할 수 있습니다.</p>
+      </article>
     </div>
   </section>
 
@@ -105,28 +117,29 @@
     <div class="section-heading">
       <span class="step-number">03</span>
       <div>
-        <h2>간편한 출석체크</h2>
-        <p>NFC 카드를 태그하거나 4자리 출석번호를 입력해 출석을 처리할 수 있습니다.</p>
+        <h2>NFC 카드 하나로 등록된 여러 학원에서 출석</h2>
+        <p>학생이 각 학원에 정상 등록되어 있다면 같은 NFC 카드를 등록된 학원에서 계속 사용할 수 있습니다.</p>
       </div>
     </div>
 
-    <figure class="screenshot-card phone-shot" style="max-width:520px; margin-left:auto; margin-right:auto;">
-      <img src="/static/images/attendance/attendance_check.jpg" alt="출석번호 입력 및 NFC 출석 화면">
+    <figure class="screenshot-card wide-shot">
+      <img src="/static/images/attendance/nfc_multi_academy.jpg" alt="하나의 NFC 카드로 우리학원과 서울학원에서 출석하는 예시">
       <figcaption>
-        <strong>NFC · 출석번호 출석체크</strong>
-        <span>학원 환경에 맞춰 NFC 카드 또는 4자리 출석번호를 사용할 수 있습니다.</span>
+        <strong>하나의 카드, 여러 학원</strong>
+        <span>홍길동 학생이 우리학원과 서울학원에 모두 등록된 예시입니다. 같은 NFC 카드로 각 학원의 출석체크를 이용할 수 있습니다.</span>
       </figcaption>
     </figure>
 
-    <div class="feature-grid">
-      <article>
-        <h3>NFC 출석</h3>
-        <p>등록된 NFC 카드를 태그해 출석체크를 빠르게 처리합니다.</p>
-      </article>
-      <article>
-        <h3>출석번호 입력</h3>
-        <p>학생별 4자리 출석번호를 입력해 카드 없이도 출석할 수 있습니다.</p>
-      </article>
+    <div class="system-flow">
+      <div><strong>학생 등록</strong><span>우리학원에 등록</span></div><b>→</b>
+      <div><strong>NFC 연결</strong><span>학생 카드 등록</span></div><b>→</b>
+      <div><strong>추가 학원 등록</strong><span>서울학원에도 등록</span></div><b>→</b>
+      <div><strong>공용 사용</strong><span>같은 카드로 출석</span></div>
+    </div>
+
+    <div class="guide-callout">
+      <strong>NFC 정보 처리</strong>
+      <span>NFC 카드에는 학생 이름이나 보호자 전화번호 같은 개인정보를 직접 기록하지 않고, 시스템에서 사용하는 식별값을 이용해 등록된 학생의 출석을 처리합니다.</span>
     </div>
   </section>
 
@@ -134,31 +147,44 @@
     <div class="section-heading">
       <span class="step-number">04</span>
       <div>
-        <h2>학부모 통합 출결 확인</h2>
-        <p>자녀가 여러 학원을 이용해도 등록된 학원의 출결을 하나의 앱에서 함께 확인할 수 있습니다.</p>
+        <h2>카드가 있어도, 없어도 간단한 출석체크</h2>
+        <p>학원 상황에 따라 NFC 카드 또는 학생별 4자리 출석번호 중 편한 방법을 사용할 수 있습니다.</p>
       </div>
+    </div>
+
+    <div class="screenshot-grid two">
+      <figure class="screenshot-card phone-shot">
+        <img src="/static/images/attendance/attendance_check.jpg" alt="NFC 카드와 4자리 출석번호를 이용하는 출석 화면">
+        <figcaption>
+          <strong>NFC · 출석번호 출석체크</strong>
+          <span>NFC 카드를 태그하거나 출석번호 4자리를 입력해 빠르게 출석을 처리할 수 있습니다.</span>
+        </figcaption>
+      </figure>
+      <figure class="screenshot-card phone-shot">
+        <img src="/static/images/attendance/parent_notifications.jpg" alt="출석 알림 예시 화면">
+        <figcaption>
+          <strong>입실·퇴실 알림</strong>
+          <span>홍길동, 김코드, 김노트 등 등록 학생의 입실·퇴실 결과를 학원별로 구분해 확인하는 예시 화면입니다.</span>
+        </figcaption>
+      </figure>
     </div>
 
     <div class="feature-grid">
       <article>
-        <span class="feature-icon">A</span>
-        <h3>학원별 출결 확인</h3>
-        <p>등록된 학원별로 자녀의 입실·퇴실 기록을 확인할 수 있습니다.</p>
+        <h3>NFC 카드 출석</h3>
+        <p>학생이 카드를 태그하는 방식이라 번호를 기억하거나 직접 입력하지 않아도 빠르게 출석할 수 있습니다.</p>
       </article>
       <article>
-        <span class="feature-icon">B</span>
-        <h3>하나의 앱으로 통합</h3>
-        <p>학원마다 별도의 출석 앱을 사용할 필요 없이 하나의 앱에서 여러 학원의 출결을 확인합니다.</p>
+        <h3>4자리 출석번호</h3>
+        <p>NFC 카드가 없거나 카드를 사용하지 않는 환경에서도 학생별 출석번호를 이용할 수 있습니다.</p>
       </article>
       <article>
-        <span class="feature-icon">C</span>
-        <h3>출석 알림</h3>
-        <p>학생이 등록된 학원에서 출석이 처리되면 해당 학원의 출결 알림을 받을 수 있습니다.</p>
+        <h3>입실·퇴실 구분</h3>
+        <p>출석 기록을 단순 체크로 끝내지 않고 입실과 퇴실 기록으로 구분해 학원 이용 상황을 확인할 수 있습니다.</p>
       </article>
       <article>
-        <span class="feature-icon">D</span>
-        <h3>여러 학원 연동</h3>
-        <p>같은 출석 시스템을 사용하는 학원에 학생이 각각 등록되어 있으면 학원별 출결을 함께 관리할 수 있습니다.</p>
+        <h3>학원별 알림</h3>
+        <p>학생이 등록된 학원에서 출석이 처리되면 어느 학원의 출결인지 구분해 학부모가 확인할 수 있습니다.</p>
       </article>
     </div>
   </section>
@@ -167,29 +193,114 @@
     <div class="section-heading">
       <span class="step-number">05</span>
       <div>
-        <h2>PC 관리자 지원</h2>
-        <p>학원 관리자는 PC 화면에서 학생 등록과 출석 관련 관리 기능을 사용할 수 있습니다.</p>
+        <h2>학부모는 자녀의 출결을 더 쉽게 확인</h2>
+        <p>학원을 여러 곳 다니는 자녀의 출결을 학원마다 따로 확인하는 번거로움을 줄일 수 있습니다.</p>
       </div>
     </div>
 
-    <figure class="screenshot-card wide-shot">
-      <img src="/static/images/attendance/admin_login.jpg" alt="PC 관리자 화면">
-      <figcaption>
-        <strong>PC 관리자</strong>
-        <span>학원을 선택해 관리자 화면으로 접속하고 학생 및 출석 기능을 관리할 수 있습니다.</span>
-      </figcaption>
-    </figure>
+    <div class="feature-grid">
+      <article>
+        <span class="feature-icon">A</span>
+        <h3>한 앱에서 통합 확인</h3>
+        <p>우리학원, 서울학원처럼 여러 학원에 등록되어 있어도 하나의 앱에서 학원별 출결 상태를 확인할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">B</span>
+        <h3>학원별 기록 분리</h3>
+        <p>각 학원의 입실·퇴실 내역이 구분되어 보여 어느 학원에서 언제 출석했는지 쉽게 확인할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">C</span>
+        <h3>출석 알림 확인</h3>
+        <p>등록된 학원의 출석 처리가 완료되면 학부모가 입실·퇴실 알림을 통해 결과를 확인할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">D</span>
+        <h3>학원 추가에도 편리</h3>
+        <p>새로운 학원도 같은 출석 시스템을 사용하고 학생이 해당 학원에 등록되면 기존 앱에서 함께 확인할 수 있습니다.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">06</span>
+      <div>
+        <h2>학원 관리자는 학생과 출석 현황을 한 곳에서</h2>
+        <p>학생 등록부터 NFC 상태, 출석번호와 최근 출결까지 학원 운영에 필요한 정보를 관리 화면에서 확인할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="screenshot-grid two">
+      <figure class="screenshot-card wide-shot">
+        <img src="/static/images/attendance/admin_student_list.jpg" alt="우리학원 학생 관리 예시 화면">
+        <figcaption>
+          <strong>학생 관리 예시</strong>
+          <span>우리학원에 등록된 홍길동, 김코드, 김노트 학생의 출석번호와 NFC 등록 상태를 확인하는 예시입니다.</span>
+        </figcaption>
+      </figure>
+      <figure class="screenshot-card wide-shot">
+        <img src="/static/images/attendance/admin_dashboard.jpg" alt="서울학원 오늘의 출석 현황 예시 화면">
+        <figcaption>
+          <strong>오늘의 출석 현황 예시</strong>
+          <span>서울학원의 등록 학생 수, 현재 입실 인원, 오늘 입실·퇴실 및 최근 출석 기록을 한눈에 확인하는 예시입니다.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="guide-callout">
+      <strong>학원 운영의 장점</strong>
+      <span>학생 등록과 출석수단, 입실·퇴실 기록을 별개의 프로그램으로 관리하지 않고 하나의 출석 관리 흐름으로 운영할 수 있습니다.</span>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">07</span>
+      <div>
+        <h2>학생 · 학부모 · 학원 모두에게 단순한 구조</h2>
+        <p>한 학생의 출석을 중심으로 학원 현장과 학부모 확인을 자연스럽게 연결합니다.</p>
+      </div>
+    </div>
+
+    <div class="system-flow">
+      <div><strong>학원</strong><span>학생 등록 및 출석 관리</span></div><b>→</b>
+      <div><strong>학생</strong><span>NFC 또는 번호로 출석</span></div><b>→</b>
+      <div><strong>출결 기록</strong><span>입실·퇴실 구분</span></div><b>→</b>
+      <div><strong>학부모</strong><span>앱에서 통합 확인</span></div>
+    </div>
+
+    <div class="feature-grid">
+      <article>
+        <h3>학생에게는</h3>
+        <p>여러 학원에 등록되어도 같은 NFC 카드를 활용할 수 있고, 카드가 없어도 출석번호로 출석할 수 있습니다.</p>
+      </article>
+      <article>
+        <h3>학부모에게는</h3>
+        <p>학원별 앱을 따로 관리하는 대신 하나의 앱에서 등록된 학원의 출결을 확인할 수 있습니다.</p>
+      </article>
+      <article>
+        <h3>학원에게는</h3>
+        <p>학생 등록, 출석수단 관리, 입실·퇴실 기록 확인을 하나의 출석 관리 시스템으로 운영할 수 있습니다.</p>
+      </article>
+      <article>
+        <h3>여러 학원을 이용할 때는</h3>
+        <p>각 학원에 학생이 등록되어 있다는 전제에서 동일한 출석 시스템과 학부모 앱을 계속 활용할 수 있습니다.</p>
+      </article>
+    </div>
   </section>
 
   <section class="guide-section compact">
-    <h2>서비스 구성</h2>
+    <h2>주요 기능</h2>
     <div class="mini-list">
-      <span>다중 학원</span>
+      <span>다중 학원 등록</span>
       <span>학생 등록</span>
-      <span>NFC 등록</span>
-      <span>출석번호</span>
+      <span>NFC 카드 등록</span>
+      <span>NFC 공용 사용</span>
+      <span>4자리 출석번호</span>
       <span>입실·퇴실 관리</span>
-      <span>학부모 출결 확인</span>
+      <span>학원별 출결 기록</span>
+      <span>학부모 통합 확인</span>
       <span>출석 알림</span>
       <span>PC 관리자</span>
     </div>
