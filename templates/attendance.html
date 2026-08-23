@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="학원 출석 관리 시스템의 학생 등록, NFC 출석, 출석번호 입력과 학부모 통합 출결 확인 안내">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/style.css?v=8">
+</head>
+<body class="detail-body">
+
+<div class="container detail-container attendance-page">
+
+  <a href="/" class="back">← CodeNote</a>
+
+  <section class="detail-hero">
+    <span class="eyebrow">ACADEMY ATTENDANCE SYSTEM</span>
+    <h1>학원 출석 관리 시스템</h1>
+    <p class="subtitle">
+      여러 학원에서 학생 등록과 출석체크를 함께 사용할 수 있고,<br>
+      학부모는 하나의 앱에서 등록된 학원의 출결을 통합해 확인할 수 있는 출석 관리 시스템입니다.
+    </p>
+    <div class="hero-badges">
+      <span>학생 등록</span>
+      <span>NFC 출석</span>
+      <span>출석번호 입력</span>
+      <span>학부모 출결 확인</span>
+      <span>다중 학원 지원</span>
+    </div>
+  </section>
+
+  <div class="store-actions two recording-store-actions">
+    <a href="https://play.google.com/store/apps/details?id=com.codenote.attendance&hl=ko" class="store-btn google-play" target="_blank" rel="noopener noreferrer">
+      <span>Android</span><strong>Google Play 다운로드</strong>
+    </a>
+    <a href="#" class="store-btn app-store pending" aria-disabled="true" onclick="return false;">
+      <span>iOS</span><strong>App Store 준비 중</strong>
+    </a>
+  </div>
+
+  <section class="guide-section first-section">
+    <div class="section-heading">
+      <span class="step-number">01</span>
+      <div>
+        <h2>학원별 학생 등록</h2>
+        <p>학원 관리자가 학생을 등록하면 해당 학원에서 출석 시스템을 사용할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <figure class="screenshot-card wide-shot">
+      <img src="/static/images/attendance/student_registration.jpg" alt="학생 등록 화면">
+      <figcaption>
+        <strong>학생 등록</strong>
+        <span>학생 이름, 보호자 연락처와 출석번호를 등록하고 필요에 따라 NFC 카드를 연결할 수 있습니다.</span>
+      </figcaption>
+    </figure>
+
+    <div class="feature-grid">
+      <article>
+        <span class="feature-icon">1</span>
+        <h3>학원별 등록</h3>
+        <p>같은 학생이라도 각 학원에서 등록되어야 해당 학원의 출석 알림과 출결 확인을 사용할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">2</span>
+        <h3>여러 학원 이용</h3>
+        <p>학생이 여러 학원을 다니는 경우 각 학원에서 등록한 뒤 하나의 출석 시스템으로 이용할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">3</span>
+        <h3>출석번호 지원</h3>
+        <p>NFC 카드가 없어도 등록된 출석번호를 이용해 출석체크를 할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">4</span>
+        <h3>NFC 카드 연결</h3>
+        <p>학생에게 NFC 카드를 등록해 빠르게 출석체크할 수 있습니다.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">02</span>
+      <div>
+        <h2>NFC 카드 하나로 여러 학원 출석</h2>
+        <p>같은 시스템을 사용하는 학원이라면 학생이 각 학원에 등록된 뒤 하나의 NFC 카드를 계속 사용할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="system-flow">
+      <div><strong>학생 등록</strong><span>각 학원에서 등록</span></div><b>→</b>
+      <div><strong>NFC 연결</strong><span>학생 카드 등록</span></div><b>→</b>
+      <div><strong>출석체크</strong><span>등록 학원에서 태그</span></div><b>→</b>
+      <div><strong>출결 확인</strong><span>학부모 앱에서 확인</span></div>
+    </div>
+
+    <div class="guide-callout">
+      <strong>NFC 카드 사용</strong>
+      <span>카드에는 학생 이름이나 보호자 전화번호 같은 학생정보를 직접 기록하지 않고, 시스템에서 사용하는 식별값으로 출석을 처리합니다.</span>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">03</span>
+      <div>
+        <h2>간편한 출석체크</h2>
+        <p>NFC 카드를 태그하거나 4자리 출석번호를 입력해 출석을 처리할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <figure class="screenshot-card phone-shot" style="max-width:520px; margin-left:auto; margin-right:auto;">
+      <img src="/static/images/attendance/attendance_check.jpg" alt="출석번호 입력 및 NFC 출석 화면">
+      <figcaption>
+        <strong>NFC · 출석번호 출석체크</strong>
+        <span>학원 환경에 맞춰 NFC 카드 또는 4자리 출석번호를 사용할 수 있습니다.</span>
+      </figcaption>
+    </figure>
+
+    <div class="feature-grid">
+      <article>
+        <h3>NFC 출석</h3>
+        <p>등록된 NFC 카드를 태그해 출석체크를 빠르게 처리합니다.</p>
+      </article>
+      <article>
+        <h3>출석번호 입력</h3>
+        <p>학생별 4자리 출석번호를 입력해 카드 없이도 출석할 수 있습니다.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">04</span>
+      <div>
+        <h2>학부모 통합 출결 확인</h2>
+        <p>자녀가 여러 학원을 이용해도 등록된 학원의 출결을 하나의 앱에서 함께 확인할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article>
+        <span class="feature-icon">A</span>
+        <h3>학원별 출결 확인</h3>
+        <p>등록된 학원별로 자녀의 입실·퇴실 기록을 확인할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">B</span>
+        <h3>하나의 앱으로 통합</h3>
+        <p>학원마다 별도의 출석 앱을 사용할 필요 없이 하나의 앱에서 여러 학원의 출결을 확인합니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">C</span>
+        <h3>출석 알림</h3>
+        <p>학생이 등록된 학원에서 출석이 처리되면 해당 학원의 출결 알림을 받을 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">D</span>
+        <h3>여러 학원 연동</h3>
+        <p>같은 출석 시스템을 사용하는 학원에 학생이 각각 등록되어 있으면 학원별 출결을 함께 관리할 수 있습니다.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">05</span>
+      <div>
+        <h2>PC 관리자 지원</h2>
+        <p>학원 관리자는 PC 화면에서 학생 등록과 출석 관련 관리 기능을 사용할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <figure class="screenshot-card wide-shot">
+      <img src="/static/images/attendance/admin_login.jpg" alt="PC 관리자 화면">
+      <figcaption>
+        <strong>PC 관리자</strong>
+        <span>학원을 선택해 관리자 화면으로 접속하고 학생 및 출석 기능을 관리할 수 있습니다.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="guide-section compact">
+    <h2>서비스 구성</h2>
+    <div class="mini-list">
+      <span>다중 학원</span>
+      <span>학생 등록</span>
+      <span>NFC 등록</span>
+      <span>출석번호</span>
+      <span>입실·퇴실 관리</span>
+      <span>학부모 출결 확인</span>
+      <span>출석 알림</span>
+      <span>PC 관리자</span>
+    </div>
+  </section>
+
+  <a href="/" class="bottom-home">CodeNote 메인으로</a>
+
+</div>
+</body>
+</html>

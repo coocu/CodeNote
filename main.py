@@ -56,6 +56,19 @@ def recording(request: Request):
     )
 
 
+# 학원 출석 관리 시스템
+@app.get("/attendance", response_class=HTMLResponse)
+def attendance(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="attendance.html",
+        context={
+            "request": request,
+            "title": "학원 출석 관리 시스템 | CodeNote"
+        }
+    )
+
+
 # 기업용 대기표 키오스크 시스템
 @app.get("/kiosk-system", response_class=HTMLResponse)
 def kiosk_system(request: Request):
