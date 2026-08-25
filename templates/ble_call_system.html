@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BLE로 수신기와 송신기를 연결해 대기번호를 호출하고 표시하는 CodeNote 송수신 대기 시스템">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/static/style.css?v=8">
+</head>
+<body class="detail-body">
+<div class="container detail-container kiosk-system-page">
+  <a href="/" class="back">← CodeNote</a>
+
+  <section class="detail-hero">
+    <span class="eyebrow">BLE CALL SYSTEM</span>
+    <h1>BLE 송수신 대기 시스템</h1>
+    <p class="subtitle">
+      수신기와 송신기를 Bluetooth Low Energy(BLE)로 연결해<br>
+      현장에서 대기번호를 호출하고 고객 화면에 표시할 수 있는 Android 호출 시스템입니다.
+    </p>
+    <div class="hero-badges">
+      <span>BLE 연결</span>
+      <span>수신기 화면</span>
+      <span>송신기 화면</span>
+      <span>번호 호출</span>
+      <span>최근 호출</span>
+      <span>Android</span>
+    </div>
+  </section>
+
+  <div class="store-actions single">
+    <a href="https://play.google.com/store/apps/details?id=com.codenote.gccall&hl=ko" target="_blank" rel="noopener noreferrer" class="store-btn google-play">
+      <span>Android · GCCALL</span><strong>Google Play에서 다운로드</strong>
+    </a>
+  </div>
+
+  <section class="guide-section first-section">
+    <div class="section-heading">
+      <span class="step-number">01</span>
+      <div>
+        <h2>한 앱에서 수신기와 송신기 모드 선택</h2>
+        <p>사용 환경에 따라 고객이 보는 수신기 화면 또는 호출 담당자가 사용하는 송신기 화면을 선택할 수 있습니다.</p>
+      </div>
+    </div>
+    <figure class="screenshot-card phone-shot">
+      <img src="/static/images/ble_call_system/mode_select.jpg" alt="BLE 송수신 대기 시스템 수신기와 송신기 모드 선택 화면">
+      <figcaption><strong>모드 선택</strong><span>수신기와 송신기 역할을 한 앱에서 선택해 사용할 수 있습니다.</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">02</span>
+      <div>
+        <h2>고객에게 보여주는 수신기 화면</h2>
+        <p>현재 대기 상태와 최근 호출 번호를 큰 화면으로 표시해 현장에서 확인하기 쉽도록 구성되어 있습니다.</p>
+      </div>
+    </div>
+    <figure class="screenshot-card phone-shot">
+      <img src="/static/images/ble_call_system/receiver.jpg" alt="BLE 송수신 대기 시스템 수신기 고객 화면">
+      <figcaption><strong>수신기</strong><span>대기번호와 최근 호출 기록을 고객이 확인하는 화면입니다.</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">03</span>
+      <div>
+        <h2>번호를 입력하고 바로 호출</h2>
+        <p>송신기 화면에서 숫자 키패드로 호출할 번호를 입력하고 호출 버튼을 눌러 연결된 수신기로 전달합니다.</p>
+      </div>
+    </div>
+    <figure class="screenshot-card phone-shot">
+      <img src="/static/images/ble_call_system/controller.jpg" alt="BLE 송수신 대기 시스템 송신기 번호 호출 화면">
+      <figcaption><strong>송신기</strong><span>연결된 수신기 상태를 확인하고 숫자 입력 후 대기번호를 호출할 수 있습니다.</span></figcaption>
+    </figure>
+
+    <div class="feature-grid">
+      <article><span class="feature-icon">R</span><h3>수신기 모드</h3><p>고객이 볼 수 있도록 현재 대기번호와 최근 호출 내역을 표시합니다.</p></article>
+      <article><span class="feature-icon">S</span><h3>송신기 모드</h3><p>숫자 키패드에서 번호를 입력하고 호출 기능을 사용할 수 있습니다.</p></article>
+      <article><span class="feature-icon">B</span><h3>BLE 연결</h3><p>Bluetooth Low Energy를 이용해 송신기와 수신기 사이의 호출 정보를 전달합니다.</p></article>
+      <article><span class="feature-icon">+</span><h3>수신기 연결 관리</h3><p>송신기 화면에서 현재 연결된 수신기 수를 확인하고 추가 연결을 진행할 수 있습니다.</p></article>
+    </div>
+  </section>
+
+  <section class="guide-section compact">
+    <h2>주요 기능</h2>
+    <div class="mini-list">
+      <span>수신기 모드</span>
+      <span>송신기 모드</span>
+      <span>BLE 연결</span>
+      <span>숫자 번호 입력</span>
+      <span>대기번호 호출</span>
+      <span>최근 호출 표시</span>
+      <span>수신기 연결 상태 확인</span>
+      <span>수신기 추가 연결</span>
+    </div>
+  </section>
+
+  <a href="/" class="bottom-home">CodeNote 메인으로</a>
+</div>
+</body>
+</html>

@@ -81,6 +81,31 @@ def kiosk_system(request: Request):
         }
     )
 
+# 메모프린트
+@app.get("/memo-print", response_class=HTMLResponse)
+def memo_print(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="memo_print.html",
+        context={
+            "request": request,
+            "title": "메모프린트 | CodeNote"
+        }
+    )
+
+
+# BLE 송수신 대기 시스템
+@app.get("/ble-call-system", response_class=HTMLResponse)
+def ble_call_system(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="ble_call_system.html",
+        context={
+            "request": request,
+            "title": "BLE 송수신 대기 시스템 | CodeNote"
+        }
+    )
+
 # Google Search Console 인증 파일
 @app.get("/googleb2d5fb5c086ced8d.html")
 def google_verify():
