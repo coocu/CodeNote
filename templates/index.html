@@ -3,9 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CodeNote Android, iOS, Server 통합 설계·개발">
+  <meta name="description" content="CodeNote Android, iOS, Server, Digital Forensics 통합 설계·개발">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/static/style.css?v=8">
+  <link rel="stylesheet" href="/static/style.css?v=9">
+  <style>
+    .hub-selector{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+    .selector-card,.back-mini{
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      min-height:88px;padding:18px;border-radius:22px;border:1px solid #dfe5ef;
+      background:#fff;color:#18233c;font-weight:900;text-decoration:none;cursor:pointer;
+      box-shadow:0 12px 30px rgba(24,35,60,.06);transition:.18s ease;
+    }
+    .selector-card small{display:block;margin-top:6px;font-size:13px;color:#61708b;font-weight:700}
+    .selector-card:hover,.back-mini:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(24,35,60,.10)}
+    .back-mini{justify-content:flex-start;max-width:210px;min-height:auto;padding:12px 16px;border-radius:16px;margin-bottom:18px}
+    .forensic-intro{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:18px;margin-bottom:18px
+    }
+    .info-card, .overview-image-card{background:#fff;border:1px solid #dfe5ef;border-radius:26px;padding:24px;box-shadow:0 12px 30px rgba(24,35,60,.05)}
+    .overview-image-card{padding:14px}
+    .overview-image-card img,.forensic-image{width:100%;display:block;border-radius:20px;object-fit:cover}
+    .info-card h3,.forensic-card h3{margin:0 0 10px;font-size:24px;letter-spacing:-0.6px;color:#18233c}
+    .info-card p,.forensic-card p{margin:0;color:#5b6780;line-height:1.7}
+    .bullet-list{margin:14px 0 0;padding-left:18px;color:#324158;line-height:1.7}
+    .bullet-list li+li{margin-top:6px}
+    .forensic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+    .forensic-card{background:#fff;border:1px solid #dfe5ef;border-radius:26px;overflow:hidden;box-shadow:0 12px 30px rgba(24,35,60,.05)}
+    .forensic-card-body{padding:20px 22px 24px}
+    .forensic-kicker{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#eef3ff;color:#4f56e8;font-size:12px;font-weight:900;letter-spacing:.2px;margin-bottom:12px}
+    .detail-list{margin:12px 0 0;padding-left:18px;color:#425067;line-height:1.7}
+    .detail-list li+li{margin-top:6px}
+    .support-note{margin-top:18px;background:linear-gradient(135deg,#f7f8ff,#ffffff);border:1px solid #dde3ff;border-radius:24px;padding:22px;color:#30405b;line-height:1.75}
+    .home-action-card--link{cursor:pointer}
+    @media (max-width: 900px){
+      .hub-selector,.forensic-grid,.forensic-intro{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body class="home-body">
 <div class="page-bg">
@@ -13,28 +46,28 @@
     <section class="home-hero">
       <span class="eyebrow">CODENOTE SOFTWARE DEVELOPMENT</span>
       <h1>아이디어를 실제 서비스로 구현합니다.</h1>
-      <p class="hero-kicker">Android · iOS · Server 통합 설계·개발</p>
+      <p class="hero-kicker">Android · iOS · Server · Digital Forensics</p>
       <p class="home-lead">
-        모바일 애플리케이션부터 서버, API, 데이터 관리 시스템까지<br>
+        모바일 애플리케이션부터 서버, API, 데이터 관리 시스템과 디지털 포렌식까지<br>
         서비스에 필요한 기술을 하나의 흐름으로 설계하고 구현합니다.
       </p>
       <div class="hero-badges">
-        <span>Android</span><span>iOS</span><span>Server</span><span>API</span><span>Database</span>
+        <span>Android</span><span>iOS</span><span>Server</span><span>API</span><span>Database</span><span>Forensics</span>
       </div>
     </section>
 
     <nav class="home-actions" aria-label="CodeNote 주요 메뉴">
-      <a href="#app-development" class="home-action-card" data-modal-target="app-development">
-        <span class="action-no">01</span><strong>앱 개발</strong><small>Android · iOS</small><span class="action-arrow">→</span>
+      <a href="#codenote-services" class="home-action-card" data-modal-target="codenote-services">
+        <span class="action-no">01</span><strong>CodeNote 서비스</strong><small>App · Server · Service</small><span class="action-arrow">→</span>
       </a>
-      <a href="#server-development" class="home-action-card" data-modal-target="server-development">
-        <span class="action-no">02</span><strong>서버 개발</strong><small>Server · API · Database</small><span class="action-arrow">→</span>
+      <a href="#digital-forensics" class="home-action-card" data-modal-target="digital-forensics">
+        <span class="action-no">02</span><strong>디지털 포렌식</strong><small>Recovery · Forensics</small><span class="action-arrow">→</span>
       </a>
       <a href="#projects" class="home-action-card" data-modal-target="projects">
         <span class="action-no">03</span><strong>프로젝트</strong><small>Projects</small><span class="action-arrow">→</span>
       </a>
-      <a href="#services" class="home-action-card" data-modal-target="services">
-        <span class="action-no">04</span><strong>서비스</strong><small>Services</small><span class="action-arrow">→</span>
+      <a href="/recruit" class="home-action-card home-action-card--link">
+        <span class="action-no">04</span><strong>인재채용</strong><small>Recruit</small><span class="action-arrow">→</span>
       </a>
     </nav>
 
@@ -52,11 +85,27 @@
   <div class="home-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="home-modal-title">
     <button class="home-modal-close" type="button" aria-label="팝업 닫기" data-modal-close>×</button>
 
-    <section class="home-modal-panel" id="modal-app-development" data-modal-panel="app-development" hidden>
+    <section class="home-modal-panel" data-modal-panel="codenote-services" hidden>
       <div class="section-heading modal-heading">
         <span class="step-number">01</span>
         <div>
-          <h2 id="home-modal-title">모바일 앱 개발</h2>
+          <h2 id="home-modal-title">CodeNote 서비스</h2>
+          <p>원하는 서비스 분야를 선택해 상세 내용을 확인할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="hub-selector">
+        <button class="selector-card" type="button" data-modal-target="service-app-development"><span>앱 개발<small>Android · iOS</small></span></button>
+        <button class="selector-card" type="button" data-modal-target="service-server-development"><span>서버 개발<small>Server · API · Database</small></span></button>
+        <button class="selector-card" type="button" data-modal-target="service-platform"><span>서비스<small>모바일 앱 · 관리 시스템</small></span></button>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="service-app-development" hidden>
+      <button class="back-mini" type="button" data-modal-target="codenote-services">← CodeNote 서비스</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">A</span>
+        <div>
+          <h2>앱 개발</h2>
           <p>Android와 iOS 환경에 맞는 애플리케이션을 실제 사용 흐름을 기준으로 설계하고 개발합니다.</p>
         </div>
       </div>
@@ -70,11 +119,12 @@
       </div>
     </section>
 
-    <section class="home-modal-panel" data-modal-panel="server-development" hidden>
+    <section class="home-modal-panel" data-modal-panel="service-server-development" hidden>
+      <button class="back-mini" type="button" data-modal-target="codenote-services">← CodeNote 서비스</button>
       <div class="section-heading modal-heading">
-        <span class="step-number">02</span>
+        <span class="step-number">S</span>
         <div>
-          <h2>서버 · 시스템 개발</h2>
+          <h2>서버 개발</h2>
           <p>앱과 서버가 자연스럽게 연결되도록 API, 데이터 처리, 관리 기능을 하나의 서비스 구조로 구성합니다.</p>
         </div>
       </div>
@@ -83,6 +133,112 @@
         <div><strong>API</strong><span>기능 · 데이터 연결</span></div><b>→</b>
         <div><strong>Server</strong><span>서비스 로직 · 처리</span></div><b>→</b>
         <div><strong>Database</strong><span>데이터 저장 · 관리</span></div>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="service-platform" hidden>
+      <button class="back-mini" type="button" data-modal-target="codenote-services">← CodeNote 서비스</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">P</span>
+        <div>
+          <h2>서비스</h2>
+          <p>모바일 앱부터 서버와 관리 시스템까지 서비스에 필요한 영역을 함께 구성합니다.</p>
+        </div>
+      </div>
+      <div class="feature-grid service-grid">
+        <article><h3>모바일 앱</h3><p>Android · iOS 애플리케이션 설계 및 개발</p></article>
+        <article><h3>Server & API</h3><p>앱 연동 API와 서비스 처리 서버 설계 및 개발</p></article>
+        <article><h3>Database</h3><p>서비스 목적에 맞는 데이터 구조와 저장·관리 기능 구성</p></article>
+        <article><h3>관리 시스템</h3><p>운영에 필요한 관리자 화면과 데이터 관리 기능 구성</p></article>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="digital-forensics" hidden>
+      <div class="section-heading modal-heading">
+        <span class="step-number">02</span>
+        <div>
+          <h2>디지털 포렌식</h2>
+          <p>디지털 증거 감정, 저장매체 복구, 모바일 데이터 분석, 소프트웨어 문제 분석 등 디지털 포렌식 관련 영역을 지원합니다.</p>
+        </div>
+      </div>
+
+      <div class="forensic-intro">
+        <div class="info-card">
+          <h3>분석부터 복구 지원까지</h3>
+          <p>CodeNote는 디지털 기기와 데이터의 상태를 검토하고, 필요한 분석 및 복구 지원을 제공합니다. 저장매체 상태와 데이터 구조를 기반으로 접근 가능성을 검토하고, 디지털 자료 분석과 소프트웨어 문제 해결을 함께 지원합니다.</p>
+          <ul class="bullet-list">
+            <li>디지털 증거 자료 검토 및 증거 감정 지원</li>
+            <li>PC · HDD · SSD · NVMe · 스마트폰 등 저장매체 분석</li>
+            <li>메인보드 손상 기기 및 저장장치 데이터 접근 가능성 검토</li>
+            <li>카카오톡 · 문자 · 연락처 · 통화기록 등 DB 분석 및 복구 지원</li>
+            <li>소프트웨어 오류 분석 및 버그 수정 지원</li>
+          </ul>
+        </div>
+        <div class="overview-image-card">
+          <img src="/static/images/forensics/forensics_overview.png" alt="디지털 포렌식 종합 이미지">
+        </div>
+      </div>
+
+      <div class="forensic-grid">
+        <article class="forensic-card">
+          <img class="forensic-image" src="/static/images/forensics/forensics_evidence.png" alt="증거 감정 및 디지털 증거 분석 이미지">
+          <div class="forensic-card-body">
+            <span class="forensic-kicker">Evidence Appraisal</span>
+            <h3>증거 감정</h3>
+            <p>디지털 자료를 증거 관점에서 검토하고, 수집 자료의 상태 확인과 문서화, 분석 절차 지원을 진행합니다.</p>
+            <ul class="detail-list">
+              <li>디지털 증거 자료 확인 및 상태 검토</li>
+              <li>촬영 · 기록 · 문서화 기반의 분석 절차 지원</li>
+              <li>저장매체 및 모바일 기기 자료 검토</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="forensic-card">
+          <img class="forensic-image" src="/static/images/forensics/forensics_storage.png" alt="PC HDD SSD 저장매체 복구 이미지">
+          <div class="forensic-card-body">
+            <span class="forensic-kicker">Storage Recovery</span>
+            <h3>저장매체 복구</h3>
+            <p>PC, HDD, SSD, NVMe, 노트북 및 메인보드 손상 기기 등 다양한 저장매체를 대상으로 데이터 접근 가능성을 분석하고 복구를 지원합니다.</p>
+            <ul class="detail-list">
+              <li>PC · HDD · SSD · NVMe · 외장저장장치 분석</li>
+              <li>메인보드 손상 또는 부팅 불가 기기 상태 검토</li>
+              <li>하드웨어 상태 기반 데이터 접근 및 복구 지원</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="forensic-card">
+          <img class="forensic-image" src="/static/images/forensics/forensics_mobile_db.png" alt="스마트폰 데이터 및 DB 복구 이미지">
+          <div class="forensic-card-body">
+            <span class="forensic-kicker">Mobile & DB Analysis</span>
+            <h3>스마트폰 데이터 · DB 복구</h3>
+            <p>스마트폰 내부 데이터와 애플리케이션 데이터베이스를 분석하여 복구 가능한 자료를 검토하고 지원합니다.</p>
+            <ul class="detail-list">
+              <li>카카오톡 · 문자 · 연락처 · 통화기록 분석</li>
+              <li>앱 데이터베이스 및 파일 구조 검토</li>
+              <li>삭제 데이터 및 손상 DB 복구 가능성 분석</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="forensic-card">
+          <img class="forensic-image" src="/static/images/forensics/forensics_overview.png" alt="소프트웨어 문제 분석 및 버그 수정 이미지">
+          <div class="forensic-card-body">
+            <span class="forensic-kicker">Software Analysis</span>
+            <h3>소프트웨어 문제 분석 및 버그 수정</h3>
+            <p>데이터 처리나 시스템 동작을 방해하는 소프트웨어 문제를 분석하고, 필요한 기능 수정과 보조 도구 개발을 지원합니다.</p>
+            <ul class="detail-list">
+              <li>앱 오류 및 동작 문제 분석</li>
+              <li>데이터 처리 로직 및 추출 관련 문제 검토</li>
+              <li>버그 수정 및 필요한 보조 소프트웨어 개발 지원</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="support-note">
+        디지털 포렌식 관련 내용은 기기 상태와 데이터 상태에 따라 접근 가능 여부 및 복구 범위가 달라질 수 있으므로, 실제 진행 전 상태 확인과 분석 범위 검토를 기준으로 안내합니다.
       </div>
     </section>
 
@@ -119,6 +275,7 @@
     </section>
 
     <section class="home-modal-panel" data-modal-panel="academy-management" hidden>
+      <button class="back-mini" type="button" data-modal-target="projects">← 프로젝트</button>
       <div class="section-heading modal-heading">
         <span class="step-number">A</span>
         <div>
@@ -141,6 +298,7 @@
     </section>
 
     <section class="home-modal-panel" data-modal-panel="kiosk-management" hidden>
+      <button class="back-mini" type="button" data-modal-target="projects">← 프로젝트</button>
       <div class="section-heading modal-heading">
         <span class="step-number">K</span>
         <div>
@@ -166,33 +324,6 @@
         </a>
       </div>
     </section>
-
-    <section class="home-modal-panel" data-modal-panel="services" hidden>
-      <div class="section-heading modal-heading">
-        <span class="step-number">04</span>
-        <div>
-          <h2>서비스</h2>
-          <p>모바일 앱부터 서버와 관리 시스템까지 서비스에 필요한 영역을 함께 구성합니다.</p>
-        </div>
-      </div>
-      <div class="feature-grid service-grid">
-        <article><h3>모바일 앱</h3><p>Android · iOS 애플리케이션 설계 및 개발</p></article>
-        <article><h3>Server & API</h3><p>앱 연동 API와 서비스 처리 서버 설계 및 개발</p></article>
-        <article><h3>Database</h3><p>서비스 목적에 맞는 데이터 구조와 저장·관리 기능 구성</p></article>
-        <article><h3>관리 시스템</h3><p>운영에 필요한 관리자 화면과 데이터 관리 기능 구성</p></article>
-      </div>
-
-      <!-- 인재채용 진입 영역: 기존 서비스 4개는 그대로 유지 -->
-      <div class="project-grid modal-project-grid" style="grid-template-columns:minmax(0,1fr);margin-top:18px;">
-        <a href="/recruit" class="project-card">
-          <span class="project-type">RECRUIT</span>
-          <h3>함께할 인재를 찾고 있습니다</h3>
-          <p>서비스 운영부터 개발·디지털 포렌식 협업까지 CodeNote와 함께할 분을 기다립니다.</p>
-          <div class="card-badges"><span>Operations</span><span>Development</span><span>Partnership</span></div>
-          <strong class="card-link">인재채용 보기 →</strong>
-        </a>
-      </div>
-    </section>
   </div>
 </div>
 
@@ -214,13 +345,17 @@
     });
     if (!found) return;
 
-    lastFocused = document.activeElement;
-    modal.hidden = false;
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-    requestAnimationFrame(() => modal.classList.add('is-open'));
+    if (modal.hidden) {
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      requestAnimationFrame(() => modal.classList.add('is-open'));
+    }
+
     const closeButton = modal.querySelector('.home-modal-close');
     if (closeButton) closeButton.focus();
+    dialog.scrollTop = 0;
   }
 
   function closeModal() {
