@@ -107,6 +107,72 @@
     .company-panel,.reward-box{grid-template-columns:1fr}.role-grid{grid-template-columns:1fr}.role-card.wide{grid-column:auto}.process{grid-template-columns:1fr 1fr}.reward-grid{grid-template-columns:1fr}.apply-card{align-items:stretch;flex-direction:column}.apply-card .btn{width:100%}
   }
   @media(max-width:520px){.principles,.process{grid-template-columns:1fr}.topbar-inner{height:62px}.brand{font-size:18px}.section{padding:31px 0}.section-title h2{font-size:27px}.hero-actions .btn{width:100%}}
+
+  /* 채용 상세 팝업 */
+  body.recruit-modal-open{overflow:hidden}
+  .recruit-modal[hidden]{display:none}
+  .recruit-modal{
+    position:fixed;inset:0;z-index:1000;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .recruit-modal-backdrop{
+    position:absolute;inset:0;
+    background:rgba(12,18,32,.58);
+    backdrop-filter:blur(8px);
+  }
+  .recruit-modal-dialog{
+    position:relative;z-index:1;
+    width:min(980px,100%);
+    max-height:min(86vh,900px);
+    overflow:auto;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:30px;
+    box-shadow:0 30px 90px rgba(10,18,38,.28);
+    padding:34px;
+  }
+  .recruit-modal-close{
+    position:sticky;top:0;float:right;z-index:3;
+    width:42px;height:42px;border:1px solid var(--line);
+    border-radius:14px;background:#fff;color:#263149;
+    font-size:24px;line-height:1;cursor:pointer;
+    box-shadow:0 8px 22px rgba(24,34,55,.08);
+  }
+  .recruit-modal-panel{clear:both}
+  .recruit-modal-panel[hidden]{display:none}
+  .recruit-modal-title{padding-right:58px;margin-bottom:24px}
+  .recruit-modal-title small{
+    display:block;color:var(--accent);font-size:13px;
+    font-weight:900;letter-spacing:.5px;margin-bottom:6px
+  }
+  .recruit-modal-title h2{
+    margin:0;font-size:31px;line-height:1.25;letter-spacing:-1.2px
+  }
+  .recruit-modal-title p{margin:9px 0 0;color:var(--sub)}
+  .inquiry-card{
+    background:linear-gradient(135deg,#f7f8ff,#fff);
+    border:1px solid #dfe4ff;border-radius:24px;padding:28px
+  }
+  .inquiry-card h3{font-size:23px;margin:0 0 8px;letter-spacing:-.7px}
+  .inquiry-card p{margin:0 0 18px;color:var(--sub)}
+  .inquiry-email{
+    display:inline-flex;align-items:center;padding:11px 14px;
+    border-radius:13px;background:#fff;border:1px solid var(--line);
+    font-weight:900;color:#2c3851;margin-bottom:18px
+  }
+  .inquiry-actions{display:flex;gap:10px;flex-wrap:wrap}
+  @media(max-width:700px){
+    .recruit-modal{padding:12px}
+    .recruit-modal-dialog{padding:22px 18px;border-radius:24px;max-height:90vh}
+    .recruit-modal-title h2{font-size:26px}
+    .recruit-modal .role-grid{grid-template-columns:1fr}
+    .recruit-modal .role-card.wide{grid-column:auto}
+    .recruit-modal .process{grid-template-columns:1fr}
+    .recruit-modal .reward-grid{grid-template-columns:1fr}
+    .recruit-modal .reward-box{grid-template-columns:1fr}
+  }
+
 </style>
 </head>
 <body>
@@ -129,10 +195,11 @@
           지금은 서비스 운영 파트너부터 개발, 디지털 포렌식 협업까지 각자의 강점을 살려 함께 성장할 분을 찾고 있습니다.
         </p>
         <div class="hero-actions">
-          <a class="btn primary" href="#roles">지원 분야 보기</a>
-          <a class="btn" href="#reward">활동 및 인센티브</a>
-          <a class="btn" href="#process">지원 절차</a>
-          <a class="btn" href="https://naver.me/FM9nob1Q" target="_blank" rel="noopener noreferrer">지원하기 ↗</a>
+          <button class="btn primary" type="button" data-recruit-modal-target="roles">지원 분야 보기</button>
+          <button class="btn" type="button" data-recruit-modal-target="reward">활동 및 인센티브</button>
+          <button class="btn" type="button" data-recruit-modal-target="process">지원 절차</button>
+          <button class="btn" type="button" data-recruit-modal-target="inquiry">지원 문의</button>
+          
         </div>
       </div>
     </div>
@@ -162,16 +229,32 @@
     </div>
   </section>
 
-  <section class="section" id="roles">
-    <div class="wrap">
-      <div class="section-title"><small>OPEN POSITIONS</small><h2>현재 모집 분야</h2><p>한 번에 모든 업무를 맡는 방식이 아니라, 원하는 분야를 선택해서 지원할 수 있습니다.</p></div>
+
+</main>
+
+<div class="recruit-modal" id="recruit-modal" hidden aria-hidden="true">
+  <div class="recruit-modal-backdrop" data-recruit-modal-close></div>
+
+  <div class="recruit-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="recruit-modal-heading">
+    <button class="recruit-modal-close" type="button" aria-label="팝업 닫기" data-recruit-modal-close>×</button>
+
+    <section class="recruit-modal-panel" data-recruit-modal-panel="roles" hidden>
+      <div class="recruit-modal-title">
+        <small>OPEN POSITIONS</small>
+        <h2 id="recruit-modal-heading">현재 모집 분야</h2>
+        <p>원하는 분야를 선택해 지원할 수 있으며, 세부 활동 방식은 지원 내용 확인 후 안내합니다.</p>
+      </div>
+
       <div class="role-grid">
         <article class="role-card">
           <div class="role-top"><span class="badge">서비스 운영</span><span class="amount">인센티브 지급</span></div>
           <h3>앱 차단 서비스 관리</h3>
           <p>앱 차단 서비스를 사용하는 고객이 처음 설치하고 사용할 수 있도록 연결하는 운영 분야입니다.</p>
           <ul class="role-list">
-            <li>고객 안내 및 서비스 소개</li><li>인증키 발급·전달</li><li>설치 방법 및 초기 사용법 안내</li><li>전화 문의 응대 및 기본 고객 관리</li>
+            <li>고객 안내 및 서비스 소개</li>
+            <li>인증키 발급·전달</li>
+            <li>설치 방법 및 초기 사용법 안내</li>
+            <li>전화 문의 응대 및 기본 고객 관리</li>
           </ul>
           <div class="role-bottom">고객 1건이 정상적으로 연결될 때마다 인센티브 지급</div>
         </article>
@@ -181,7 +264,10 @@
           <h3>오늘의 출석 관리</h3>
           <p>학원 출석 관리 서비스를 학원에 소개하고, 실제 사용이 가능하도록 도입 과정을 지원하는 분야입니다.</p>
           <ul class="role-list">
-            <li>학원 대상 서비스 안내 및 홍보</li><li>인증키 발급·전달</li><li>앱 설치 및 초기 설정 안내</li><li>출석 관리 기능·사용법 안내</li>
+            <li>학원 대상 서비스 안내 및 홍보</li>
+            <li>인증키 발급·전달</li>
+            <li>앱 설치 및 초기 설정 안내</li>
+            <li>출석 관리 기능·사용법 안내</li>
           </ul>
           <div class="role-bottom">학원 가맹 등록 시 인센티브 지급</div>
         </article>
@@ -191,7 +277,10 @@
           <h3>뮤싱크 관리</h3>
           <p>실용음악학원·연습실 예약 관리 서비스의 도입과 사용을 안내하는 운영 분야입니다.</p>
           <ul class="role-list">
-            <li>학원 대상 서비스 안내 및 홍보</li><li>인증키 발급·전달</li><li>고객 설치 과정 안내</li><li>관리자 기능 및 기본 사용법 안내</li>
+            <li>학원 대상 서비스 안내 및 홍보</li>
+            <li>인증키 발급·전달</li>
+            <li>고객 설치 과정 안내</li>
+            <li>관리자 기능 및 기본 사용법 안내</li>
           </ul>
           <div class="role-bottom">학원 가맹 등록 시 인센티브 지급</div>
         </article>
@@ -201,7 +290,10 @@
           <h3>CodeNote 개발자</h3>
           <p>CodeNote의 기존 프로젝트를 함께 개선하고 새로운 서비스를 같이 만들어갈 개발 협업 분야입니다.</p>
           <ul class="role-list">
-            <li>Android / iOS / Web / Server 등 개발 협업</li><li>기존 서비스 기능 개선 및 유지관리</li><li>새 프로젝트 기획·개발 참여</li><li>기술 영역과 참여 방식은 지원자와 협의</li>
+            <li>Android / iOS / Web / Server 등 개발 협업</li>
+            <li>기존 서비스 기능 개선 및 유지관리</li>
+            <li>새 프로젝트 기획·개발 참여</li>
+            <li>기술 영역과 참여 방식은 지원자와 협의</li>
           </ul>
           <div class="role-bottom">보유 기술과 참여 가능한 범위를 중심으로 협의</div>
         </article>
@@ -211,20 +303,27 @@
           <h3>디지털 포렌식 분야 파트너</h3>
           <p>CodeNote 개발 영역의 디지털 포렌식 관련 연구·개발을 함께할 기술 파트너를 찾습니다.</p>
           <ul class="role-list">
-            <li>모바일 및 디지털 데이터 분석 관련 기술 협업</li><li>포렌식 도구·기능 연구 및 개발</li><li>기술 검증과 프로젝트 단위 협업</li><li>구체적인 역할·범위·조건은 지원 후 개별 협의</li>
+            <li>모바일 및 디지털 데이터 분석 관련 기술 협업</li>
+            <li>포렌식 도구·기능 연구 및 개발</li>
+            <li>기술 검증과 프로젝트 단위 협업</li>
+            <li>구체적인 역할·범위·조건은 지원 후 개별 협의</li>
           </ul>
           <div class="role-bottom">전문 기술과 경험을 바탕으로 장기적인 협업 가능</div>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="reward">
-    <div class="wrap">
+    <section class="recruit-modal-panel" data-recruit-modal-panel="reward" hidden>
+      <div class="recruit-modal-title">
+        <small>ACTIVITY & INCENTIVE</small>
+        <h2>활동 및 인센티브</h2>
+        <p>서비스 운영 분야는 가능한 범위에서 안내·홍보 및 고객 지원 활동을 진행할 수 있습니다.</p>
+      </div>
+
       <div class="reward-box">
         <div>
           <h3>자율적인 활동과<br>성과 기반 인센티브</h3>
-          <p>서비스 운영 분야는 정해진 출퇴근 시간 없이 가능한 범위에서 서비스 안내·홍보 및 고객 지원 활동을 진행할 수 있습니다. 각 서비스의 실제 도입 기준이 충족되면 인센티브를 지급합니다.</p>
+          <p>정해진 출퇴근 시간 없이 각자의 방식으로 서비스 안내·홍보 및 고객 지원 활동을 진행하고, 각 서비스의 실제 도입 기준이 충족되면 인센티브를 지급합니다.</p>
         </div>
         <div class="reward-grid">
           <div class="reward"><span>앱 차단</span><b>인센티브 지급</b><span>고객 정상 연결 시</span></div>
@@ -233,30 +332,102 @@
         </div>
       </div>
       <div class="note">※ 서비스 운영 분야의 세부 지급 기준과 개발·디지털 포렌식 협업 조건은 지원 내용 확인 후 개별 안내합니다.</div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="process">
-    <div class="wrap">
-      <div class="section-title"><small>HOW TO JOIN</small><h2>지원 절차</h2><p>네이버 폼으로 간단히 지원해 주시면 내용을 확인한 뒤 개별 연락드립니다.</p></div>
+    <section class="recruit-modal-panel" data-recruit-modal-panel="process" hidden>
+      <div class="recruit-modal-title">
+        <small>HOW TO JOIN</small>
+        <h2>지원 절차</h2>
+        <p>네이버 폼으로 간단히 지원해 주시면 내용을 확인한 뒤 개별 연락드립니다.</p>
+      </div>
+
       <div class="process">
         <div class="step"><div class="step-num">01</div><b>지원 분야 선택</b><p>운영·개발·포렌식 중 함께하고 싶은 분야를 선택합니다.</p></div>
         <div class="step"><div class="step-num">02</div><b>네이버 폼 작성</b><p>간단한 정보와 가능한 업무·경험을 작성해 제출합니다.</p></div>
         <div class="step"><div class="step-num">03</div><b>내용 확인</b><p>CodeNote에서 지원 내용을 확인하고 협업 가능 범위를 검토합니다.</p></div>
         <div class="step"><div class="step-num">04</div><b>개별 연락</b><p>지원 내용에 맞춰 연락드리고 활동 방식과 세부 조건을 안내합니다.</p></div>
       </div>
-    </div>
-  </section>
 
-  <section class="apply" id="apply">
-    <div class="wrap">
-      <div class="apply-card">
-        <div><h2>CodeNote와 함께하고 싶다면</h2><p>지원서 제출 후 확인된 연락처로 개별 연락드립니다.</p></div>
+      <div class="hero-actions" style="margin-top:24px;">
         <a class="btn primary" href="https://naver.me/FM9nob1Q" target="_blank" rel="noopener noreferrer">네이버 폼 지원하기 ↗</a>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+
+    <section class="recruit-modal-panel" data-recruit-modal-panel="inquiry" hidden>
+      <div class="recruit-modal-title">
+        <small>RECRUIT CONTACT</small>
+        <h2>지원 문의</h2>
+        <p>지원 전 궁금한 내용이 있다면 이메일로 문의하거나, 바로 지원서를 작성할 수 있습니다.</p>
+      </div>
+
+      <div class="inquiry-card">
+        <h3>CodeNote 채용 문의</h3>
+        <p>지원 분야, 활동 방식, 협업 범위 등에 대한 문의를 받고 있습니다.</p>
+        <a class="inquiry-email" href="mailto:code_note95@naver.com">code_note95@naver.com</a>
+        <div class="inquiry-actions">
+          <a class="btn" href="mailto:code_note95@naver.com">이메일 문의</a>
+          <a class="btn primary" href="https://naver.me/FM9nob1Q" target="_blank" rel="noopener noreferrer">지원하기 ↗</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function(){
+  const modal = document.getElementById('recruit-modal');
+  if (!modal) return;
+
+  const dialog = modal.querySelector('.recruit-modal-dialog');
+  const openers = document.querySelectorAll('[data-recruit-modal-target]');
+  const closers = modal.querySelectorAll('[data-recruit-modal-close]');
+  const panels = modal.querySelectorAll('[data-recruit-modal-panel]');
+  let lastFocused = null;
+
+  function openModal(target){
+    let found = false;
+    panels.forEach((panel) => {
+      const active = panel.dataset.recruitModalPanel === target;
+      panel.hidden = !active;
+      if (active) found = true;
+    });
+    if (!found) return;
+
+    lastFocused = document.activeElement;
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('recruit-modal-open');
+    dialog.scrollTop = 0;
+
+    const heading = modal.querySelector('[data-recruit-modal-panel="' + target + '"] h2');
+    if (heading) heading.id = 'recruit-modal-heading';
+
+    const closeButton = modal.querySelector('.recruit-modal-close');
+    if (closeButton) closeButton.focus();
+  }
+
+  function closeModal(){
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('recruit-modal-open');
+    panels.forEach((panel) => panel.hidden = true);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  openers.forEach((opener) => {
+    opener.addEventListener('click', () => openModal(opener.dataset.recruitModalTarget));
+  });
+
+  closers.forEach((closer) => closer.addEventListener('click', closeModal));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.hidden) closeModal();
+  });
+
+  dialog.addEventListener('click', (event) => event.stopPropagation());
+})();
+</script>
+
 <footer>© CodeNote. Recruitment</footer>
 </body>
 </html>
