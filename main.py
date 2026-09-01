@@ -106,6 +106,20 @@ def ble_call_system(request: Request):
         }
     )
 
+
+# 인재채용
+@app.get("/recruit", response_class=HTMLResponse)
+def recruit(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="recruit.html",
+        context={
+            "request": request,
+            "title": "인재채용 | CodeNote"
+        }
+    )
+
+
 # Google Search Console 인증 파일
 @app.get("/googleb2d5fb5c086ced8d.html")
 def google_verify():

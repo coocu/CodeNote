@@ -1,0 +1,33 @@
+<!-- 04 서비스 팝업의 기존 2x2 서비스 카드 아래에 추가할 채용 전용 블록 -->
+<a href="/recruit" class="recruit-entry">
+  <div class="recruit-entry-copy">
+    <span class="recruit-entry-label">RECRUIT</span>
+    <strong>함께할 인재를 찾고 있습니다</strong>
+    <p>서비스 운영·개발·전문 기술 협업 분야에서 CodeNote와 함께할 분을 기다립니다.</p>
+  </div>
+  <span class="recruit-entry-button">인재채용 보기 →</span>
+</a>
+
+<style>
+.recruit-entry{
+  margin-top:18px;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:22px 26px;
+  border:1px solid #e2e6ef;
+  border-radius:22px;
+  background:linear-gradient(135deg,#f7f8ff 0%,#fff 70%);
+  color:#111a2d;
+  text-decoration:none;
+  transition:.18s ease;
+}
+.recruit-entry:hover{transform:translateY(-2px);border-color:#d4d9ff;box-shadow:0 12px 26px rgba(45,59,100,.08)}
+.recruit-entry-copy strong{display:block;font-size:19px;letter-spacing:-.4px;margin:3px 0}
+.recruit-entry-copy p{margin:0;color:#667087;font-size:14px}
+.recruit-entry-label{font-size:11px;font-weight:900;color:#5362ff;letter-spacing:.8px}
+.recruit-entry-button{flex:none;padding:11px 15px;border-radius:13px;background:#111a2d;color:#fff;font-size:13px;font-weight:900}
+@media(max-width:640px){.recruit-entry{align-items:flex-start;flex-direction:column}.recruit-entry-button{width:100%;text-align:center}}
+</style>

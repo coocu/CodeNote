@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CodeNote 인재채용</title>
+<style>
+  :root{
+    --bg:#f4f6fb;
+    --paper:#ffffff;
+    --ink:#111a2d;
+    --sub:#58647a;
+    --line:#e4e8f0;
+    --accent:#4a5cff;
+    --accent2:#7137f5;
+    --soft:#f5f7ff;
+    --shadow:0 24px 70px rgba(24,34,55,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Pretendard,"Noto Sans KR",Arial,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 10% -10%,rgba(74,92,255,.11),transparent 34%),
+      radial-gradient(circle at 100% 10%,rgba(113,55,245,.08),transparent 30%),
+      var(--bg);
+    line-height:1.65;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1180px,calc(100% - 40px));margin:0 auto}
+  .topbar{
+    position:sticky;top:0;z-index:30;
+    backdrop-filter:blur(18px);
+    background:rgba(244,246,251,.84);
+    border-bottom:1px solid rgba(228,232,240,.85);
+  }
+  .topbar-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{font-weight:900;font-size:20px;letter-spacing:-.7px}
+  .back{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;
+    font-size:14px;font-weight:800;color:#3d4960;
+  }
+  .hero{padding:78px 0 46px}
+  .hero-card{
+    position:relative;overflow:hidden;
+    background:var(--paper);border:1px solid var(--line);border-radius:34px;padding:58px;
+    box-shadow:var(--shadow);
+  }
+  .hero-card:after{
+    content:"";position:absolute;width:340px;height:340px;border-radius:50%;right:-120px;top:-150px;
+    background:linear-gradient(135deg,rgba(74,92,255,.18),rgba(113,55,245,.18));
+  }
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:900;color:var(--accent);font-size:14px;letter-spacing:.2px}
+  .eyebrow:before{content:"05";display:grid;place-items:center;width:44px;height:44px;border-radius:14px;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 24px rgba(74,92,255,.22)}
+  h1{margin:22px 0 18px;font-size:clamp(36px,5.6vw,68px);line-height:1.12;letter-spacing:-2.7px;max-width:850px}
+  .hero-copy{max-width:780px;color:var(--sub);font-size:18px;letter-spacing:-.25px}
+  .hero-copy strong{color:var(--ink)}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 20px;border-radius:15px;font-weight:900;border:1px solid var(--line);background:#fff;transition:.18s ease;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(24,34,55,.08)}
+  .btn.primary{border:0;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 12px 26px rgba(74,92,255,.24)}
+  .section{padding:42px 0}
+  .section-title{margin-bottom:22px}
+  .section-title small{display:block;color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.5px;margin-bottom:6px}
+  .section-title h2{font-size:32px;line-height:1.25;margin:0;letter-spacing:-1.3px}
+  .section-title p{margin:9px 0 0;color:var(--sub)}
+  .company-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px}
+  .panel h3{font-size:23px;margin:0 0 12px;letter-spacing:-.7px}
+  .panel p{margin:0;color:var(--sub)}
+  .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .principle{padding:18px;border-radius:18px;background:var(--soft);border:1px solid #e8ebff}
+  .principle b{display:block;margin-bottom:4px;font-size:15px}.principle span{font-size:13px;color:var(--sub)}
+  .role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .role-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;display:flex;flex-direction:column;min-height:270px;transition:.18s ease}
+  .role-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(24,34,55,.08);border-color:#d8ddff}
+  .role-card.wide{grid-column:span 2}
+  .role-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .badge{display:inline-flex;padding:6px 10px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:12px;font-weight:900;border:1px solid #e1e5ff}
+  .amount{white-space:nowrap;font-size:13px;font-weight:900;color:#202b46;background:#f8f9fc;border:1px solid var(--line);padding:7px 10px;border-radius:12px}
+  .role-card h3{font-size:24px;letter-spacing:-.8px;margin:16px 0 7px}
+  .role-card p{color:var(--sub);margin:0 0 14px}
+  .role-list{list-style:none;margin:0;padding:0;display:grid;gap:7px;color:#3f4c62;font-size:14px}
+  .role-list li{position:relative;padding-left:17px}.role-list li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);position:absolute;left:0;top:.65em}
+  .role-bottom{margin-top:auto;padding-top:18px;font-size:13px;font-weight:800;color:var(--accent)}
+  .reward-box{background:#111a2d;color:#fff;border-radius:30px;padding:34px;display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center}
+  .reward-box h3{font-size:29px;line-height:1.25;margin:0 0 10px;letter-spacing:-1px}.reward-box p{margin:0;color:#c4ccda}
+  .reward-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .reward{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:18px;text-align:center}
+  .reward b{display:block;font-size:23px;margin-top:5px}.reward span{font-size:12px;color:#c7cede}
+  .process{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+  .step-num{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:900;font-size:13px;margin-bottom:13px}
+  .step b{display:block;margin-bottom:4px}.step p{margin:0;color:var(--sub);font-size:13px}
+  .apply{padding:28px 0 82px}
+  .apply-card{background:linear-gradient(135deg,#f7f8ff,#fff);border:1px solid #dfe4ff;border-radius:30px;padding:38px;display:flex;align-items:center;justify-content:space-between;gap:26px;box-shadow:0 18px 42px rgba(74,92,255,.08)}
+  .apply-card h2{margin:0 0 8px;font-size:31px;letter-spacing:-1.2px}.apply-card p{margin:0;color:var(--sub)}
+  .apply-card .btn{min-width:190px}
+  .note{font-size:12px;color:#7e889a;margin-top:12px}
+  footer{padding:0 0 44px;text-align:center;color:#8b94a5;font-size:12px}
+  @media(max-width:820px){
+    .wrap{width:min(100% - 24px,1180px)}
+    .hero{padding:30px 0 22px}.hero-card{padding:30px 22px;border-radius:26px}h1{letter-spacing:-1.7px}.hero-copy{font-size:16px}
+    .company-panel,.reward-box{grid-template-columns:1fr}.role-grid{grid-template-columns:1fr}.role-card.wide{grid-column:auto}.process{grid-template-columns:1fr 1fr}.reward-grid{grid-template-columns:1fr}.apply-card{align-items:stretch;flex-direction:column}.apply-card .btn{width:100%}
+  }
+  @media(max-width:520px){.principles,.process{grid-template-columns:1fr}.topbar-inner{height:62px}.brand{font-size:18px}.section{padding:31px 0}.section-title h2{font-size:27px}.hero-actions .btn{width:100%}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/">CodeNote</a>
+    <a class="back" href="/">← 메인으로</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="eyebrow">인재채용</div>
+        <h1>CodeNote와 함께<br>서비스의 다음 단계를 만듭니다.</h1>
+        <p class="hero-copy">
+          CodeNote는 <strong>모바일 앱, 서버, 관리 시스템을 직접 기획·개발하고 실제 운영까지 연결</strong>하는 소프트웨어 프로젝트를 만들고 있습니다.
+          개발만 하는 조직이 아니라, 고객이 서비스를 도입하고 안정적으로 사용할 수 있도록 안내·운영·개선까지 함께 이어가는 것을 중요하게 생각합니다.
+          지금은 서비스 운영 파트너부터 개발, 디지털 포렌식 협업까지 각자의 강점을 살려 함께 성장할 분을 찾고 있습니다.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#roles">지원 분야 보기</a>
+          <a class="btn" href="#reward">활동 및 인센티브</a>
+          <a class="btn" href="#process">지원 절차</a>
+          <a class="btn" href="https://naver.me/FM9nob1Q" target="_blank" rel="noopener noreferrer">지원하기 ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-title"><small>ABOUT CODENOTE</small><h2>아이디어를 실제 서비스로 연결합니다.</h2><p>기획에서 끝나지 않고, 사용자가 직접 쓰는 제품과 운영 구조까지 완성하는 것을 목표로 합니다.</p></div>
+      <div class="company-panel">
+        <div class="panel">
+          <h3>우리가 함께 만들고 싶은 것</h3>
+          <p>
+            CodeNote는 앱 하나만 만드는 데 그치지 않고 인증, 고객 안내, 운영 도구, 서버 관리까지 서비스가 실제로 돌아가기 위해 필요한 영역을 함께 구축합니다.
+            작은 개선도 실제 사용자의 불편을 줄인다면 빠르게 반영하고, 운영 과정에서 얻은 경험을 다음 개발에 다시 연결합니다.
+            그래서 개발자뿐 아니라 고객과 서비스를 연결하는 운영 파트너, 새로운 기술 영역을 함께 개척할 협업 파트너도 중요하게 생각합니다.
+          </p>
+        </div>
+        <div class="panel">
+          <div class="principles">
+            <div class="principle"><b>실제 사용 중심</b><span>기능보다 사용 과정과 운영 편의까지 함께 봅니다.</span></div>
+            <div class="principle"><b>빠른 개선</b><span>현장에서 확인된 불편을 제품 개선으로 연결합니다.</span></div>
+            <div class="principle"><b>자율적인 활동</b><span>정해진 영업 방식보다 각자의 강점에 맞는 활동을 존중합니다.</span></div>
+            <div class="principle"><b>성과 공유</b><span>서비스 확장에 기여한 성과를 기준에 따라 보상합니다.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="roles">
+    <div class="wrap">
+      <div class="section-title"><small>OPEN POSITIONS</small><h2>현재 모집 분야</h2><p>한 번에 모든 업무를 맡는 방식이 아니라, 원하는 분야를 선택해서 지원할 수 있습니다.</p></div>
+      <div class="role-grid">
+        <article class="role-card">
+          <div class="role-top"><span class="badge">서비스 운영</span><span class="amount">인센티브 지급</span></div>
+          <h3>앱 차단 서비스 관리</h3>
+          <p>앱 차단 서비스를 사용하는 고객이 처음 설치하고 사용할 수 있도록 연결하는 운영 분야입니다.</p>
+          <ul class="role-list">
+            <li>고객 안내 및 서비스 소개</li><li>인증키 발급·전달</li><li>설치 방법 및 초기 사용법 안내</li><li>전화 문의 응대 및 기본 고객 관리</li>
+          </ul>
+          <div class="role-bottom">고객 1건이 정상적으로 연결될 때마다 인센티브 지급</div>
+        </article>
+
+        <article class="role-card">
+          <div class="role-top"><span class="badge">서비스 운영</span><span class="amount">인센티브 지급</span></div>
+          <h3>오늘의 출석 관리</h3>
+          <p>학원 출석 관리 서비스를 학원에 소개하고, 실제 사용이 가능하도록 도입 과정을 지원하는 분야입니다.</p>
+          <ul class="role-list">
+            <li>학원 대상 서비스 안내 및 홍보</li><li>인증키 발급·전달</li><li>앱 설치 및 초기 설정 안내</li><li>출석 관리 기능·사용법 안내</li>
+          </ul>
+          <div class="role-bottom">학원 가맹 등록 시 인센티브 지급</div>
+        </article>
+
+        <article class="role-card">
+          <div class="role-top"><span class="badge">서비스 운영</span><span class="amount">인센티브 지급</span></div>
+          <h3>뮤싱크 관리</h3>
+          <p>실용음악학원·연습실 예약 관리 서비스의 도입과 사용을 안내하는 운영 분야입니다.</p>
+          <ul class="role-list">
+            <li>학원 대상 서비스 안내 및 홍보</li><li>인증키 발급·전달</li><li>고객 설치 과정 안내</li><li>관리자 기능 및 기본 사용법 안내</li>
+          </ul>
+          <div class="role-bottom">학원 가맹 등록 시 인센티브 지급</div>
+        </article>
+
+        <article class="role-card">
+          <div class="role-top"><span class="badge">개발 협업</span><span class="amount">협업 조건 협의</span></div>
+          <h3>CodeNote 개발자</h3>
+          <p>CodeNote의 기존 프로젝트를 함께 개선하고 새로운 서비스를 같이 만들어갈 개발 협업 분야입니다.</p>
+          <ul class="role-list">
+            <li>Android / iOS / Web / Server 등 개발 협업</li><li>기존 서비스 기능 개선 및 유지관리</li><li>새 프로젝트 기획·개발 참여</li><li>기술 영역과 참여 방식은 지원자와 협의</li>
+          </ul>
+          <div class="role-bottom">보유 기술과 참여 가능한 범위를 중심으로 협의</div>
+        </article>
+
+        <article class="role-card wide">
+          <div class="role-top"><span class="badge">전문 파트너</span><span class="amount">협업 조건 협의</span></div>
+          <h3>디지털 포렌식 분야 파트너</h3>
+          <p>CodeNote 개발 영역의 디지털 포렌식 관련 연구·개발을 함께할 기술 파트너를 찾습니다.</p>
+          <ul class="role-list">
+            <li>모바일 및 디지털 데이터 분석 관련 기술 협업</li><li>포렌식 도구·기능 연구 및 개발</li><li>기술 검증과 프로젝트 단위 협업</li><li>구체적인 역할·범위·조건은 지원 후 개별 협의</li>
+          </ul>
+          <div class="role-bottom">전문 기술과 경험을 바탕으로 장기적인 협업 가능</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reward">
+    <div class="wrap">
+      <div class="reward-box">
+        <div>
+          <h3>자율적인 활동과<br>성과 기반 인센티브</h3>
+          <p>서비스 운영 분야는 정해진 출퇴근 시간 없이 가능한 범위에서 서비스 안내·홍보 및 고객 지원 활동을 진행할 수 있습니다. 각 서비스의 실제 도입 기준이 충족되면 인센티브를 지급합니다.</p>
+        </div>
+        <div class="reward-grid">
+          <div class="reward"><span>앱 차단</span><b>인센티브 지급</b><span>고객 정상 연결 시</span></div>
+          <div class="reward"><span>오늘의 출석</span><b>인센티브 지급</b><span>학원 가맹 등록 시</span></div>
+          <div class="reward"><span>뮤싱크</span><b>인센티브 지급</b><span>학원 가맹 등록 시</span></div>
+        </div>
+      </div>
+      <div class="note">※ 서비스 운영 분야의 세부 지급 기준과 개발·디지털 포렌식 협업 조건은 지원 내용 확인 후 개별 안내합니다.</div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="wrap">
+      <div class="section-title"><small>HOW TO JOIN</small><h2>지원 절차</h2><p>네이버 폼으로 간단히 지원해 주시면 내용을 확인한 뒤 개별 연락드립니다.</p></div>
+      <div class="process">
+        <div class="step"><div class="step-num">01</div><b>지원 분야 선택</b><p>운영·개발·포렌식 중 함께하고 싶은 분야를 선택합니다.</p></div>
+        <div class="step"><div class="step-num">02</div><b>네이버 폼 작성</b><p>간단한 정보와 가능한 업무·경험을 작성해 제출합니다.</p></div>
+        <div class="step"><div class="step-num">03</div><b>내용 확인</b><p>CodeNote에서 지원 내용을 확인하고 협업 가능 범위를 검토합니다.</p></div>
+        <div class="step"><div class="step-num">04</div><b>개별 연락</b><p>지원 내용에 맞춰 연락드리고 활동 방식과 세부 조건을 안내합니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="apply" id="apply">
+    <div class="wrap">
+      <div class="apply-card">
+        <div><h2>CodeNote와 함께하고 싶다면</h2><p>지원서 제출 후 확인된 연락처로 개별 연락드립니다.</p></div>
+        <a class="btn primary" href="https://naver.me/FM9nob1Q" target="_blank" rel="noopener noreferrer">네이버 폼 지원하기 ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© CodeNote. Recruitment</footer>
+</body>
+</html>
