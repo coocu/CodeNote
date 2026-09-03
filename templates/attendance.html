@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="학원 출석 관리 시스템 - 여러 학원 학생 등록, NFC 출석, 출석번호 입력, 학부모 통합 출결 확인, PC 관리자 지원">
+  <meta name="description" content="학원 출석 관리 시스템 - 여러 학원 학생 등록, NFC·BLE 리더기 출석, 출석번호 입력, 학부모 통합 출결 확인, 관리자 공지·입퇴실 알림, PC 관리자 지원">
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/static/style.css?v=8">
 </head>
@@ -24,8 +24,11 @@
     <div class="hero-badges">
       <span>다중 학원 지원</span>
       <span>NFC 카드 출석</span>
+      <span>BLE NFC 리더기</span>
       <span>4자리 출석번호</span>
       <span>입실·퇴실 알림</span>
+      <span>관리자 공지</span>
+      <span>관리자 입·퇴실 알림</span>
       <span>학부모 통합 확인</span>
       <span>PC 관리자</span>
     </div>
@@ -189,8 +192,8 @@
         <p>출석 기록을 단순 체크로 끝내지 않고 입실과 퇴실 기록으로 구분해 학원 이용 상황을 확인할 수 있습니다.</p>
       </article>
       <article>
-        <h3>학원별 알림</h3>
-        <p>학생이 등록된 학원에서 출석이 처리되면 어느 학원의 출결인지 구분해 학부모가 확인할 수 있습니다.</p>
+        <h3>학부모·관리자 알림</h3>
+        <p>학생의 입실·퇴실 결과는 학부모가 학원별로 확인할 수 있고, 학원 관리자는 입·퇴실 알림을 켜 두면 자신의 기기에서도 푸시 알림을 받을 수 있습니다.</p>
       </article>
     </div>
   </section>
@@ -264,6 +267,110 @@
     <div class="section-heading">
       <span class="step-number">07</span>
       <div>
+        <h2>학원 공지와 관리자 입·퇴실 알림</h2>
+        <p>학원은 등록된 학부모에게 공지를 전달하고, 필요한 관리자는 학생 입·퇴실 푸시 알림을 별도로 받을 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article>
+        <span class="feature-icon">N</span>
+        <h3>일반공지</h3>
+        <p>학원관리의 「공지」에서 내용을 작성해 활성화하면 이 학원에 등록된 학부모에게만 표시됩니다. 학부모는 닫기 또는 오늘 하루 보지 않기를 사용할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">!</span>
+        <h3>긴급공지</h3>
+        <p>중요한 안내는 긴급공지로 구분할 수 있습니다. 긴급공지는 앱 진입 시 우선 확인하도록 표시되어 빠르게 전달할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">3</span>
+        <h3>자주 쓰는 문구</h3>
+        <p>반복해서 사용하는 안내문은 학원별로 3개까지 저장해 두고 필요할 때 공지 내용으로 불러와 사용할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">A</span>
+        <h3>관리자 입·퇴실 알림</h3>
+        <p>출석현황의 「입·퇴실 알림」을 켜면 학생이 학원에 들어오거나 나갈 때 해당 관리자 기기도 푸시 알림을 받을 수 있습니다. 설정은 관리자 기기별로 관리할 수 있습니다.</p>
+      </article>
+    </div>
+
+    <div class="screenshot-grid two">
+      <figure class="screenshot-card wide-shot">
+        <img src="/static/images/attendance/admin_notice_management.jpg" alt="학원 관리자 공지 관리 기능 예시 화면">
+        <figcaption>
+          <strong>관리자 공지 관리 예시</strong>
+          <span>일반공지·긴급공지와 자주 쓰는 문구를 활용해 학원 안내를 빠르게 작성하고 전달하는 흐름을 확인할 수 있습니다.</span>
+        </figcaption>
+      </figure>
+      <figure class="screenshot-card wide-shot">
+        <img src="/static/images/attendance/admin_attendance_push.jpg" alt="학생 입실 퇴실 관리자 푸시 알림 예시 화면">
+        <figcaption>
+          <strong>관리자 입·퇴실 푸시 알림 예시</strong>
+          <span>학생의 입실·퇴실이 처리되면 알림을 켜 둔 관리자 기기에서도 바로 확인할 수 있습니다.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="guide-callout">
+      <strong>학원별로 분리되는 안내</strong>
+      <span>학부모 공지는 해당 학원에 등록된 학부모에게만 전달되며, 관리자 입·퇴실 알림도 로그인한 학원의 출결을 기준으로 동작합니다.</span>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">08</span>
+      <div>
+        <h2>ACR1555U BLE NFC 리더기로 더 편리한 출석</h2>
+        <p>Android 스마트폰이나 태블릿에 ACS ACR1555U 블루투스 NFC 리더기를 연결해 학생 NFC 등록·재등록과 실제 입·퇴실 태그에 사용할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <figure class="screenshot-card wide-shot">
+      <img src="/static/images/attendance/ble_reader_connection.jpg" alt="ACR1555U BLE NFC 리더기 연결과 NFC 등록 출석 예시 화면">
+      <figcaption>
+        <strong>ACR1555U BLE NFC 리더기 연동 예시</strong>
+        <span>리더기 연결부터 NFC 등록·재등록, 실제 입·퇴실 태그까지 하나의 흐름으로 사용하는 예시입니다.</span>
+      </figcaption>
+    </figure>
+
+    <div class="system-flow">
+      <div><strong>리더기 준비</strong><span>ACR1555U 전원 켜기</span></div><b>→</b>
+      <div><strong>앱에서 연결</strong><span>리더기 검색·연결</span></div><b>→</b>
+      <div><strong>학생 NFC</strong><span>등록·재등록 가능</span></div><b>→</b>
+      <div><strong>출석관리</strong><span>카드 태그로 입·퇴실</span></div>
+    </div>
+
+    <div class="feature-grid">
+      <article>
+        <h3>별도 대형 출결기 불필요</h3>
+        <p>사용 중인 Android 스마트폰이나 태블릿에 리더기를 연결해 출석용 기기로 구성할 수 있습니다.</p>
+      </article>
+      <article>
+        <h3>학생관리에서 NFC 등록</h3>
+        <p>리더기를 연결한 상태에서 학생의 NFC 등록 또는 재등록을 누르고 카드를 리더기에 태그해 등록할 수 있습니다.</p>
+      </article>
+      <article>
+        <h3>출석관리에서 바로 태그</h3>
+        <p>출석관리 화면에서도 같은 리더기를 연결해 휴대폰 NFC와 동일한 학생 출석 흐름으로 사용할 수 있습니다.</p>
+      </article>
+      <article>
+        <h3>연결 상태 확인</h3>
+        <p>앱의 리더기 연결 화면에서 연결 상태와 펌웨어 정보를 확인할 수 있어 현장에서 연결 여부를 쉽게 확인할 수 있습니다.</p>
+      </article>
+    </div>
+
+    <div class="guide-callout">
+      <strong>권장 리더기</strong>
+      <span>현재 개발·검증 환경 기준 권장 모델은 ACS ACR1555U입니다. 리더기 전원을 켠 뒤 앱의 「NFC 리더기 연결」에서 검색해 연결합니다.</span>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">09</span>
+      <div>
         <h2>학생 · 학부모 · 학원 모두에게 단순한 구조</h2>
         <p>한 학생의 출석을 중심으로 학원 현장과 학부모 확인을 자연스럽게 연결합니다.</p>
       </div>
@@ -308,6 +415,10 @@
       <span>학원별 출결 기록</span>
       <span>학부모 통합 확인</span>
       <span>출석 알림</span>
+      <span>관리자 입·퇴실 알림</span>
+      <span>학부모 공지</span>
+      <span>일반·긴급공지</span>
+      <span>BLE NFC 리더기</span>
       <span>PC 관리자</span>
     </div>
   </section>
