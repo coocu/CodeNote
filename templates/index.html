@@ -109,19 +109,23 @@
     .price-section-title h3{margin:0;font-size:20px;color:#18233c}
     .price-section-title span{flex:0 0 auto;padding:5px 9px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:850}
     .price-section > p{margin:0 0 14px;font-size:14px;line-height:1.7}
-    .price-table-wrap{width:100%;overflow-x:auto;border:1px solid #dce3ee;border-radius:15px;background:#fff;-webkit-overflow-scrolling:touch}
-    .price-table-wrap:focus-visible{outline:3px solid rgba(14,165,233,.30);outline-offset:3px}
-    .price-table{width:100%;min-width:560px;border-collapse:collapse;font-size:14px;line-height:1.45}
-    .price-table.compact{min-width:470px}
-    .price-table.wide{min-width:760px}
-    .price-table th,.price-table td{padding:11px 12px;border-right:1px solid #e4e8f0;border-bottom:1px solid #e4e8f0;text-align:center;vertical-align:middle}
+    .price-table-wrap{width:100%;overflow:visible;border:1px solid #dce3ee;border-radius:15px;background:#fff}
+    .price-table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;font-size:14px;line-height:1.45}
+    .price-table th,.price-table td{padding:11px 12px;border-right:1px solid #e4e8f0;border-bottom:1px solid #e4e8f0;text-align:center;vertical-align:middle;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
     .price-table th:last-child,.price-table td:last-child{border-right:0}
     .price-table tbody tr:last-child td{border-bottom:0}
     .price-table thead th{background:#edf4ff;color:#24324a;font-weight:850}
     .price-table thead tr:first-child th{background:linear-gradient(135deg,#eaf2ff,#f1efff)}
     .price-table td:first-child{font-weight:750;color:#334155}
     .price-table .item-detail{text-align:left;font-weight:650;line-height:1.65}
+    .price-table .item-detail small{display:block;font-size:12px;word-break:normal;overflow-wrap:anywhere}
     .price-table .inquiry{color:#4f46e5;font-weight:850}
+    .smartphone-price-table th,.smartphone-price-table td{width:50%}
+    .storage-price-panel .price-table{font-size:13px}
+    .storage-price-panel .price-table th,.storage-price-panel .price-table td{padding:9px 7px}
+    .storage-price-panel .price-grid-two .price-table th:nth-child(1){width:24%}
+    .storage-price-panel .price-grid-two .price-table th:nth-child(2){width:26%}
+    .storage-price-panel .price-grid-two .price-table th:nth-child(3){width:50%}
     .price-grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
     .price-subcard{min-width:0}
     .price-subcard h4{margin:0 0 9px;font-size:15px;color:#334155}
@@ -161,6 +165,8 @@
       .price-section{padding:17px 14px;border-radius:18px}
       .price-section-title{align-items:center}
       .price-table th,.price-table td{padding:10px 9px}
+      .price-table{font-size:12px}
+      .storage-price-panel .price-table th,.storage-price-panel .price-table td{padding:8px 5px}
     }
   </style>
 </head>
@@ -408,7 +414,7 @@
       </div>
     </section>
 
-    <section class="home-modal-panel" data-modal-panel="forensic-price-smartphone" hidden>
+    <section class="home-modal-panel smartphone-price-panel" data-modal-panel="forensic-price-smartphone" hidden>
       <button class="back-mini" type="button" data-modal-target="digital-forensics-pricing">← 가격 분야 선택</button>
       <div class="section-heading modal-heading price-view-heading">
         <span class="step-number">M</span>
@@ -422,8 +428,8 @@
       <section class="price-section">
         <div class="price-section-title"><h3>휴대폰 데이터 복구 · 정상 휴대폰</h3><span>VAT 별도</span></div>
         <div class="price-table-wrap">
-          <table class="price-table compact">
-            <thead><tr><th scope="col">스마트폰 복구 항목</th><th scope="col">복구 비용<br>(기본 작업비 포함)</th></tr></thead>
+          <table class="price-table compact smartphone-price-table">
+            <thead><tr><th scope="col">스마트폰 복구 항목</th><th scope="col">복구 비용 (기본 작업비 포함)</th></tr></thead>
             <tbody>
               <tr><td>사진</td><td>20만원</td></tr>
               <tr><td>전화번호</td><td>20만원</td></tr>
@@ -459,11 +465,12 @@
       <section class="price-section">
         <div class="price-section-title"><h3>디지털 포렌식</h3><span>VAT 별도</span></div>
         <div class="price-table-wrap">
-          <table class="price-table compact">
+          <table class="price-table compact smartphone-price-table">
             <thead><tr><th scope="col">포렌식 항목</th><th scope="col">비용</th></tr></thead>
             <tbody>
-              <tr><td>패턴 해제</td><td>20만원부터</td></tr>
+              <tr><td>패턴해제 (안드로이드 10까지 지원, 이후 버전은 별도문의)</td><td>35만원부터</td></tr>
               <tr><td>해킹 분석</td><td>50만원</td></tr>
+              <tr><td>영구삭제</td><td>50만원</td></tr>
               <tr><td>모바일 포렌식</td><td class="inquiry">별도 문의</td></tr>
               <tr><td>컴퓨터 포렌식</td><td class="inquiry">별도 문의</td></tr>
               <tr><td>사진·영상·음성 포렌식</td><td class="inquiry">별도 문의</td></tr>
@@ -475,7 +482,7 @@
       {{ forensic_security_policy('smartphone-security-policy') }}
     </section>
 
-    <section class="home-modal-panel" data-modal-panel="forensic-price-storage" hidden>
+    <section class="home-modal-panel storage-price-panel" data-modal-panel="forensic-price-storage" hidden>
       <button class="back-mini" type="button" data-modal-target="digital-forensics-pricing">← 가격 분야 선택</button>
       <div class="section-heading modal-heading price-view-heading">
         <span class="step-number">D</span>
@@ -806,14 +813,6 @@
   });
 
   closers.forEach((closer) => closer.addEventListener('click', closeModal));
-
-  document.querySelectorAll('.price-table-wrap').forEach((tableWrap) => {
-    const subsectionTitle = tableWrap.closest('.price-subcard')?.querySelector('h4')?.textContent.trim();
-    const sectionTitle = tableWrap.closest('.price-section')?.querySelector('h3')?.textContent.trim();
-    tableWrap.tabIndex = 0;
-    tableWrap.setAttribute('role', 'region');
-    tableWrap.setAttribute('aria-label', `${subsectionTitle || sectionTitle || '가격표'} 가로 스크롤 영역`);
-  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !modal.hidden) closeModal();
