@@ -1,3 +1,53 @@
+{% macro forensic_security_policy(policy_id) -%}
+<section class="forensic-policy" aria-labelledby="{{ policy_id }}">
+  <div class="policy-notice">
+    <h3>이용 및 비용 안내</h3>
+    <ul>
+      <li>당사는 개인정보보호법을 충실히 지킵니다.</li>
+      <li>최신폰, 암호화 스마트폰은 별도 작업비, 덤프비, 추가정밀 복구비용이 청구될 수 있습니다.</li>
+      <li>외산폰, 특수폰, 폴더폰은 별도요금으로 산정됩니다.</li>
+      <li>기본 작업비와 작업비포함 복구비는 선결제 후 작업이 진행되며, 결제된 사항은 환불되지 않습니다.</li>
+      <li>다른 회사에서 복원 실패한 기기 복원시 복원비용이 50% 할증되거나 선작업비가 청구됩니다.</li>
+      <li>복구완료 후 고객 데이터 보관 기간은 7일 입니다.</li>
+    </ul>
+  </div>
+  <div class="security-policy-heading">
+    <span class="forensic-kicker">Security Policy</span>
+    <h3 id="{{ policy_id }}">“본사는 고객님의 소중한 데이터 보안을 위해 철저한 보안 정책을 유지하고 있습니다.”</h3>
+  </div>
+  <div class="security-policy-grid">
+    <article>
+      <strong>매체 보안</strong>
+      <p>접수 처리된 매체는 출입이 철저히 통제되는 보안 영역에서 작업이 진행됩니다.</p>
+    </article>
+    <article>
+      <strong>네트워크 보안</strong>
+      <p>접수 처리된 매체는 출입이 철저히 통제되는 보안 영역에서 작업이 진행됩니다.</p>
+    </article>
+    <article>
+      <strong>데이터 보안</strong>
+      <p>복구 서비스 중 복제된 백업 데이터는 인도 후 복구 불가능한 상태로 영구 삭제 처리됩니다.</p>
+    </article>
+    <article>
+      <strong>24시간 CCTV 운영</strong>
+      <p>데이터 보안 유지 정책의 관리 및 감독을 위해 24시간 CCTV를 가동됩니다.</p>
+    </article>
+    <article>
+      <strong>데이터 보안 유지 각서</strong>
+      <p>당사에 데이터 복구 의뢰하시면 조건없이 보안 유지 각서를 작성해 드립니다.</p>
+    </article>
+    <article>
+      <strong>데이터 유출 걱정 NO!</strong>
+      <p>CodeNote는 데이터 보안을 최우선 정책으로 믿고 맡길 수 있는 믿을 수 있는 기업입니다.</p>
+    </article>
+  </div>
+  <div class="recovery-apply-wrap">
+    <a class="recovery-apply-button" href="https://naver.me/52cU0hQm" target="_blank" rel="noopener noreferrer">
+      복구 신청하기 <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+{%- endmacro -%}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -35,9 +85,82 @@
     .detail-list{margin:12px 0 0;padding-left:18px;color:#425067;line-height:1.7}
     .detail-list li+li{margin-top:6px}
     .support-note{margin-top:18px;background:linear-gradient(135deg,#f7f8ff,#ffffff);border:1px solid #dde3ff;border-radius:24px;padding:22px;color:#30405b;line-height:1.75}
+    .forensic-price-cta{margin:-6px 0 24px}
+    .forensic-price-button{
+      width:100%;min-height:58px;padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:10px;
+      border:0;border-radius:17px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;
+      font:inherit;font-size:17px;font-weight:900;letter-spacing:-.2px;cursor:pointer;
+      box-shadow:0 12px 26px rgba(37,99,235,.23);transition:transform .18s ease,box-shadow .18s ease
+    }
+    .forensic-price-button:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(37,99,235,.29)}
+    .forensic-price-button:focus-visible{outline:3px solid rgba(14,165,233,.35);outline-offset:3px}
+    .price-selector{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:8px}
+    .price-selector .selector-card{min-height:126px;flex-direction:column;gap:7px}
+    .price-selector .selector-card strong{font-size:20px;letter-spacing:-.4px}
+    .price-view-heading{margin-bottom:22px}
+    .price-view-heading .step-number{font-size:14px}
+    .price-summary{
+      margin:0 0 18px;padding:16px 18px;border-radius:17px;background:linear-gradient(135deg,#eff6ff,#f7f5ff);
+      border:1px solid #dbe7ff;color:#425067;line-height:1.7
+    }
+    .price-section{margin-top:18px;padding:22px;border:1px solid #dfe5ef;border-radius:22px;background:#fff;box-shadow:0 10px 26px rgba(24,35,60,.045)}
+    .price-section:first-of-type{margin-top:0}
+    .price-section-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .price-section-title h3{margin:0;font-size:20px;color:#18233c}
+    .price-section-title span{flex:0 0 auto;padding:5px 9px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:850}
+    .price-section > p{margin:0 0 14px;font-size:14px;line-height:1.7}
+    .price-table-wrap{width:100%;overflow-x:auto;border:1px solid #dce3ee;border-radius:15px;background:#fff;-webkit-overflow-scrolling:touch}
+    .price-table-wrap:focus-visible{outline:3px solid rgba(14,165,233,.30);outline-offset:3px}
+    .price-table{width:100%;min-width:560px;border-collapse:collapse;font-size:14px;line-height:1.45}
+    .price-table.compact{min-width:470px}
+    .price-table.wide{min-width:760px}
+    .price-table th,.price-table td{padding:11px 12px;border-right:1px solid #e4e8f0;border-bottom:1px solid #e4e8f0;text-align:center;vertical-align:middle}
+    .price-table th:last-child,.price-table td:last-child{border-right:0}
+    .price-table tbody tr:last-child td{border-bottom:0}
+    .price-table thead th{background:#edf4ff;color:#24324a;font-weight:850}
+    .price-table thead tr:first-child th{background:linear-gradient(135deg,#eaf2ff,#f1efff)}
+    .price-table td:first-child{font-weight:750;color:#334155}
+    .price-table .item-detail{text-align:left;font-weight:650;line-height:1.65}
+    .price-table .inquiry{color:#4f46e5;font-weight:850}
+    .price-grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .price-subcard{min-width:0}
+    .price-subcard h4{margin:0 0 9px;font-size:15px;color:#334155}
+    .price-alert{margin:0 0 14px;padding:12px 14px;border-radius:13px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:13px;font-weight:750;line-height:1.6}
+    .symptom-list{columns:2;column-gap:30px;margin:14px 0 0;padding-left:19px;color:#5b6780;font-size:13px;line-height:1.65}
+    .symptom-list li{break-inside:avoid;margin-bottom:4px}
+    .forensic-policy{margin-top:22px;padding-top:22px;border-top:1px solid #dfe5ef}
+    .policy-notice{padding:20px;border-radius:20px;background:#f8fafc;border:1px solid #e2e8f0}
+    .policy-notice h3{margin:0 0 10px;font-size:18px;color:#24324a}
+    .policy-notice ul{margin:0;padding-left:19px;color:#526078;font-size:13px;line-height:1.7}
+    .policy-notice li+li{margin-top:4px}
+    .security-policy-heading{margin-top:24px;text-align:center}
+    .security-policy-heading h3{margin:8px 0 6px;font-size:21px;color:#1d4ed8}
+    .security-policy-heading p{margin:0;font-size:14px}
+    .security-policy-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+    .security-policy-grid article{padding:18px;border-radius:18px;background:linear-gradient(150deg,#f8fbff,#fff);border:1px solid #dfe7f5}
+    .security-policy-grid strong{display:block;margin-bottom:6px;color:#1e3a8a;font-size:15px}
+    .security-policy-grid p{margin:0;font-size:13px;line-height:1.65}
+    .recovery-apply-wrap{margin-top:22px}
+    .recovery-apply-button{
+      min-height:58px;padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:10px;
+      border-radius:17px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;text-decoration:none;
+      font-size:17px;font-weight:900;box-shadow:0 12px 26px rgba(37,99,235,.23);transition:transform .18s ease,box-shadow .18s ease
+    }
+    .recovery-apply-button:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(37,99,235,.29)}
+    .recovery-apply-button:focus-visible{outline:3px solid rgba(14,165,233,.35);outline-offset:3px}
     .home-action-card--link{cursor:pointer}
     @media (max-width: 900px){
-      .hub-selector,.forensic-grid,.forensic-intro{grid-template-columns:1fr}
+      .hub-selector,.forensic-grid,.forensic-intro,.price-grid-two{grid-template-columns:1fr}
+      .price-selector{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .security-policy-grid{grid-template-columns:1fr}
+      .symptom-list{columns:1}
+    }
+    @media (max-width: 620px){
+      .price-selector{grid-template-columns:1fr}
+      .price-selector .selector-card{min-height:86px}
+      .price-section{padding:17px 14px;border-radius:18px}
+      .price-section-title{align-items:center}
+      .price-table th,.price-table td{padding:10px 9px}
     }
   </style>
 </head>
@@ -163,6 +286,12 @@
         </div>
       </div>
 
+      <div class="forensic-price-cta">
+        <button class="forensic-price-button" type="button" data-modal-target="digital-forensics-pricing">
+          디지털 포렌식 가격 <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
       <div class="forensic-intro">
         <div class="info-card">
           <h3>분석부터 복구 지원까지</h3>
@@ -256,6 +385,280 @@
       <div class="support-note">
         디지털 포렌식 관련 내용은 기기 상태와 데이터 상태에 따라 접근 가능 여부 및 복구 범위가 달라질 수 있으므로, 실제 진행 전 상태 확인과 분석 범위 검토를 기준으로 안내합니다.
       </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="digital-forensics-pricing" hidden>
+      <button class="back-mini" type="button" data-modal-target="digital-forensics">← 디지털 포렌식</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">₩</span>
+        <div>
+          <h2>디지털 포렌식 가격</h2>
+        </div>
+      </div>
+      <div class="hub-selector price-selector" aria-label="가격 분야 선택">
+        <button class="selector-card" type="button" data-modal-target="forensic-price-smartphone">
+          <strong>스마트폰</strong>
+        </button>
+        <button class="selector-card" type="button" data-modal-target="forensic-price-storage">
+          <strong>저장매체</strong>
+        </button>
+        <button class="selector-card" type="button" data-modal-target="forensic-price-nas-server">
+          <strong>NAS / Server</strong>
+        </button>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="forensic-price-smartphone" hidden>
+      <button class="back-mini" type="button" data-modal-target="digital-forensics-pricing">← 가격 분야 선택</button>
+      <div class="section-heading modal-heading price-view-heading">
+        <span class="step-number">M</span>
+        <div>
+          <h2>스마트폰 복구 · 포렌식 가격</h2>
+          <p>휴대폰 상태와 분석 항목에 따른 기본 가격입니다.</p>
+        </div>
+      </div>
+      <p class="price-summary">기기 상태, 암호화 여부, 데이터 손상 범위에 따라 실제 비용이 달라질 수 있으며, 상태 확인 후 최종 비용을 안내합니다.</p>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>휴대폰 데이터 복구 · 정상 휴대폰</h3><span>VAT 별도</span></div>
+        <div class="price-table-wrap">
+          <table class="price-table compact">
+            <thead><tr><th scope="col">스마트폰 복구 항목</th><th scope="col">복구 비용<br>(기본 작업비 포함)</th></tr></thead>
+            <tbody>
+              <tr><td>사진</td><td>20만원</td></tr>
+              <tr><td>전화번호</td><td>20만원</td></tr>
+              <tr><td>동영상</td><td>20만원</td></tr>
+              <tr><td>음성녹음</td><td>20만원</td></tr>
+              <tr><td>메모장</td><td>20만원</td></tr>
+              <tr><td>카카오톡</td><td>20만원</td></tr>
+              <tr><td>문자메시지</td><td>20만원</td></tr>
+              <tr><td>통화기록</td><td>20만원</td></tr>
+              <tr><td>캘린더(일정)</td><td>20만원</td></tr>
+              <tr>
+                <td class="item-detail">기타 모바일 메신저<br><small>텔레그램, 인스타그램 DM, 페이스북 메신저, 위챗, 82톡, mini톡, Plus Messenger, Wickr Me, Wire, 국민어장, 네이트온, 다톡, 라인, 미스리, 바이버, 빠른톡S, 삭톡, 시그널, 심톡, 심팅, 썸톡, 썸팅, 앙톡, 앙팅, 왓츠앱, 즐챗, 지니톡, 톡친구만들기, 트위터, 틱톡, 하이웍스 메신저 등</small></td>
+                <td>20만원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>휴대폰 데이터 복구 · 고장 휴대폰</h3><span>VAT 별도</span></div>
+        <div class="price-table-wrap">
+          <table class="price-table compact">
+            <thead><tr><th scope="col">복구 항목</th><th scope="col">기본 작업비</th><th scope="col">복구 비용</th></tr></thead>
+            <tbody>
+              <tr><td>고장 휴대폰(암호화폰)</td><td>5만원</td><td>25~40만원</td></tr>
+              <tr><td>고장 휴대폰(비 암호화폰)</td><td>5만원</td><td>10만원~25만원</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>디지털 포렌식</h3><span>VAT 별도</span></div>
+        <div class="price-table-wrap">
+          <table class="price-table compact">
+            <thead><tr><th scope="col">포렌식 항목</th><th scope="col">비용</th></tr></thead>
+            <tbody>
+              <tr><td>패턴 해제</td><td>20만원부터</td></tr>
+              <tr><td>해킹 분석</td><td>50만원</td></tr>
+              <tr><td>모바일 포렌식</td><td class="inquiry">별도 문의</td></tr>
+              <tr><td>컴퓨터 포렌식</td><td class="inquiry">별도 문의</td></tr>
+              <tr><td>사진·영상·음성 포렌식</td><td class="inquiry">별도 문의</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {{ forensic_security_policy('smartphone-security-policy') }}
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="forensic-price-storage" hidden>
+      <button class="back-mini" type="button" data-modal-target="digital-forensics-pricing">← 가격 분야 선택</button>
+      <div class="section-heading modal-heading price-view-heading">
+        <span class="step-number">D</span>
+        <div>
+          <h2>저장매체 복구 가격</h2>
+          <p>HDD, SSD, USB 및 메모리의 상태·용량별 기본 가격입니다.</p>
+        </div>
+      </div>
+      <p class="price-summary">논리 손상과 물리 손상 여부, 운영체제 및 저장매체의 실제 상태에 따라 최종 비용이 달라질 수 있습니다.</p>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>2.5″ / 3.5″ 하드디스크 · 논리 복구</h3><span>VAT 별도</span></div>
+        <div class="price-table-wrap">
+          <table class="price-table">
+            <thead><tr><th scope="col">HDD 용량</th><th scope="col">Windows</th><th scope="col">Linux / Unix / Mac / SCSI / IDE</th></tr></thead>
+            <tbody>
+              <tr><td>500G 이하</td><td>90,000원</td><td>130,000원</td></tr>
+              <tr><td>1TB 이하</td><td>120,000원</td><td>180,000원</td></tr>
+              <tr><td>2TB 이하</td><td>150,000원</td><td>220,000원</td></tr>
+              <tr><td>4TB 이하</td><td>220,000원</td><td>330,000원</td></tr>
+              <tr><td>8TB 이하</td><td>400,000원</td><td>600,000원</td></tr>
+              <tr><td>12TB 이하</td><td>600,000원</td><td>900,000원</td></tr>
+              <tr><td>18TB 이하</td><td>800,000원</td><td>1,200,000원</td></tr>
+              <tr><td>18TB 초과</td><td class="inquiry">문의</td><td class="inquiry">문의</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="symptom-list" aria-label="하드디스크 논리 손상 주요 증상">
+          <li>윈도우 포맷 또는 재설치</li>
+          <li>복원 CD·고스트로 재설치</li>
+          <li>파티션 삭제 또는 재설정</li>
+          <li>특정 폴더에 접근하지 못하는 증상</li>
+          <li>포맷 안내 메시지가 나타나는 증상</li>
+          <li>스캔디스크 실행 후 파일·폴더가 사라진 증상</li>
+          <li>바이러스나 데이터 덮어쓰기로 손실된 증상</li>
+          <li>그 밖의 복합적인 논리 손상</li>
+        </ul>
+      </section>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>2.5″ / 3.5″ 하드디스크 · 물리 복구</h3><span>VAT 별도</span></div>
+        <p class="price-alert">물리 증상에서 커버가 개봉되었거나 다른 업체의 복구가 실패한 경우, 복구비용 정상가의 50%가 할증되고 작업비 50,000원이 청구될 수 있습니다.</p>
+        <div class="price-grid-two">
+          <div class="price-subcard">
+            <h4>가벼운 손상 · 단순 배드 / 단순 PCB 보드 손상 등</h4>
+            <div class="price-table-wrap">
+              <table class="price-table compact">
+                <thead><tr><th scope="col">HDD 용량</th><th scope="col">Windows</th><th scope="col">Linux / Unix / Mac / SCSI / IDE</th></tr></thead>
+                <tbody>
+                  <tr><td>500G 이하</td><td>180,000원</td><td>280,000원</td></tr>
+                  <tr><td>1TB 이하</td><td>220,000원</td><td>320,000원</td></tr>
+                  <tr><td>2TB 이하</td><td>250,000원</td><td>350,000원</td></tr>
+                  <tr><td>4TB 이하</td><td>300,000원</td><td>400,000원</td></tr>
+                  <tr><td>8TB 이하</td><td>500,000원</td><td>700,000원</td></tr>
+                  <tr><td>12TB 이하</td><td>800,000원</td><td>1,200,000원</td></tr>
+                  <tr><td>18TB 이하</td><td>1,200,000원</td><td>1,600,000원</td></tr>
+                  <tr><td>18TB 초과</td><td class="inquiry">문의</td><td class="inquiry">문의</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="price-subcard">
+            <h4>심한 손상 · 헤드 손상 / 플래터 스크래치 등</h4>
+            <div class="price-table-wrap">
+              <table class="price-table compact">
+                <thead><tr><th scope="col">HDD 용량</th><th scope="col">Windows</th><th scope="col">Linux / Unix / Mac / SCSI / IDE</th></tr></thead>
+                <tbody>
+                  <tr><td>500G 이하</td><td>250,000원</td><td>350,000원</td></tr>
+                  <tr><td>1TB 이하</td><td>300,000원</td><td>400,000원</td></tr>
+                  <tr><td>2TB 이하</td><td>350,000원</td><td>450,000원</td></tr>
+                  <tr><td>4TB 이하</td><td>400,000원</td><td>550,000원</td></tr>
+                  <tr><td>8TB 이하</td><td>700,000원</td><td>1,000,000원</td></tr>
+                  <tr><td>12TB 이하</td><td>1,200,000원</td><td>1,600,000원</td></tr>
+                  <tr><td>18TB 이하</td><td>1,800,000원</td><td>2,200,000원</td></tr>
+                  <tr><td>18TB 초과</td><td class="inquiry">문의</td><td class="inquiry">문의</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <ul class="symptom-list" aria-label="하드디스크 물리 손상 주요 증상">
+          <li>충격으로 인한 헤드 손상</li>
+          <li>물로 인한 침수</li>
+          <li>수명 문제로 인한 부품 노화</li>
+          <li>CMOS에서는 인식되지만 논리적으로 접근할 수 없는 증상</li>
+          <li>전원이 공급되지 않거나 작동하지 않는 증상</li>
+        </ul>
+      </section>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>SSD 복구</h3><span>VAT 별도</span></div>
+        <div class="price-grid-two">
+          <div class="price-subcard">
+            <h4>논리적 손상</h4>
+            <div class="price-table-wrap">
+              <table class="price-table compact">
+                <thead><tr><th scope="col">SSD 용량</th><th scope="col">Windows</th><th scope="col">Linux / Mac / Unix / SCSI</th></tr></thead>
+                <tbody>
+                  <tr><td>~120GB 이하</td><td>10만원</td><td>14만원</td></tr>
+                  <tr><td>256GB 이하</td><td>15만원</td><td>21만원</td></tr>
+                  <tr><td>512GB 이하</td><td>18만원</td><td>27만원</td></tr>
+                  <tr><td>1TB 이하</td><td>23만원</td><td>32만원</td></tr>
+                  <tr><td>2TB 이하</td><td>30만원</td><td>40만원</td></tr>
+                  <tr><td>2TB 이상</td><td class="inquiry">상담 문의</td><td class="inquiry">상담 문의</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="price-subcard">
+            <h4>물리적 손상</h4>
+            <div class="price-table-wrap">
+              <table class="price-table compact">
+                <thead><tr><th scope="col">SSD 용량</th><th scope="col">Windows</th><th scope="col">Linux / Mac / Unix / SCSI</th></tr></thead>
+                <tbody>
+                  <tr><td>~120GB 이하</td><td>70만원</td><td>90만원</td></tr>
+                  <tr><td>256GB 이하</td><td>90만원</td><td>110만원</td></tr>
+                  <tr><td>512GB 이하</td><td>120만원</td><td>150만원</td></tr>
+                  <tr><td>1TB 이하</td><td class="inquiry">상담 문의</td><td class="inquiry">상담 문의</td></tr>
+                  <tr><td>2TB 이하</td><td class="inquiry">상담 문의</td><td class="inquiry">상담 문의</td></tr>
+                  <tr><td>2TB 이상</td><td class="inquiry">상담 문의</td><td class="inquiry">상담 문의</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>USB / 메모리 복구</h3><span>VAT 별도</span></div>
+        <p>디지털 카메라, 이동식 디스크 등 다양한 저장장치에서 발생한 소프트웨어·하드웨어 데이터 문제를 대상으로 합니다.</p>
+        <div class="price-table-wrap">
+          <table class="price-table wide">
+            <thead>
+              <tr><th rowspan="2" scope="col">용량</th><th scope="col">모든 메모리</th><th scope="col">PCB(분리형) 타입</th><th scope="col">COB(일체형) 타입</th></tr>
+              <tr><th scope="col">논리 복구</th><th scope="col">물리 복구</th><th scope="col">물리 복구</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>8GB</td><td>6만원</td><td>15만원</td><td>50만원</td></tr>
+              <tr><td>16GB</td><td>7만원</td><td>20만원</td><td>60만원</td></tr>
+              <tr><td>32GB</td><td>8만원</td><td>25만원</td><td>70만원</td></tr>
+              <tr><td>64GB</td><td>9만원</td><td>35만원</td><td>100만원</td></tr>
+              <tr><td>128GB</td><td>10만원</td><td>40만원</td><td>150만원</td></tr>
+              <tr><td>256GB</td><td>20만원</td><td>50만원</td><td>200만원</td></tr>
+              <tr><td>256GB 초과</td><td class="inquiry">견적 문의</td><td class="inquiry">견적 문의</td><td class="inquiry">견적 문의</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {{ forensic_security_policy('storage-security-policy') }}
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="forensic-price-nas-server" hidden>
+      <button class="back-mini" type="button" data-modal-target="digital-forensics-pricing">← 가격 분야 선택</button>
+      <div class="section-heading modal-heading price-view-heading">
+        <span class="step-number">N</span>
+        <div>
+          <h2>NAS / Server 복구 가격</h2>
+          <p>NAS 및 서버의 디스크 수량에 따른 기본 가격입니다.</p>
+        </div>
+      </div>
+      <p class="price-summary">RAID 구성, 디스크 손상 범위 및 장비 상태에 따라 실제 작업 범위와 최종 견적이 달라질 수 있습니다.</p>
+
+      <section class="price-section">
+        <div class="price-section-title"><h3>NAS / Server 복구</h3><span>VAT 별도</span></div>
+        <div class="price-table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr><th rowspan="2" scope="col">수량</th><th scope="col">복구 비용</th><th scope="col">작업 비용</th></tr>
+              <tr><th scope="col">복구 성공 시</th><th scope="col">복구 실패 시</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Disk 1개</td><td>40~50만원</td><td>작업비 없음</td></tr>
+              <tr><td>Disk 2개</td><td>80~100만원</td><td>작업비 없음</td></tr>
+              <tr><td>Disk 3~5개</td><td>120~200만원</td><td>20만원</td></tr>
+              <tr><td>Disk 6~10개</td><td>250~500만원</td><td>30~60만원</td></tr>
+              <tr><td>Disk 11개 이상</td><td colspan="2" class="inquiry">상담 후 견적</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {{ forensic_security_policy('nas-server-security-policy') }}
     </section>
 
     <section class="home-modal-panel" data-modal-panel="projects" hidden>
@@ -354,12 +757,22 @@
 
   function openModal(target) {
     let found = false;
+    let activePanel = null;
     panels.forEach((panel) => {
       const active = panel.dataset.modalPanel === target;
       panel.hidden = !active;
-      if (active) found = true;
+      if (active) {
+        found = true;
+        activePanel = panel;
+      }
     });
     if (!found) return;
+
+    const panelTitle = activePanel.querySelector('h2');
+    if (panelTitle) {
+      if (!panelTitle.id) panelTitle.id = `home-modal-title-${target}`;
+      dialog.setAttribute('aria-labelledby', panelTitle.id);
+    }
 
     if (modal.hidden) {
       lastFocused = document.activeElement;
@@ -393,6 +806,14 @@
   });
 
   closers.forEach((closer) => closer.addEventListener('click', closeModal));
+
+  document.querySelectorAll('.price-table-wrap').forEach((tableWrap) => {
+    const subsectionTitle = tableWrap.closest('.price-subcard')?.querySelector('h4')?.textContent.trim();
+    const sectionTitle = tableWrap.closest('.price-section')?.querySelector('h3')?.textContent.trim();
+    tableWrap.tabIndex = 0;
+    tableWrap.setAttribute('role', 'region');
+    tableWrap.setAttribute('aria-label', `${subsectionTitle || sectionTitle || '가격표'} 가로 스크롤 영역`);
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !modal.hidden) closeModal();
