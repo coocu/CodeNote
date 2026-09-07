@@ -153,6 +153,31 @@
     .recovery-apply-button:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(37,99,235,.29)}
     .recovery-apply-button:focus-visible{outline:3px solid rgba(14,165,233,.35);outline-offset:3px}
     .home-action-card--link{cursor:pointer}
+    .official-contact .eyebrow[data-modal-target]{cursor:pointer}
+    .admin-auth-box{max-width:620px;margin:0 auto;padding:24px;border:1px solid #dfe5ef;border-radius:22px;background:linear-gradient(135deg,#f8faff,#fff);box-shadow:0 12px 30px rgba(24,35,60,.05)}
+    .admin-auth-box>p{margin:0 0 8px;text-align:center;color:#5b6780}
+    .admin-auth-box .email{text-align:center;margin-bottom:20px}
+    .admin-auth-input{width:100%;height:52px;padding:0 15px;border:1px solid #d7deea;border-radius:14px;background:#fff;color:#18233c;font:inherit;font-size:16px;outline:none;transition:.18s ease}
+    .admin-auth-input:focus{border-color:#93b4ff;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
+    .admin-popup-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    .admin-popup-button{min-height:48px;padding:12px 16px;border:1px solid #dce3ee;border-radius:14px;background:#fff;color:#26344f;font:inherit;font-weight:850;cursor:pointer;transition:.18s ease}
+    .admin-popup-button:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(24,35,60,.08)}
+    .admin-popup-button.primary{border-color:transparent;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff}
+    .admin-popup-error{margin:12px 0 0;color:#dc2626;font-size:13px;font-weight:750;text-align:left}
+    .admin-control-card{max-width:680px;margin:0 auto;padding:26px;border:1px solid #dfe5ef;border-radius:24px;background:#fff;box-shadow:0 12px 30px rgba(24,35,60,.05)}
+    .admin-status-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:17px;background:#f8fafc;border:1px solid #e2e8f0}
+    .admin-status-row strong{font-size:17px;color:#26344f}
+    .admin-status-badge{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:7px 12px;border-radius:999px;font-size:13px;font-weight:950;background:#eef2f7;color:#64748b}
+    .admin-status-badge.is-on{background:#ecfdf5;color:#047857}
+    .admin-toggle-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+    .admin-toggle-button{min-height:50px;border:1px solid #dce3ee;border-radius:15px;background:#fff;color:#334155;font:inherit;font-weight:900;cursor:pointer}
+    .admin-toggle-button.is-selected{border-color:#93b4ff;background:#eff6ff;color:#1d4ed8}
+    .admin-once-button{width:100%;margin-top:12px;min-height:50px;border:0;border-radius:15px;background:linear-gradient(135deg,#111827,#334155);color:#fff;font:inherit;font-weight:900;cursor:pointer}
+    .admin-control-note{margin:13px 0 0;text-align:center;color:#64748b;font-size:13px}
+    .recruit-closed-box{max-width:620px;margin:0 auto;text-align:center;padding:14px 4px 4px}
+    .recruit-closed-box p{margin:8px 0 20px;color:#64748b}
+    .recruit-closed-box .admin-popup-button{min-width:160px}
+    @media(max-width:620px){.admin-popup-actions,.admin-toggle-actions{grid-template-columns:1fr 1fr}.admin-auth-box,.admin-control-card{padding:20px 16px}.admin-status-row{align-items:flex-start}}
     @media (max-width: 900px){
       .hub-selector,.forensic-grid,.forensic-intro,.price-grid-two{grid-template-columns:1fr}
       .price-selector{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -196,13 +221,13 @@
       <a href="#projects" class="home-action-card" data-modal-target="projects">
         <span class="action-no">03</span><strong>프로젝트</strong><small>Projects</small><span class="action-arrow">→</span>
       </a>
-      <a href="/recruit" class="home-action-card home-action-card--link">
+      <a href="/recruit" class="home-action-card home-action-card--link" id="recruit-entry-link">
         <span class="action-no">04</span><strong>인재채용</strong><small>Recruit</small><span class="action-arrow">→</span>
       </a>
     </nav>
 
     <section class="contact official-contact">
-      <span class="eyebrow">CONTACT</span>
+      <span class="eyebrow" role="button" tabindex="0" data-modal-target="contact-admin-auth">CONTACT</span>
       <h2>서비스를 함께 만들어갑니다.</h2>
       <p>개발 및 제작 문의는 아래 메일로 연락해 주세요.</p>
       <div class="email">code_note95@naver.com</div>
@@ -750,6 +775,60 @@
         </a>
       </div>
     </section>
+
+    <section class="home-modal-panel" data-modal-panel="contact-admin-auth" hidden>
+      <div class="section-heading modal-heading">
+        <span class="step-number">ADMIN</span>
+        <div>
+          <h2>관리자 전용 팝업입니다.</h2>
+          <p>인증키를 입력해주세요.</p>
+        </div>
+      </div>
+      <div class="admin-auth-box">
+        <p>일반 문의 이용은 아래 메일로 연락주세요.</p>
+        <div class="email">code_note95@naver.com</div>
+        <form id="recruit-admin-auth-form">
+          <input class="admin-auth-input" id="recruit-admin-key" type="password" autocomplete="off" placeholder="인증키를 입력해주세요." aria-label="관리자 인증키">
+          <p class="admin-popup-error" id="recruit-admin-auth-error" hidden></p>
+          <div class="admin-popup-actions">
+            <button class="admin-popup-button" type="button" data-modal-close>닫기</button>
+            <button class="admin-popup-button primary" id="recruit-admin-confirm" type="submit">확인</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="contact-admin-control" hidden>
+      <div class="section-heading modal-heading">
+        <span class="step-number">ADMIN</span>
+        <div>
+          <h2>인재채용 관리</h2>
+          <p>현재 공개 상태를 변경하거나 OFF 상태에서 관리자 1회 접속을 사용할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="admin-control-card">
+        <div class="admin-status-row">
+          <strong>현재 인재채용 상태</strong>
+          <span class="admin-status-badge" id="recruit-status-badge">OFF</span>
+        </div>
+        <div class="admin-toggle-actions">
+          <button class="admin-toggle-button" type="button" data-recruit-state="true">ON</button>
+          <button class="admin-toggle-button" type="button" data-recruit-state="false">OFF</button>
+        </div>
+        <button class="admin-once-button" id="recruit-once-button" type="button">OFF 상태에서 1회 접속</button>
+        <p class="admin-popup-error" id="recruit-admin-control-error" hidden></p>
+        <p class="admin-control-note">1회 접속 권한은 현재 브라우저에만 발급되며 /recruit 실제 진입 시 소모됩니다.</p>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="recruit-closed" hidden>
+      <div class="recruit-closed-box">
+        <span class="eyebrow">RECRUIT</span>
+        <h2>현재는 인재채용 기간이 아닙니다.</h2>
+        <p>채용이 다시 시작되면 이 메뉴에서 확인하실 수 있습니다.</p>
+        <button class="admin-popup-button" type="button" data-modal-close>닫기</button>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -760,7 +839,17 @@
   const openers = document.querySelectorAll('[data-modal-target]');
   const closers = modal.querySelectorAll('[data-modal-close]');
   const panels = modal.querySelectorAll('[data-modal-panel]');
+  const recruitLink = document.getElementById('recruit-entry-link');
+  const adminAuthForm = document.getElementById('recruit-admin-auth-form');
+  const adminKeyInput = document.getElementById('recruit-admin-key');
+  const adminAuthError = document.getElementById('recruit-admin-auth-error');
+  const adminConfirm = document.getElementById('recruit-admin-confirm');
+  const statusBadge = document.getElementById('recruit-status-badge');
+  const stateButtons = document.querySelectorAll('[data-recruit-state]');
+  const onceButton = document.getElementById('recruit-once-button');
+  const adminControlError = document.getElementById('recruit-admin-control-error');
   let lastFocused = null;
+  let recruitEnabled = false;
 
   function openModal(target) {
     let found = false;
@@ -792,6 +881,13 @@
     const closeButton = modal.querySelector('.home-modal-close');
     if (closeButton) closeButton.focus();
     dialog.scrollTop = 0;
+
+    if (target === 'contact-admin-auth') {
+      adminAuthError.hidden = true;
+      adminAuthError.textContent = '';
+      adminKeyInput.value = '';
+      setTimeout(() => adminKeyInput.focus(), 30);
+    }
   }
 
   function closeModal() {
@@ -805,11 +901,32 @@
     }, 180);
   }
 
+  function setAdminStatus(enabled) {
+    recruitEnabled = Boolean(enabled);
+    statusBadge.textContent = recruitEnabled ? 'ON' : 'OFF';
+    statusBadge.classList.toggle('is-on', recruitEnabled);
+    stateButtons.forEach((button) => {
+      const value = button.dataset.recruitState === 'true';
+      button.classList.toggle('is-selected', value === recruitEnabled);
+    });
+    onceButton.hidden = recruitEnabled;
+    adminControlError.hidden = true;
+    adminControlError.textContent = '';
+  }
+
   openers.forEach((opener) => {
     opener.addEventListener('click', (event) => {
       event.preventDefault();
       openModal(opener.dataset.modalTarget);
     });
+    if (opener.getAttribute('role') === 'button') {
+      opener.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openModal(opener.dataset.modalTarget);
+        }
+      });
+    }
   });
 
   closers.forEach((closer) => closer.addEventListener('click', closeModal));
@@ -819,6 +936,114 @@
   });
 
   dialog.addEventListener('click', (event) => event.stopPropagation());
+
+  if (recruitLink) {
+    recruitLink.addEventListener('click', async (event) => {
+      event.preventDefault();
+      try {
+        const response = await fetch('/api/recruit/status', {cache: 'no-store'});
+        const data = await response.json();
+        if (response.ok && data.enabled === true) {
+          window.location.assign('/recruit');
+          return;
+        }
+        if (response.ok) {
+          openModal('recruit-closed');
+          return;
+        }
+      } catch (_) {
+        // 최종 접근 판정은 /recruit 서버 라우트가 다시 수행합니다.
+      }
+      window.location.assign('/recruit');
+    });
+  }
+
+  if (adminAuthForm) {
+    adminAuthForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const code = adminKeyInput.value.trim();
+      adminAuthError.hidden = true;
+      adminAuthError.textContent = '';
+      if (!code) {
+        adminAuthError.textContent = '인증키를 입력해주세요.';
+        adminAuthError.hidden = false;
+        adminKeyInput.focus();
+        return;
+      }
+
+      adminConfirm.disabled = true;
+      adminConfirm.textContent = '확인 중...';
+      try {
+        const response = await fetch('/api/recruit/admin-auth', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({code})
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          adminAuthError.textContent = response.status === 502
+            ? '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.'
+            : '유효한 관리자 인증키가 아닙니다.';
+          adminAuthError.hidden = false;
+          return;
+        }
+        setAdminStatus(data.recruitEnabled === true);
+        openModal('contact-admin-control');
+      } catch (_) {
+        adminAuthError.textContent = '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.';
+        adminAuthError.hidden = false;
+      } finally {
+        adminConfirm.disabled = false;
+        adminConfirm.textContent = '확인';
+      }
+    });
+  }
+
+  stateButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const enabled = button.dataset.recruitState === 'true';
+      adminControlError.hidden = true;
+      try {
+        const response = await fetch('/api/recruit/state', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({enabled})
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.detail || 'state_update_failed');
+        setAdminStatus(data.enabled === true);
+      } catch (_) {
+        adminControlError.textContent = '채용 상태를 변경하지 못했습니다. 다시 인증 후 시도해주세요.';
+        adminControlError.hidden = false;
+      }
+    });
+  });
+
+  if (onceButton) {
+    onceButton.addEventListener('click', async () => {
+      adminControlError.hidden = true;
+      onceButton.disabled = true;
+      const original = onceButton.textContent;
+      onceButton.textContent = '접속 권한 발급 중...';
+      try {
+        const response = await fetch('/api/recruit/one-time-access', {method: 'POST'});
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.detail || 'one_time_access_failed');
+        window.location.assign('/recruit');
+      } catch (_) {
+        adminControlError.textContent = '1회 접속 권한을 발급하지 못했습니다. 다시 인증 후 시도해주세요.';
+        adminControlError.hidden = false;
+        onceButton.disabled = false;
+        onceButton.textContent = original;
+      }
+    });
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('recruit') === 'closed') {
+    history.replaceState({}, '', window.location.pathname);
+    openModal('recruit-closed');
+  }
 })();
 </script>
 </body>
