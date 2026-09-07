@@ -9,6 +9,7 @@ import os
 import secrets
 import threading
 import time
+import unicodedata
 from urllib import request as urllib_request
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
@@ -367,7 +368,9 @@ def staff_download(resource_key: str, request: Request):
     if not filename:
         raise HTTPException(status_code=404, detail="staff_resource_not_found")
 
-    raw_url = STAFF_RAW_BASE_URL + quote(filename, safe="")
+    # GitHub에는 macOS 업로드 특성상 한글 파일명이 NFD(조합형)로 저장되어 있음
+    github_filename = unicodedata.normalize("NFD", filename)
+    raw_url = STAFF_RAW_BASE_URL + quote(github_filename, safe="")
     req = urllib_request.Request(raw_url, headers={"User-Agent": "CodeNote-Staff-Download/1.0"})
     try:
         with urllib_request.urlopen(req, timeout=20) as upstream:
