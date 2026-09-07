@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import HTMLResponse, PlainTextResponse, FileResponse, JSONResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, PlainTextResponse, FileResponse, JSONResponse, RedirectResponse, Response
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -11,6 +11,7 @@ import threading
 import time
 from urllib import request as urllib_request
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote
 
 app = FastAPI()
 
@@ -19,12 +20,28 @@ POKET_AUTH_CHECK_URL = os.environ.get("POKET_AUTH_CHECK_URL", "https://poketserv
 RECRUIT_STATE_FILE = os.environ.get("RECRUIT_STATE_FILE", "recruit_state.json")
 RECRUIT_ADMIN_COOKIE = "codenote_recruit_admin"
 RECRUIT_ONCE_COOKIE = "codenote_recruit_once"
+STAFF_SESSION_COOKIE = "codenote_staff_session"
 RECRUIT_ADMIN_SESSION_SECONDS = 30 * 60
 RECRUIT_ONCE_SECONDS = 10 * 60
+STAFF_SESSION_SECONDS = 30 * 60
+
+STAFF_FORM_URLS = {
+    "talent": "https://naver.me/IgMaJQsX",
+    "idea": "https://naver.me/5eDbUc7O",
+}
+STAFF_RESOURCE_FILES = {
+    "company": "CodeNote 회사소개서.pdf",
+    "attendance": "오늘의 출석 영업자료.pdf",
+    "musync": "뮤싱크 영업자료.pdf",
+    "studyphone": "학습용스마트폰전환앱 영업자료.pdf",
+    "pocketblackbox": "포켓블랙박스 영업자료.pdf",
+}
+STAFF_RAW_BASE_URL = "https://raw.githubusercontent.com/coocu/CodeNote/main/download/"
 
 _recruit_lock = threading.RLock()
 _recruit_admin_sessions = {}
 _recruit_once_tokens = {}
+_staff_sessions = {}
 
 
 def _load_site_state():
@@ -66,7 +83,7 @@ _notice_content = _site_state["notice_content"]
 
 def _cleanup_recruit_tokens():
     now = time.time()
-    for store in (_recruit_admin_sessions, _recruit_once_tokens):
+    for store in (_recruit_admin_sessions, _recruit_once_tokens, _staff_sessions):
         expired = [token for token, expires_at in store.items() if expires_at <= now]
         for token in expired:
             store.pop(token, None)
@@ -86,6 +103,26 @@ def _require_admin_session(request: Request):
         _cleanup_recruit_tokens()
         if not token or token not in _recruit_admin_sessions:
             raise HTTPException(status_code=401, detail="admin_auth_required")
+
+
+def _issue_staff_session():
+    with _recruit_lock:
+        _cleanup_recruit_tokens()
+        token = secrets.token_urlsafe(32)
+        _staff_sessions[token] = time.time() + STAFF_SESSION_SECONDS
+        return token
+
+
+def _has_staff_session(request: Request):
+    token = request.cookies.get(STAFF_SESSION_COOKIE, "")
+    with _recruit_lock:
+        _cleanup_recruit_tokens()
+        return bool(token and token in _staff_sessions)
+
+
+def _require_staff_session(request: Request):
+    if not _has_staff_session(request):
+        raise HTTPException(status_code=401, detail="staff_auth_required")
 
 
 def _issue_once_token():
@@ -276,6 +313,77 @@ def ble_call_system(request: Request):
             "request": request,
             "title": "BLE 송수신 대기 시스템 | CodeNote"
         }
+    )
+
+
+# 직원전용 인증 상태 확인
+@app.get("/api/staff/status")
+def staff_status(request: Request):
+    return {"authenticated": _has_staff_session(request)}
+
+
+# 직원전용 인증 - kyh 조건 없이 PoketServer /app/check 정상 인증키 검증
+@app.post("/api/staff/auth")
+def staff_auth(req: RecruitAdminAuthRequest):
+    code = (req.code or "").strip()
+    if not code:
+        raise HTTPException(status_code=401, detail="invalid_auth_key")
+
+    result = _check_poket_auth(code)
+    if result.get("status") != "approved" or not result.get("token"):
+        raise HTTPException(status_code=401, detail="invalid_auth_key")
+
+    staff_token = _issue_staff_session()
+    response = JSONResponse({"status": "ok"})
+    response.set_cookie(
+        STAFF_SESSION_COOKIE,
+        staff_token,
+        max_age=STAFF_SESSION_SECONDS,
+        httponly=True,
+        secure=True,
+        samesite="lax",
+        path="/",
+    )
+    return response
+
+
+# 직원전용 외부 폼 연결
+@app.get("/staff/form/{form_key}")
+def staff_form(form_key: str, request: Request):
+    if not _has_staff_session(request):
+        return RedirectResponse(url="/?staff=auth", status_code=303)
+    target = STAFF_FORM_URLS.get(form_key)
+    if not target:
+        raise HTTPException(status_code=404, detail="staff_form_not_found")
+    return RedirectResponse(url=target, status_code=302)
+
+
+# 직원 자료실 - 인증된 직원에게만 GitHub Raw PDF를 다운로드로 전달
+@app.get("/staff/download/{resource_key}")
+def staff_download(resource_key: str, request: Request):
+    if not _has_staff_session(request):
+        return RedirectResponse(url="/?staff=auth", status_code=303)
+    filename = STAFF_RESOURCE_FILES.get(resource_key)
+    if not filename:
+        raise HTTPException(status_code=404, detail="staff_resource_not_found")
+
+    raw_url = STAFF_RAW_BASE_URL + quote(filename, safe="")
+    req = urllib_request.Request(raw_url, headers={"User-Agent": "CodeNote-Staff-Download/1.0"})
+    try:
+        with urllib_request.urlopen(req, timeout=20) as upstream:
+            content = upstream.read()
+    except HTTPError as exc:
+        raise HTTPException(status_code=502, detail="resource_download_failed") from exc
+    except (URLError, TimeoutError, OSError) as exc:
+        raise HTTPException(status_code=502, detail="resource_server_unavailable") from exc
+
+    return Response(
+        content=content,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f"attachment; filename*=UTF-8''{quote(filename, safe='')}",
+            "Cache-Control": "private, no-store",
+        },
     )
 
 

@@ -154,6 +154,9 @@
     .recovery-apply-button:focus-visible{outline:3px solid rgba(14,165,233,.35);outline-offset:3px}
     .home-action-card--link{cursor:pointer}
     .official-contact .eyebrow[data-modal-target]{cursor:pointer}
+    .staff-entry-wrap{display:flex;justify-content:center;margin-top:18px}
+    .staff-entry-button{min-width:170px;min-height:48px;padding:11px 22px;border:1px solid #dce3ee;border-radius:14px;background:#fff;color:#26344f;font:inherit;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(24,35,60,.06);transition:.18s ease}
+    .staff-entry-button:hover{transform:translateY(-1px);box-shadow:0 11px 24px rgba(24,35,60,.10)}
     .admin-auth-box{max-width:620px;margin:0 auto;padding:24px;border:1px solid #dfe5ef;border-radius:22px;background:linear-gradient(135deg,#f8faff,#fff);box-shadow:0 12px 30px rgba(24,35,60,.05)}
     .admin-auth-box>p{margin:0 0 8px;text-align:center;color:#5b6780}
     .admin-auth-box .email{text-align:center;margin-bottom:20px}
@@ -181,13 +184,21 @@
     .admin-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:680px;margin:0 auto}
     .admin-menu-button{min-height:78px;border:1px solid #dce3ee;border-radius:18px;background:linear-gradient(135deg,#f8faff,#fff);color:#26344f;font:inherit;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(24,35,60,.05)}
     .admin-menu-button:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(24,35,60,.09)}
+    .staff-menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:760px;margin:0 auto}
+    .staff-menu-button{min-height:88px;display:flex;align-items:center;justify-content:center;padding:16px;border:1px solid #dce3ee;border-radius:18px;background:linear-gradient(135deg,#f8faff,#fff);color:#26344f;text-decoration:none;text-align:center;font:inherit;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(24,35,60,.05);transition:.18s ease}
+    .staff-menu-button:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(24,35,60,.09)}
+    .staff-resource-grid{display:grid;grid-template-columns:1fr;gap:10px;max-width:720px;margin:0 auto}
+    .staff-resource-card{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;border:1px solid #dfe5ef;border-radius:17px;background:#fff;text-decoration:none;color:#26344f;box-shadow:0 8px 20px rgba(24,35,60,.04)}
+    .staff-resource-card strong{font-size:15px;line-height:1.45}
+    .staff-resource-card span{flex:0 0 auto;padding:8px 12px;border-radius:11px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:900}
+    .staff-resource-note{max-width:720px;margin:13px auto 0;text-align:center;color:#64748b;font-size:12px;line-height:1.6}
     .admin-notice-textarea{width:100%;min-height:220px;resize:vertical;margin-top:14px;padding:15px;border:1px solid #d7deea;border-radius:15px;background:#fff;color:#18233c;font:inherit;font-size:15px;line-height:1.7;outline:none}
     .admin-notice-textarea:focus{border-color:#93b4ff;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
     .admin-save-button{width:100%;margin-top:12px;min-height:50px;border:0;border-radius:15px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;font:inherit;font-weight:900;cursor:pointer}
     .site-notice-box{max-width:720px;margin:0 auto;padding:6px 2px 2px}
     .site-notice-content{margin:18px 0 0;padding:20px;border:1px solid #e2e8f0;border-radius:18px;background:#f8fafc;color:#334155;font-size:15px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
     .site-notice-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-    @media(max-width:620px){.admin-menu-grid,.site-notice-actions{grid-template-columns:1fr 1fr}.admin-menu-button{min-height:68px}}
+    @media(max-width:620px){.admin-menu-grid,.site-notice-actions{grid-template-columns:1fr 1fr}.staff-menu-grid{grid-template-columns:1fr}.admin-menu-button{min-height:68px}.staff-menu-button{min-height:66px}.staff-resource-card{align-items:flex-start}}
     @media(max-width:620px){.admin-popup-actions,.admin-toggle-actions{grid-template-columns:1fr 1fr}.admin-auth-box,.admin-control-card{padding:20px 16px}.admin-status-row{align-items:flex-start}}
     @media (max-width: 900px){
       .hub-selector,.forensic-grid,.forensic-intro,.price-grid-two{grid-template-columns:1fr}
@@ -242,6 +253,9 @@
       <h2>서비스를 함께 만들어갑니다.</h2>
       <p>개발 및 제작 문의는 아래 메일로 연락해 주세요.</p>
       <div class="email">code_note95@naver.com</div>
+      <div class="staff-entry-wrap">
+        <button class="staff-entry-button" id="staff-entry-button" type="button">직원전용</button>
+      </div>
     </section>
   </main>
 </div>
@@ -868,6 +882,60 @@
       </div>
     </section>
 
+    <section class="home-modal-panel" data-modal-panel="staff-auth" hidden>
+      <div class="section-heading modal-heading">
+        <span class="step-number">STAFF</span>
+        <div>
+          <h2>직원 전용 페이지입니다.</h2>
+          <p>인증키를 입력해주세요.</p>
+        </div>
+      </div>
+      <div class="admin-auth-box">
+        <form id="staff-auth-form">
+          <input class="admin-auth-input" id="staff-auth-key" type="password" autocomplete="off" placeholder="인증키를 입력해주세요." aria-label="직원 인증키">
+          <p class="admin-popup-error" id="staff-auth-error" hidden></p>
+          <div class="admin-popup-actions">
+            <button class="admin-popup-button" type="button" data-modal-close>닫기</button>
+            <button class="admin-popup-button primary" id="staff-auth-confirm" type="submit">확인</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="staff-home" hidden>
+      <div class="section-heading modal-heading">
+        <span class="step-number">STAFF</span>
+        <div>
+          <h2>CodeNote 직원전용</h2>
+          <p>이용할 메뉴를 선택해주세요.</p>
+        </div>
+      </div>
+      <div class="staff-menu-grid">
+        <a class="staff-menu-button" href="/staff/form/talent" target="_blank" rel="noopener">인재소개</a>
+        <a class="staff-menu-button" href="/staff/form/idea" target="_blank" rel="noopener">나의 아이디어</a>
+        <button class="staff-menu-button" type="button" data-modal-target="staff-resources">자료실</button>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="staff-resources" hidden>
+      <button class="back-mini" type="button" data-modal-target="staff-home">← 직원전용</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">DATA</span>
+        <div>
+          <h2>자료실</h2>
+          <p>필요한 자료를 선택해 다운로드할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="staff-resource-grid">
+        <a class="staff-resource-card" href="/staff/download/company"><strong>코드노트 회사 소개</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="/staff/download/attendance"><strong>오늘의 출석 영업자료</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="/staff/download/musync"><strong>뮤싱크 영업자료</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="/staff/download/studyphone"><strong>공신폰 · 학습용 스마트폰 전환 앱 영업자료</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="/staff/download/pocketblackbox"><strong>포켓 블랙박스 영업자료</strong><span>다운로드</span></a>
+      </div>
+      <p class="staff-resource-note">직원 인증이 유지되는 동안에만 자료를 다운로드할 수 있습니다.</p>
+    </section>
+
     <section class="home-modal-panel" data-modal-panel="site-notice" hidden>
       <div class="site-notice-box">
         <span class="eyebrow">NOTICE</span>
@@ -914,6 +982,11 @@
   const noticeAdminError = document.getElementById('notice-admin-error');
   const siteNoticeContent = document.getElementById('site-notice-content');
   const noticeHideToday = document.getElementById('notice-hide-today');
+  const staffEntryButton = document.getElementById('staff-entry-button');
+  const staffAuthForm = document.getElementById('staff-auth-form');
+  const staffAuthKey = document.getElementById('staff-auth-key');
+  const staffAuthError = document.getElementById('staff-auth-error');
+  const staffAuthConfirm = document.getElementById('staff-auth-confirm');
   let lastFocused = null;
   let recruitEnabled = false;
   let noticeEnabled = false;
@@ -954,6 +1027,12 @@
       adminAuthError.textContent = '';
       adminKeyInput.value = '';
       setTimeout(() => adminKeyInput.focus(), 30);
+    }
+    if (target === 'staff-auth') {
+      staffAuthError.hidden = true;
+      staffAuthError.textContent = '';
+      staffAuthKey.value = '';
+      setTimeout(() => staffAuthKey.focus(), 30);
     }
   }
 
@@ -1021,6 +1100,60 @@
   });
 
   dialog.addEventListener('click', (event) => event.stopPropagation());
+
+  if (staffEntryButton) {
+    staffEntryButton.addEventListener('click', async () => {
+      try {
+        const response = await fetch('/api/staff/status', {cache: 'no-store'});
+        const data = await response.json().catch(() => ({}));
+        if (response.ok && data.authenticated === true) {
+          openModal('staff-home');
+          return;
+        }
+      } catch (_) {}
+      openModal('staff-auth');
+    });
+  }
+
+  if (staffAuthForm) {
+    staffAuthForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const code = staffAuthKey.value.trim();
+      staffAuthError.hidden = true;
+      staffAuthError.textContent = '';
+      if (!code) {
+        staffAuthError.textContent = '인증키를 입력해주세요.';
+        staffAuthError.hidden = false;
+        staffAuthKey.focus();
+        return;
+      }
+
+      staffAuthConfirm.disabled = true;
+      staffAuthConfirm.textContent = '확인 중...';
+      try {
+        const response = await fetch('/api/staff/auth', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({code})
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          staffAuthError.textContent = response.status === 502
+            ? '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.'
+            : '유효한 인증키가 아닙니다.';
+          staffAuthError.hidden = false;
+          return;
+        }
+        openModal('staff-home');
+      } catch (_) {
+        staffAuthError.textContent = '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.';
+        staffAuthError.hidden = false;
+      } finally {
+        staffAuthConfirm.disabled = false;
+        staffAuthConfirm.textContent = '확인';
+      }
+    });
+  }
 
   if (recruitLink) {
     recruitLink.addEventListener('click', async (event) => {
@@ -1166,8 +1299,12 @@
   }
 
   const params = new URLSearchParams(window.location.search);
+  const staffAuthRequested = params.get('staff') === 'auth';
   const recruitWasClosed = params.get('recruit') === 'closed';
-  if (recruitWasClosed) {
+  if (staffAuthRequested) {
+    history.replaceState({}, '', window.location.pathname);
+    openModal('staff-auth');
+  } else if (recruitWasClosed) {
     history.replaceState({}, '', window.location.pathname);
     openModal('recruit-closed');
   } else if (localStorage.getItem('codenote_notice_hide_date') !== todayKey()) {
