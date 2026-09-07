@@ -27,28 +27,41 @@ _recruit_admin_sessions = {}
 _recruit_once_tokens = {}
 
 
-def _load_recruit_enabled():
+def _load_site_state():
     try:
         with open(RECRUIT_STATE_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
-        return bool(data.get("enabled", False)) if isinstance(data, dict) else False
+        if not isinstance(data, dict):
+            data = {}
     except (FileNotFoundError, json.JSONDecodeError, OSError):
-        return False
+        data = {}
+    return {
+        "enabled": bool(data.get("enabled", False)),
+        "notice_enabled": bool(data.get("notice_enabled", False)),
+        "notice_content": str(data.get("notice_content", "") or ""),
+    }
 
 
-def _save_recruit_enabled(enabled: bool):
+def _save_site_state():
     target = RECRUIT_STATE_FILE
     parent = os.path.dirname(os.path.abspath(target))
     os.makedirs(parent, exist_ok=True)
     temp = target + ".tmp"
     with open(temp, "w", encoding="utf-8") as f:
-        json.dump({"enabled": bool(enabled)}, f, ensure_ascii=False, indent=2)
+        json.dump({
+            "enabled": bool(_recruit_enabled),
+            "notice_enabled": bool(_notice_enabled),
+            "notice_content": _notice_content,
+        }, f, ensure_ascii=False, indent=2)
         f.flush()
         os.fsync(f.fileno())
     os.replace(temp, target)
 
 
-_recruit_enabled = _load_recruit_enabled()
+_site_state = _load_site_state()
+_recruit_enabled = _site_state["enabled"]
+_notice_enabled = _site_state["notice_enabled"]
+_notice_content = _site_state["notice_content"]
 
 
 def _cleanup_recruit_tokens():
@@ -101,9 +114,23 @@ def _current_recruit_enabled():
 def _set_recruit_enabled(enabled: bool):
     global _recruit_enabled
     with _recruit_lock:
-        _save_recruit_enabled(enabled)
         _recruit_enabled = bool(enabled)
+        _save_site_state()
         return _recruit_enabled
+
+
+def _current_notice():
+    with _recruit_lock:
+        return {"enabled": bool(_notice_enabled), "content": _notice_content}
+
+
+def _set_notice(enabled: bool, content: str):
+    global _notice_enabled, _notice_content
+    with _recruit_lock:
+        _notice_enabled = bool(enabled)
+        _notice_content = str(content or "")
+        _save_site_state()
+        return {"enabled": _notice_enabled, "content": _notice_content}
 
 
 def _check_poket_auth(code: str):
@@ -144,6 +171,11 @@ class RecruitAdminAuthRequest(BaseModel):
 
 class RecruitStateRequest(BaseModel):
     enabled: bool
+
+
+class NoticeStateRequest(BaseModel):
+    enabled: bool
+    content: str = ""
 
 # 정적 파일
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -265,7 +297,13 @@ def recruit_admin_auth(req: RecruitAdminAuthRequest):
         raise HTTPException(status_code=401, detail="invalid_auth_key")
 
     admin_token = _issue_admin_session()
-    response = JSONResponse({"status": "ok", "recruitEnabled": _current_recruit_enabled()})
+    notice = _current_notice()
+    response = JSONResponse({
+        "status": "ok",
+        "recruitEnabled": _current_recruit_enabled(),
+        "noticeEnabled": notice["enabled"],
+        "noticeContent": notice["content"],
+    })
     response.set_cookie(
         RECRUIT_ADMIN_COOKIE,
         admin_token,
@@ -276,6 +314,21 @@ def recruit_admin_auth(req: RecruitAdminAuthRequest):
         path="/",
     )
     return response
+
+
+# 메인 공지 공개 상태/내용 확인
+@app.get("/api/notice/status")
+def notice_status():
+    notice = _current_notice()
+    return {"enabled": notice["enabled"], "content": notice["content"]}
+
+
+# 관리자 공지 ON/OFF 및 내용 저장
+@app.post("/api/notice/state")
+def notice_state_update(req: NoticeStateRequest, request: Request):
+    _require_admin_session(request)
+    notice = _set_notice(req.enabled, req.content)
+    return {"status": "ok", **notice}
 
 
 # 관리자 채용 ON/OFF 변경

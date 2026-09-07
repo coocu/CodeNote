@@ -177,6 +177,17 @@
     .recruit-closed-box{max-width:620px;margin:0 auto;text-align:center;padding:14px 4px 4px}
     .recruit-closed-box p{margin:8px 0 20px;color:#64748b}
     .recruit-closed-box .admin-popup-button{min-width:160px}
+
+    .admin-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:680px;margin:0 auto}
+    .admin-menu-button{min-height:78px;border:1px solid #dce3ee;border-radius:18px;background:linear-gradient(135deg,#f8faff,#fff);color:#26344f;font:inherit;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 10px 24px rgba(24,35,60,.05)}
+    .admin-menu-button:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(24,35,60,.09)}
+    .admin-notice-textarea{width:100%;min-height:220px;resize:vertical;margin-top:14px;padding:15px;border:1px solid #d7deea;border-radius:15px;background:#fff;color:#18233c;font:inherit;font-size:15px;line-height:1.7;outline:none}
+    .admin-notice-textarea:focus{border-color:#93b4ff;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
+    .admin-save-button{width:100%;margin-top:12px;min-height:50px;border:0;border-radius:15px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;font:inherit;font-weight:900;cursor:pointer}
+    .site-notice-box{max-width:720px;margin:0 auto;padding:6px 2px 2px}
+    .site-notice-content{margin:18px 0 0;padding:20px;border:1px solid #e2e8f0;border-radius:18px;background:#f8fafc;color:#334155;font-size:15px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+    .site-notice-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+    @media(max-width:620px){.admin-menu-grid,.site-notice-actions{grid-template-columns:1fr 1fr}.admin-menu-button{min-height:68px}}
     @media(max-width:620px){.admin-popup-actions,.admin-toggle-actions{grid-template-columns:1fr 1fr}.admin-auth-box,.admin-control-card{padding:20px 16px}.admin-status-row{align-items:flex-start}}
     @media (max-width: 900px){
       .hub-selector,.forensic-grid,.forensic-intro,.price-grid-two{grid-template-columns:1fr}
@@ -802,6 +813,42 @@
       <div class="section-heading modal-heading">
         <span class="step-number">ADMIN</span>
         <div>
+          <h2>코드노트 관리자</h2>
+          <p>관리할 항목을 선택해주세요.</p>
+        </div>
+      </div>
+      <div class="admin-menu-grid">
+        <button class="admin-menu-button" type="button" data-modal-target="contact-admin-notice">공지</button>
+        <button class="admin-menu-button" type="button" data-modal-target="contact-admin-recruit">인재채용</button>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="contact-admin-notice" hidden>
+      <button class="back-mini" type="button" data-modal-target="contact-admin-control">← 코드노트 관리자</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">NOTICE</span>
+        <div><h2>공지 관리</h2><p>메인 화면에 표시할 공지를 설정합니다.</p></div>
+      </div>
+      <div class="admin-control-card">
+        <div class="admin-status-row">
+          <strong>현재 공지 상태</strong>
+          <span class="admin-status-badge" id="notice-status-badge">OFF</span>
+        </div>
+        <div class="admin-toggle-actions">
+          <button class="admin-toggle-button" type="button" data-notice-state="true">ON</button>
+          <button class="admin-toggle-button" type="button" data-notice-state="false">OFF</button>
+        </div>
+        <textarea class="admin-notice-textarea" id="notice-content-input" placeholder="공지내용을 작성해주세요."></textarea>
+        <button class="admin-save-button" id="notice-save-button" type="button">저장</button>
+        <p class="admin-popup-error" id="notice-admin-error" hidden></p>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="contact-admin-recruit" hidden>
+      <button class="back-mini" type="button" data-modal-target="contact-admin-control">← 코드노트 관리자</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">ADMIN</span>
+        <div>
           <h2>인재채용 관리</h2>
           <p>현재 공개 상태를 변경하거나 OFF 상태에서 관리자 1회 접속을 사용할 수 있습니다.</p>
         </div>
@@ -818,6 +865,18 @@
         <button class="admin-once-button" id="recruit-once-button" type="button">OFF 상태에서 1회 접속</button>
         <p class="admin-popup-error" id="recruit-admin-control-error" hidden></p>
         <p class="admin-control-note">1회 접속 권한은 현재 브라우저에만 발급되며 /recruit 실제 진입 시 소모됩니다.</p>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="site-notice" hidden>
+      <div class="site-notice-box">
+        <span class="eyebrow">NOTICE</span>
+        <h2>공지</h2>
+        <div class="site-notice-content" id="site-notice-content"></div>
+        <div class="site-notice-actions">
+          <button class="admin-popup-button" id="notice-hide-today" type="button">오늘 하루 보지 않기</button>
+          <button class="admin-popup-button primary" type="button" data-modal-close>닫기</button>
+        </div>
       </div>
     </section>
 
@@ -848,8 +907,16 @@
   const stateButtons = document.querySelectorAll('[data-recruit-state]');
   const onceButton = document.getElementById('recruit-once-button');
   const adminControlError = document.getElementById('recruit-admin-control-error');
+  const noticeStatusBadge = document.getElementById('notice-status-badge');
+  const noticeStateButtons = document.querySelectorAll('[data-notice-state]');
+  const noticeContentInput = document.getElementById('notice-content-input');
+  const noticeSaveButton = document.getElementById('notice-save-button');
+  const noticeAdminError = document.getElementById('notice-admin-error');
+  const siteNoticeContent = document.getElementById('site-notice-content');
+  const noticeHideToday = document.getElementById('notice-hide-today');
   let lastFocused = null;
   let recruitEnabled = false;
+  let noticeEnabled = false;
 
   function openModal(target) {
     let found = false;
@@ -912,6 +979,24 @@
     onceButton.hidden = recruitEnabled;
     adminControlError.hidden = true;
     adminControlError.textContent = '';
+  }
+
+  function setNoticeStatus(enabled, content) {
+    noticeEnabled = Boolean(enabled);
+    noticeStatusBadge.textContent = noticeEnabled ? 'ON' : 'OFF';
+    noticeStatusBadge.classList.toggle('is-on', noticeEnabled);
+    noticeStateButtons.forEach((button) => {
+      const value = button.dataset.noticeState === 'true';
+      button.classList.toggle('is-selected', value === noticeEnabled);
+    });
+    if (typeof content === 'string') noticeContentInput.value = content;
+    noticeAdminError.hidden = true;
+    noticeAdminError.textContent = '';
+  }
+
+  function todayKey() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
 
   openers.forEach((opener) => {
@@ -988,6 +1073,7 @@
           return;
         }
         setAdminStatus(data.recruitEnabled === true);
+        setNoticeStatus(data.noticeEnabled === true, data.noticeContent || '');
         openModal('contact-admin-control');
       } catch (_) {
         adminAuthError.textContent = '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.';
@@ -1019,6 +1105,46 @@
     });
   });
 
+  noticeStateButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      setNoticeStatus(button.dataset.noticeState === 'true');
+    });
+  });
+
+  if (noticeSaveButton) {
+    noticeSaveButton.addEventListener('click', async () => {
+      noticeAdminError.hidden = true;
+      noticeSaveButton.disabled = true;
+      const original = noticeSaveButton.textContent;
+      noticeSaveButton.textContent = '저장 중...';
+      try {
+        const response = await fetch('/api/notice/state', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({enabled: noticeEnabled, content: noticeContentInput.value})
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.detail || 'notice_update_failed');
+        setNoticeStatus(data.enabled === true, data.content || '');
+        noticeSaveButton.textContent = '저장 완료';
+        setTimeout(() => { noticeSaveButton.textContent = original; }, 900);
+      } catch (_) {
+        noticeAdminError.textContent = '공지 저장에 실패했습니다. 다시 인증 후 시도해주세요.';
+        noticeAdminError.hidden = false;
+        noticeSaveButton.textContent = original;
+      } finally {
+        noticeSaveButton.disabled = false;
+      }
+    });
+  }
+
+  if (noticeHideToday) {
+    noticeHideToday.addEventListener('click', () => {
+      localStorage.setItem('codenote_notice_hide_date', todayKey());
+      closeModal();
+    });
+  }
+
   if (onceButton) {
     onceButton.addEventListener('click', async () => {
       adminControlError.hidden = true;
@@ -1040,9 +1166,20 @@
   }
 
   const params = new URLSearchParams(window.location.search);
-  if (params.get('recruit') === 'closed') {
+  const recruitWasClosed = params.get('recruit') === 'closed';
+  if (recruitWasClosed) {
     history.replaceState({}, '', window.location.pathname);
     openModal('recruit-closed');
+  } else if (localStorage.getItem('codenote_notice_hide_date') !== todayKey()) {
+    fetch('/api/notice/status', {cache: 'no-store'})
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => {
+        if (data && data.enabled === true && typeof data.content === 'string' && data.content.trim()) {
+          siteNoticeContent.textContent = data.content;
+          openModal('site-notice');
+        }
+      })
+      .catch(() => {});
   }
 })();
 </script>
