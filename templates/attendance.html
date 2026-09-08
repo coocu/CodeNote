@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="학원 출석 관리 시스템 - 여러 학원 학생 등록, NFC·BLE 리더기 출석, 출석번호 입력, 학부모 통합 출결 확인, 관리자 공지·입퇴실 알림, PC 관리자 지원">
+  <meta name="description" content="학원 출석 관리 시스템 - 여러 학원 학생 등록, NFC·BLE 리더기 출석, 출석번호 입력, 학부모 통합 출결 확인, 기간 공지·학원 일정·휴원 관리, 관리자 입퇴실 알림, PC 관리자 지원">
   <title>{{ title }}</title>
   <link rel="stylesheet" href="/static/style.css?v=8">
 </head>
@@ -28,6 +28,8 @@
       <span>4자리 출석번호</span>
       <span>입실·퇴실 알림</span>
       <span>관리자 공지</span>
+      <span>기간 공지</span>
+      <span>학원 일정·휴원 관리</span>
       <span>관리자 입·퇴실 알림</span>
       <span>학부모 통합 확인</span>
       <span>PC 관리자</span>
@@ -284,6 +286,16 @@
         <p>중요한 안내는 긴급공지로 구분할 수 있습니다. 긴급공지는 앱 진입 시 우선 확인하도록 표시되어 빠르게 전달할 수 있습니다.</p>
       </article>
       <article>
+        <span class="feature-icon">D</span>
+        <h3>공지 기간 설정</h3>
+        <p>일반공지와 긴급공지에 시작일과 종료일을 지정하면 두 날짜를 포함한 해당 기간에만 학부모 앱에 표시됩니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">∞</span>
+        <h3>기간 없이 계속 안내</h3>
+        <p>기간을 설정하지 않은 공지는 관리자가 비활성화하거나 삭제할 때까지 계속 표시할 수 있습니다.</p>
+      </article>
+      <article>
         <span class="feature-icon">3</span>
         <h3>자주 쓰는 문구</h3>
         <p>반복해서 사용하는 안내문은 학원별로 3개까지 저장해 두고 필요할 때 공지 내용으로 불러와 사용할 수 있습니다.</p>
@@ -293,6 +305,11 @@
         <h3>관리자 입·퇴실 알림</h3>
         <p>출석현황의 「입·퇴실 알림」을 켜면 학생이 학원에 들어오거나 나갈 때 해당 관리자 기기도 푸시 알림을 받을 수 있습니다. 설정은 관리자 기기별로 관리할 수 있습니다.</p>
       </article>
+    </div>
+
+    <div class="guide-callout">
+      <strong>필요한 기간에만 자동 표시</strong>
+      <span>공지 기간을 설정하면 시작일부터 종료일까지 자동으로 보이고, 기간 밖에서는 표시되지 않아 안내 시작과 종료를 따로 관리하는 번거로움을 줄일 수 있습니다.</span>
     </div>
 
     <div class="screenshot-grid two">
@@ -321,6 +338,51 @@
   <section class="guide-section">
     <div class="section-heading">
       <span class="step-number">08</span>
+      <div>
+        <h2>학원 일정과 휴원일을 캘린더로 관리</h2>
+        <p>관리자는 PC와 관리자 앱에서 일정·휴원일을 등록하고, 학부모는 등록된 학원별 일정을 앱에서 확인할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="feature-grid">
+      <article>
+        <span class="feature-icon">C</span>
+        <h3>월간 캘린더</h3>
+        <p>대한민국 공휴일과 학원 일정, 휴원일을 월간 달력에서 한눈에 확인할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">+</span>
+        <h3>일정·휴원 등록</h3>
+        <p>일정과 휴원일을 하루 또는 여러 날짜의 기간으로 등록하고 오늘 이후의 내용은 수정·삭제할 수 있습니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">R</span>
+        <h3>반복 휴원 설정</h3>
+        <p>이번 달 또는 매월 쉬는 요일과 공휴일 자동 휴원을 설정해 반복되는 운영 일정을 간편하게 관리합니다.</p>
+      </article>
+      <article>
+        <span class="feature-icon">P</span>
+        <h3>학부모 학원별 조회</h3>
+        <p>학부모는 여러 학원 중 원하는 학원을 선택해 이전 달·현재 달·다음 달 일정을 조회 전용으로 확인합니다.</p>
+      </article>
+    </div>
+
+    <div class="system-flow">
+      <div><strong>학원 선택</strong><span>관리할 학원 확인</span></div><b>→</b>
+      <div><strong>일정 등록</strong><span>하루·기간 일정 입력</span></div><b>→</b>
+      <div><strong>휴원 설정</strong><span>직접·요일·공휴일</span></div><b>→</b>
+      <div><strong>학부모 확인</strong><span>학원별 일정 조회</span></div>
+    </div>
+
+    <div class="guide-callout">
+      <strong>지난 기록은 그대로 보호</strong>
+      <span>지난 일정은 조회만 가능하며, 매월 휴원 설정을 변경해도 이미 지난 휴원 기록은 바뀌지 않고 그대로 유지됩니다.</span>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="section-heading">
+      <span class="step-number">09</span>
       <div>
         <h2>ACR1555U BLE NFC 리더기로 더 편리한 출석</h2>
         <p>Android 스마트폰이나 태블릿에 ACS ACR1555U 블루투스 NFC 리더기를 연결해 학생 NFC 등록·재등록과 실제 입·퇴실 태그에 사용할 수 있습니다.</p>
@@ -369,7 +431,7 @@
 
   <section class="guide-section">
     <div class="section-heading">
-      <span class="step-number">09</span>
+      <span class="step-number">10</span>
       <div>
         <h2>학생 · 학부모 · 학원 모두에게 단순한 구조</h2>
         <p>한 학생의 출석을 중심으로 학원 현장과 학부모 확인을 자연스럽게 연결합니다.</p>
@@ -418,6 +480,9 @@
       <span>관리자 입·퇴실 알림</span>
       <span>학부모 공지</span>
       <span>일반·긴급공지</span>
+      <span>공지 기간 설정</span>
+      <span>학원 일정</span>
+      <span>휴원 관리</span>
       <span>BLE NFC 리더기</span>
       <span>PC 관리자</span>
     </div>
