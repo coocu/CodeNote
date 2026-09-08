@@ -220,6 +220,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
+# 검색엔진 수집용 기본 URL
+SITE_URL = "https://codenote-5gc4.onrender.com"
+
 # 홈 (메인 페이지)
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
@@ -228,9 +231,42 @@ def home(request: Request):
         name="index.html",
         context={
             "request": request,
-            "title": "CodeNote"
+            "title": "코드노트 | 앱 개발 · 서버 개발 · 디지털 포렌식"
         }
     )
+
+
+# 검색엔진 수집 정책
+@app.get("/robots.txt", response_class=PlainTextResponse, include_in_schema=False)
+def robots_txt():
+    return f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n"
+
+
+# 검색엔진 사이트맵
+@app.get("/sitemap.xml", include_in_schema=False)
+def sitemap_xml():
+    public_paths = (
+        "/",
+        "/pocket-blackbox",
+        "/appblock",
+        "/recording",
+        "/attendance",
+        "/kiosk-system",
+        "/memo-print",
+        "/ble-call-system",
+    )
+    urls = "".join(
+        f"  <url><loc>{SITE_URL}{path}</loc></url>\n"
+        for path in public_paths
+    )
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{urls}"
+        '</urlset>\n'
+    )
+    return Response(content=xml, media_type="application/xml")
+
 
 # 포켓 블랙박스 상세 페이지
 @app.get("/pocket-blackbox", response_class=HTMLResponse)
