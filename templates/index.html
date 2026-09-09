@@ -931,6 +931,21 @@
         <span class="step-number">DATA</span>
         <div>
           <h2>자료실</h2>
+          <p>자료 종류를 선택해주세요.</p>
+        </div>
+      </div>
+      <div class="staff-menu-grid">
+        <button class="staff-menu-button" type="button" data-modal-target="staff-sales-resources">영업자료</button>
+        <button class="staff-menu-button" type="button" data-modal-target="staff-forensics-auth">포렌식 자료</button>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="staff-sales-resources" hidden>
+      <button class="back-mini" type="button" data-modal-target="staff-resources">← 자료실</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">SALES</span>
+        <div>
+          <h2>영업자료</h2>
           <p>필요한 자료를 선택해 다운로드할 수 있습니다.</p>
         </div>
       </div>
@@ -942,6 +957,47 @@
         <a class="staff-resource-card" href="/staff/download/pocketblackbox"><strong>포켓 블랙박스 영업자료</strong><span>다운로드</span></a>
       </div>
       <p class="staff-resource-note">직원 인증이 유지되는 동안에만 자료를 다운로드할 수 있습니다.</p>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="staff-forensics-auth" hidden>
+      <button class="back-mini" type="button" data-modal-target="staff-resources">← 자료실</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">FORENSICS</span>
+        <div>
+          <h2>포렌식 자료</h2>
+          <p>관리자 인증키를 입력해주세요.</p>
+        </div>
+      </div>
+      <div class="admin-auth-box">
+        <form id="staff-forensics-auth-form">
+          <input class="admin-auth-input" id="staff-forensics-auth-key" type="password" autocomplete="off" placeholder="인증키를 입력해주세요." aria-label="포렌식 자료 인증키">
+          <p class="admin-popup-error" id="staff-forensics-auth-error" hidden></p>
+          <div class="admin-popup-actions">
+            <button class="admin-popup-button" type="button" data-modal-target="staff-resources">뒤로</button>
+            <button class="admin-popup-button primary" id="staff-forensics-auth-confirm" type="submit">확인</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="staff-forensics-resources" hidden>
+      <button class="back-mini" type="button" data-modal-target="staff-resources">← 자료실</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">FORENSICS</span>
+        <div>
+          <h2>포렌식 자료</h2>
+          <p>필요한 프로그램을 선택해 다운로드할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="staff-resource-grid">
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/CodeNote.exe"><strong>코드노트 포렌식 프로그램</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/AndroidCleaner.zip"><strong>안드로이드 영구삭제 (반 포렌식)</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PCCleaner.exe"><strong>PC 영구삭제 (반 포렌식)</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/RStudio.zip"><strong>R스튜디오</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PhotoRecovery.zip"><strong>안드로이드 사진복구 프로그램</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PlayStoreRecovery.zip"><strong>플레이스토어 복구 프로그램</strong><span>다운로드</span></a>
+      </div>
+      <p class="staff-resource-note">포렌식 자료는 kyh가 포함된 정상 인증키 확인 후 이용할 수 있습니다.</p>
     </section>
 
     <section class="home-modal-panel" data-modal-panel="site-notice" hidden>
@@ -995,6 +1051,10 @@
   const staffAuthKey = document.getElementById('staff-auth-key');
   const staffAuthError = document.getElementById('staff-auth-error');
   const staffAuthConfirm = document.getElementById('staff-auth-confirm');
+  const staffForensicsAuthForm = document.getElementById('staff-forensics-auth-form');
+  const staffForensicsAuthKey = document.getElementById('staff-forensics-auth-key');
+  const staffForensicsAuthError = document.getElementById('staff-forensics-auth-error');
+  const staffForensicsAuthConfirm = document.getElementById('staff-forensics-auth-confirm');
   let lastFocused = null;
   let recruitEnabled = false;
   let noticeEnabled = false;
@@ -1041,6 +1101,12 @@
       staffAuthError.textContent = '';
       staffAuthKey.value = '';
       setTimeout(() => staffAuthKey.focus(), 30);
+    }
+    if (target === 'staff-forensics-auth') {
+      staffForensicsAuthError.hidden = true;
+      staffForensicsAuthError.textContent = '';
+      staffForensicsAuthKey.value = '';
+      setTimeout(() => staffForensicsAuthKey.focus(), 30);
     }
   }
 
@@ -1159,6 +1225,46 @@
       } finally {
         staffAuthConfirm.disabled = false;
         staffAuthConfirm.textContent = '확인';
+      }
+    });
+  }
+
+  if (staffForensicsAuthForm) {
+    staffForensicsAuthForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const code = staffForensicsAuthKey.value.trim();
+      staffForensicsAuthError.hidden = true;
+      staffForensicsAuthError.textContent = '';
+      if (!code) {
+        staffForensicsAuthError.textContent = '인증키를 입력해주세요.';
+        staffForensicsAuthError.hidden = false;
+        staffForensicsAuthKey.focus();
+        return;
+      }
+
+      staffForensicsAuthConfirm.disabled = true;
+      staffForensicsAuthConfirm.textContent = '확인 중...';
+      try {
+        const response = await fetch('/api/staff/forensics-auth', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({code})
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          staffForensicsAuthError.textContent = response.status === 502
+            ? '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.'
+            : 'kyh가 포함된 유효한 관리자 인증키가 아닙니다.';
+          staffForensicsAuthError.hidden = false;
+          return;
+        }
+        openModal('staff-forensics-resources');
+      } catch (_) {
+        staffForensicsAuthError.textContent = '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.';
+        staffForensicsAuthError.hidden = false;
+      } finally {
+        staffForensicsAuthConfirm.disabled = false;
+        staffForensicsAuthConfirm.textContent = '확인';
       }
     });
   }
