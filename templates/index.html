@@ -515,6 +515,7 @@
             <tbody>
               <tr><td>S · 폴드 시리즈</td><td>15만원</td><td>49만 5천원</td></tr>
               <tr><td>노트 · A 시리즈</td><td>10만원</td><td>37만원</td></tr>
+              <tr><td>메인보드 정상일때</td><td>일반 10만원</td><td>폴드, 플립 15만원</td></tr>
             </tbody>
           </table>
         </div>
@@ -997,7 +998,7 @@
         <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PhotoRecovery.zip"><strong>안드로이드 사진복구 프로그램</strong><span>다운로드</span></a>
         <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PlayStoreRecovery.zip"><strong>플레이스토어 복구 프로그램</strong><span>다운로드</span></a>
       </div>
-      <p class="staff-resource-note">포렌식 자료는 kyh가 포함된 정상 인증키 확인 후 이용할 수 있습니다.</p>
+      <p class="staff-resource-note">포렌식 자료를 이용할 수 없는 직원입니다.</p>
     </section>
 
     <section class="home-modal-panel" data-modal-panel="site-notice" hidden>
@@ -1254,7 +1255,7 @@
         if (!response.ok) {
           staffForensicsAuthError.textContent = response.status === 502
             ? '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.'
-            : 'kyh가 포함된 유효한 관리자 인증키가 아닙니다.';
+            : '유효한 관리자 인증키가 아닙니다.';
           staffForensicsAuthError.hidden = false;
           return;
         }
