@@ -32,6 +32,7 @@ STAFF_FORM_URLS = {
 }
 STAFF_RESOURCE_FILES = {
     "company": "CodeNote 회사소개서.pdf",
+    "forensics" : "디지털포렌식 영업자료.pdf",
     "attendance": "오늘의 출석 영업자료.pdf",
     "musync": "뮤싱크 영업자료.pdf",
     "studyphone": "학습용스마트폰전환앱 영업자료.pdf",
