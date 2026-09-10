@@ -403,7 +403,7 @@ def staff_forensics_auth(req: RecruitAdminAuthRequest, request: Request):
     return {"status": "ok"}
 
 
-# 코드노트 포렌식 프로그램 다운로드 인증 - codenote 포함 정상 인증키만 허용
+# 코드노트 포렌식 프로그램 다운로드 인증 - codenote와 kyh가 모두 포함된 정상 인증키만 허용
 @app.post("/api/staff/codenote-download-auth")
 def staff_codenote_download_auth(req: RecruitAdminAuthRequest, request: Request):
     if not _has_staff_session(request):
@@ -415,11 +415,11 @@ def staff_codenote_download_auth(req: RecruitAdminAuthRequest, request: Request)
         or "codenote" not in code.lower()
         or "kyh" not in code.lower()
     ):
-        raise HTTPException(status_code=401, detail="invalid_auth_key")
+        raise HTTPException(status_code=401, detail="access_denied")
 
     result = _check_poket_auth(code)
     if result.get("status") != "approved" or not result.get("token"):
-        raise HTTPException(status_code=401, detail="invalid_auth_key")
+        raise HTTPException(status_code=401, detail="access_denied")
 
     return {"status": "ok", "downloadUrl": CODENOTE_FORENSICS_DOWNLOAD_URL}
 
