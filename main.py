@@ -386,14 +386,14 @@ def staff_auth(req: RecruitAdminAuthRequest):
     return response
 
 
-# 직원 포렌식 자료 인증 - 직원 세션 + kyh 포함 정상 인증키 검증
+# 직원 포렌식 자료 인증 - 직원 세션 + code 포함 정상 인증키 검증
 @app.post("/api/staff/forensics-auth")
 def staff_forensics_auth(req: RecruitAdminAuthRequest, request: Request):
     if not _has_staff_session(request):
         raise HTTPException(status_code=401, detail="staff_auth_required")
 
     code = (req.code or "").strip()
-    if not code or "kyh" not in code.lower():
+    if not code or "code" not in code.lower():
         raise HTTPException(status_code=401, detail="invalid_auth_key")
 
     result = _check_poket_auth(code)
