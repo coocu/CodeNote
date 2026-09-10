@@ -982,6 +982,27 @@
       </div>
     </section>
 
+    <section class="home-modal-panel" data-modal-panel="staff-codenote-auth" hidden>
+      <button class="back-mini" type="button" data-modal-target="staff-forensics-resources">← 자료실</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">CN</span>
+        <div>
+          <h2>코드노트 포렌식 프로그램 다운로드</h2>
+          <p>다운로드 전 코드노트 전용 인증키를 다시 입력해주세요.</p>
+        </div>
+      </div>
+      <div class="admin-auth-box">
+        <form id="staff-codenote-auth-form">
+          <input class="admin-auth-input" id="staff-codenote-auth-key" type="password" autocomplete="off" placeholder="codenote 인증키를 입력해주세요." aria-label="코드노트 다운로드 인증키">
+          <p class="admin-popup-error" id="staff-codenote-auth-error" hidden></p>
+          <div class="admin-popup-actions">
+            <button class="admin-popup-button" type="button" data-modal-target="staff-forensics-resources">취소</button>
+            <button class="admin-popup-button primary" id="staff-codenote-auth-confirm" type="submit">확인</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <section class="home-modal-panel" data-modal-panel="staff-forensics-resources" hidden>
       <button class="back-mini" type="button" data-modal-target="staff-resources">← 자료실</button>
       <div class="section-heading modal-heading">
@@ -992,7 +1013,8 @@
         </div>
       </div>
       <div class="staff-resource-grid">
-        <a class="staff-resource-card" href="https://github.com/coocu/CodeNote/releases/download/코드노트/CodeNote.exe"><strong>코드노트 포렌식 프로그램</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="#" data-modal-target="staff-codenote-auth"><strong>코드노트 포렌식 프로그램</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://github.com/coocu/CodeNote/releases/download/%EB%B0%B0%ED%8F%AC%EC%9A%A9/CodeNote_Protected.exe"><strong>코드노트 포렌식 프로그램 배포용</strong><span>다운로드</span></a>
         <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/smartswitch.zip"><strong>포렌식 스마트스위치</strong><span>다운로드</span></a>
         <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/AndroidCleaner.zip"><strong>안드로이드 영구삭제 (반 포렌식)</strong><span>다운로드</span></a>
         <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PCCleaner.exe"><strong>PC 영구삭제 (반 포렌식)</strong><span>다운로드</span></a>
@@ -1058,6 +1080,10 @@
   const staffForensicsAuthKey = document.getElementById('staff-forensics-auth-key');
   const staffForensicsAuthError = document.getElementById('staff-forensics-auth-error');
   const staffForensicsAuthConfirm = document.getElementById('staff-forensics-auth-confirm');
+  const staffCodenoteAuthForm = document.getElementById('staff-codenote-auth-form');
+  const staffCodenoteAuthKey = document.getElementById('staff-codenote-auth-key');
+  const staffCodenoteAuthError = document.getElementById('staff-codenote-auth-error');
+  const staffCodenoteAuthConfirm = document.getElementById('staff-codenote-auth-confirm');
   let lastFocused = null;
   let recruitEnabled = false;
   let noticeEnabled = false;
@@ -1110,6 +1136,12 @@
       staffForensicsAuthError.textContent = '';
       staffForensicsAuthKey.value = '';
       setTimeout(() => staffForensicsAuthKey.focus(), 30);
+    }
+    if (target === 'staff-codenote-auth') {
+      staffCodenoteAuthError.hidden = true;
+      staffCodenoteAuthError.textContent = '';
+      staffCodenoteAuthKey.value = '';
+      setTimeout(() => staffCodenoteAuthKey.focus(), 30);
     }
   }
 
@@ -1268,6 +1300,46 @@
       } finally {
         staffForensicsAuthConfirm.disabled = false;
         staffForensicsAuthConfirm.textContent = '확인';
+      }
+    });
+  }
+
+  if (staffCodenoteAuthForm) {
+    staffCodenoteAuthForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const code = staffCodenoteAuthKey.value.trim();
+      staffCodenoteAuthError.hidden = true;
+      staffCodenoteAuthError.textContent = '';
+      if (!code) {
+        staffCodenoteAuthError.textContent = '인증키를 입력해주세요.';
+        staffCodenoteAuthError.hidden = false;
+        staffCodenoteAuthKey.focus();
+        return;
+      }
+
+      staffCodenoteAuthConfirm.disabled = true;
+      staffCodenoteAuthConfirm.textContent = '확인 중...';
+      try {
+        const response = await fetch('/api/staff/codenote-download-auth', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({code})
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.downloadUrl) {
+          staffCodenoteAuthError.textContent = response.status === 502
+            ? '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.'
+            : '서버에 등록된 codenote 인증키가 아닙니다.';
+          staffCodenoteAuthError.hidden = false;
+          return;
+        }
+        window.location.assign(data.downloadUrl);
+      } catch (_) {
+        staffCodenoteAuthError.textContent = '인증 서버에 연결할 수 없습니다. 잠시 후 다시 확인해주세요.';
+        staffCodenoteAuthError.hidden = false;
+      } finally {
+        staffCodenoteAuthConfirm.disabled = false;
+        staffCodenoteAuthConfirm.textContent = '확인';
       }
     });
   }

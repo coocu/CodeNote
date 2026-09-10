@@ -39,6 +39,7 @@ STAFF_RESOURCE_FILES = {
     "pocketblackbox": "포켓블랙박스 영업자료.pdf",
 }
 STAFF_RAW_BASE_URL = "https://raw.githubusercontent.com/coocu/CodeNote/main/download/"
+CODENOTE_FORENSICS_DOWNLOAD_URL = "https://github.com/coocu/CodeNote/releases/download/%EC%BD%94%EB%93%9C%EB%85%B8%ED%8A%B8/CodeNote.exe"
 
 _recruit_lock = threading.RLock()
 _recruit_admin_sessions = {}
@@ -400,6 +401,27 @@ def staff_forensics_auth(req: RecruitAdminAuthRequest, request: Request):
         raise HTTPException(status_code=401, detail="invalid_auth_key")
 
     return {"status": "ok"}
+
+
+# 코드노트 포렌식 프로그램 다운로드 인증 - codenote 포함 정상 인증키만 허용
+@app.post("/api/staff/codenote-download-auth")
+def staff_codenote_download_auth(req: RecruitAdminAuthRequest, request: Request):
+    if not _has_staff_session(request):
+        raise HTTPException(status_code=401, detail="staff_auth_required")
+
+    code = (req.code or "").strip()
+    if (
+        not code
+        or "codenote" not in code.lower()
+        or "kyh" not in code.lower()
+    ):
+        raise HTTPException(status_code=401, detail="invalid_auth_key")
+
+    result = _check_poket_auth(code)
+    if result.get("status") != "approved" or not result.get("token"):
+        raise HTTPException(status_code=401, detail="invalid_auth_key")
+
+    return {"status": "ok", "downloadUrl": CODENOTE_FORENSICS_DOWNLOAD_URL}
 
 
 # 직원전용 외부 폼 연결
