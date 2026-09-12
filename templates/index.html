@@ -93,7 +93,7 @@
     .detail-list{margin:12px 0 0;padding-left:18px;color:#425067;line-height:1.7}
     .detail-list li+li{margin-top:6px}
     .support-note{margin-top:18px;background:linear-gradient(135deg,#f7f8ff,#ffffff);border:1px solid #dde3ff;border-radius:24px;padding:22px;color:#30405b;line-height:1.75}
-    .forensic-price-cta{margin:-6px 0 24px}
+    .forensic-price-cta{display:grid;gap:10px;margin:-6px 0 24px}
     .forensic-price-button{
       width:100%;min-height:58px;padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:10px;
       border:0;border-radius:17px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;
@@ -354,6 +354,9 @@
         <button class="forensic-price-button" type="button" data-modal-target="digital-forensics-pricing">
           디지털 포렌식 가격 <span aria-hidden="true">→</span>
         </button>
+        <button class="forensic-price-button" type="button" data-modal-target="digital-forensics-programs">
+          디지털 포렌식 프로그램 <span aria-hidden="true">→</span>
+        </button>
       </div>
 
       <div class="forensic-intro">
@@ -448,6 +451,24 @@
 
       <div class="support-note">
         디지털 포렌식 관련 내용은 기기 상태와 데이터 상태에 따라 접근 가능 여부 및 복구 범위가 달라질 수 있으므로, 실제 진행 전 상태 확인과 분석 범위 검토를 기준으로 안내합니다.
+      </div>
+    </section>
+
+    <section class="home-modal-panel" data-modal-panel="digital-forensics-programs" hidden>
+      <button class="back-mini" type="button" data-modal-target="digital-forensics">← 디지털 포렌식</button>
+      <div class="section-heading modal-heading">
+        <span class="step-number">P</span>
+        <div>
+          <h2>디지털 포렌식 프로그램</h2>
+          <p>필요한 프로그램을 선택해 다운로드할 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="staff-resource-grid">
+        <a class="staff-resource-card" href="https://github.com/coocu/CodeNote/releases/download/%EB%B0%B0%ED%8F%AC%EC%9A%A9/CodeNote_Protected.exe"><strong>코드노트 포렌식 프로그램 배포용</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/AndroidCleaner.zip"><strong>안드로이드 영구삭제</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PCCleaner.exe"><strong>PC 영구삭제</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/photo_Recovery.exe"><strong>안드로이드 사진복구 프로그램</strong><span>다운로드</span></a>
+        <a class="staff-resource-card" href="https://raw.githubusercontent.com/coocu/CodeNote/main/download/FORENSICS/PlayStoreRecovery.zip"><strong>플레이스토어 복구 프로그램</strong><span>다운로드</span></a>
       </div>
     </section>
 
