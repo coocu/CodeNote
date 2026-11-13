@@ -1,0 +1,51 @@
+/* CodeNote local restaurant kiosk: additions scoped to the new card and page. */
+.local-kiosk-featured{display:grid;grid-template-columns:minmax(0,1fr) 210px;align-items:center;gap:26px;background:linear-gradient(135deg,#fff 45%,#eff6ff);border-color:#dbeafe}
+.local-kiosk-featured p{min-height:0}
+.local-kiosk-featured h3{word-break:keep-all}
+.local-kiosk-featured .local-card-preview{display:flex;gap:10px;justify-content:center;align-items:center;padding:14px;border:1px solid #dbeafe;border-radius:20px;background:rgba(255,255,255,.8)}
+.local-card-preview img{display:block;width:80px;height:160px;object-fit:contain;border-radius:9px;background:#fff;box-shadow:0 6px 18px rgba(30,41,59,.09)}
+.local-kiosk-page{word-break:keep-all;overflow-wrap:anywhere}
+.local-kiosk-page .detail-hero h1{font-size:clamp(32px,4.4vw,50px);line-height:1.2}
+.local-kiosk-page .detail-hero h1 span{display:block}
+.local-kiosk-page .detail-hero h1 span+span{color:var(--primary-deep);margin-top:6px}
+.local-kiosk-page .local-hero-note{color:#64748b;font-size:13px;text-align:center;margin:14px 0 0}
+.local-kiosk-page .local-quick-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:24px 0 30px}
+.local-kiosk-page .local-quick-links a{font-size:13px}
+.local-kiosk-page .local-overview{margin-top:30px;padding:30px;border:1px solid #dbeafe;border-radius:26px;background:linear-gradient(135deg,#eff6ff,#f7f5ff 65%,#fff)}
+.local-kiosk-page .local-overview-heading{text-align:center;max-width:720px;margin:0 auto 24px}
+.local-kiosk-page .local-overview-heading h2{font-size:clamp(24px,3vw,30px);margin-bottom:10px}
+.local-kiosk-page .local-overview-heading p{margin:0}
+.local-kiosk-page .local-overview .screenshot-card{background:rgba(255,255,255,.9)}
+.local-kiosk-page .local-shot img{width:auto;max-width:100%;height:430px;margin:0 auto;object-fit:contain;background:#fff}
+.local-kiosk-page .local-overview .local-shot img{height:390px}
+.local-kiosk-page .local-shot figcaption{padding:16px 6px 6px}
+.local-kiosk-page .local-shot a{display:block;border-radius:16px}
+.local-kiosk-featured:focus-visible,.local-kiosk-page a:focus-visible,.local-kiosk-page summary:focus-visible{outline:3px solid var(--primary);outline-offset:4px}
+.local-kiosk-page .local-image-note{margin:16px 0 0;font-size:12px;color:#64748b;text-align:center}
+.local-kiosk-page .local-three-shots{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.local-kiosk-page .local-three-shots .local-shot img{height:370px}
+.local-kiosk-page .local-three-shots .screenshot-card{padding:12px}
+.local-kiosk-page .local-printer-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:24px;align-items:start}
+.local-kiosk-page .local-printer-layout .feature-grid{grid-template-columns:1fr;margin-top:0}
+.local-kiosk-page .local-printer-layout .local-shot img{height:500px}
+.local-kiosk-page .local-setup{list-style:none;counter-reset:setup;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:0;margin:24px 0}
+.local-kiosk-page .local-setup li{counter-increment:setup;position:relative;padding:22px 22px 22px 68px;background:#fff;border:1px solid var(--line);border-radius:18px}
+.local-kiosk-page .local-setup li::before{content:counter(setup,decimal-leading-zero);position:absolute;left:20px;top:22px;color:var(--primary);font-size:15px;font-weight:850}
+.local-kiosk-page .local-setup strong{font-size:17px}
+.local-kiosk-page .local-setup p{margin:6px 0 0;font-size:14px}
+.local-kiosk-page .local-faq{display:grid;gap:10px;margin-top:22px}
+.local-kiosk-page .local-faq details{border:1px solid var(--line);border-radius:16px;padding:17px 20px;background:#fff}
+.local-kiosk-page .local-faq summary{cursor:pointer;font-weight:800}
+.local-kiosk-page .local-faq details p{margin:12px 0 0;font-size:14px}
+.local-kiosk-page .guide-section[id]{scroll-margin-top:24px}
+@media(max-width:900px){.local-kiosk-page .local-three-shots{grid-template-columns:1fr}.local-kiosk-page .local-three-shots .local-shot img{height:420px}}
+@media(max-width:760px){
+  .local-kiosk-featured{grid-template-columns:1fr;gap:20px}
+  .local-kiosk-featured .local-card-preview{gap:16px}
+  .local-card-preview img{width:90px;height:175px}
+  .local-kiosk-page .local-overview{padding:20px 14px;border-radius:20px}
+  .local-kiosk-page .local-printer-layout,.local-kiosk-page .local-setup{grid-template-columns:1fr}
+  .local-kiosk-page .local-shot img,.local-kiosk-page .local-overview .local-shot img,.local-kiosk-page .local-three-shots .local-shot img,.local-kiosk-page .local-printer-layout .local-shot img{height:auto;max-height:560px}
+  .local-kiosk-page .local-quick-links{gap:7px}
+  .local-kiosk-page .local-quick-links a{padding:9px 12px}
+}

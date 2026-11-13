@@ -253,6 +253,7 @@ def sitemap_xml():
         "/appblock",
         "/recording",
         "/attendance",
+        "/local-kiosk",
         "/kiosk-system",
         "/memo-print",
         "/ble-call-system",
@@ -313,6 +314,23 @@ def attendance(request: Request):
         context={
             "request": request,
             "title": "학원 출석 관리 시스템 | CodeNote"
+        }
+    )
+
+
+# 일반 음식점 공기계 로컬 키오스크 시스템
+@app.get("/local-kiosk", response_class=HTMLResponse)
+def local_kiosk(request: Request):
+    # GitHub의 실제 설명서 파일명은 macOS의 NFD 한글 표기입니다.
+    manual_name = unicodedata.normalize("NFD", "CodeNote_키오스크_매니저앱_상세_사용설명서.pdf")
+    manual_url = "https://github.com/coocu/CodeNote/blob/main/download/" + quote(manual_name) + "?raw=true"
+    return templates.TemplateResponse(
+        request=request,
+        name="local_kiosk.html",
+        context={
+            "request": request,
+            "title": "일반 음식점 공기계 로컬 키오스크 시스템 | CodeNote",
+            "manual_url": manual_url,
         }
     )
 
@@ -580,3 +598,4 @@ def google_verify():
 @app.get("/health", response_class=PlainTextResponse)
 def health():
     return "ok"
+
