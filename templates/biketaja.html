@@ -1,0 +1,162 @@
+{% set ios_url = 'https://apps.apple.com/us/app/kaka-hud/id6822109583' %}
+{% set android_url = 'https://play.google.com/store/apps/details?id=com.codenote.speed' %}
+{% macro downloads() -%}
+<div class="bike-downloads">
+  <a href="{{ ios_url }}" target="_blank" rel="noopener noreferrer"><span>iPhone · App Store</span><strong>아이폰 다운로드 <b aria-hidden="true">↗</b></strong></a>
+  <a href="{{ android_url }}" target="_blank" rel="noopener noreferrer"><span>Android · Google Play</span><strong>안드로이드 다운로드 <b aria-hidden="true">↗</b></strong></a>
+</div>
+{%- endmacro %}
+{% macro shot(file, title, description, width=1320, height=2868) -%}
+<figure class="bike-shot">
+  <a href="/static/images/biketaja/{{ file }}" target="_blank" rel="noopener noreferrer" aria-label="{{ title }} 원본 크게 보기, 새 창">
+    <img src="/static/images/biketaja/{{ file }}" alt="{{ title }} — {{ description }}" width="{{ width }}" height="{{ height }}" loading="lazy" decoding="async">
+  </a>
+  <figcaption><strong>{{ title }}</strong><span>{{ description }}</span></figcaption>
+</figure>
+{%- endmacro %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="바이크타자와 라이딩 준비부터 기록까지. 후방 단속카메라 알림, 투어 일정·공유, 이륜차 경로 날씨, 주유·정비·튜닝 가계부를 iPhone과 Android에서 만나보세요.">
+  <link rel="canonical" href="https://codenote-5gc4.onrender.com/biketaja">
+  <meta property="og:title" content="바이크타자 | 라이딩 준비부터 기록까지">
+  <meta property="og:description" content="함께 달릴 날을 준비하고, 경로의 날씨를 확인하고, 바이크의 기록을 남기세요. CodeNote의 라이딩 동반 앱.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codenote-5gc4.onrender.com/biketaja">
+  <meta property="og:image" content="https://codenote-5gc4.onrender.com/static/images/biketaja/touring-hero.webp">
+  <meta property="og:image:alt" content="호수와 산을 바라보며 주차된 투어링 바이크">
+  <meta property="og:site_name" content="코드노트">
+  <link rel="stylesheet" href="/static/style.css?v=9">
+  <link rel="stylesheet" href="/static/css/biketaja.css?v=20261114">
+  <script src="/static/js/biketaja.js?v=20261114" defer></script>
+<link rel="stylesheet" href="/static/css/project-gallery.css?v=20261114-all">
+</head>
+<body class="bike-detail">
+<a class="bike-skip" href="#bike-content">본문으로 이동</a>
+<main class="container bike-container" id="bike-content">
+  <nav class="bike-topbar" aria-label="페이지 이동"><a href="/" class="bike-brand">CodeNote<span> / 바이크타자</span></a><a href="/#featured-apps">대표 앱 서비스로 <span aria-hidden="true">↗</span></a></nav>
+  <header class="bike-hero">
+    <img class="bike-hero-bg" src="/static/images/biketaja/touring-hero.webp" alt="산과 호수를 바라보는 길가에 주차된 투어링 바이크 콘셉트 이미지" width="1672" height="941" fetchpriority="high">
+    <div class="bike-hero-copy">
+      <span class="bike-eyebrow">YOUR RIDING COMPANION</span>
+      <div class="bike-title-row"><img src="/static/images/biketaja/app-icon.webp" alt="" width="64" height="64"><h1>바이크타자</h1></div>
+      <h2>라이딩 준비부터<br>기록까지, 함께.</h2>
+      <p>함께 달릴 일정을 만들고,<br>지나갈 길의 날씨를 확인하고,<br>내 바이크의 이야기를 차곡차곡 남기세요.</p>
+      <div class="bike-hero-actions"><a href="#download">앱 다운로드 <span aria-hidden="true">↗</span></a><a href="#screens">화면 살펴보기 <span aria-hidden="true">↓</span></a></div>
+      <span class="bike-platforms">iPhone &amp; Android · 라이트 &amp; 다크 모드</span>
+    </div>
+  </header>
+
+  <div class="bike-value-strip" aria-label="주요 기능"><span><b>01</b> 투어 준비</span><span><b>02</b> 경로 날씨</span><span><b>03</b> 후방 단속 알림</span><span><b>04</b> 라이딩 기록</span></div>
+  <section class="bike-section bike-download-section" id="download" aria-labelledby="download-title">
+    <div><span class="bike-kicker">GET THE APP</span><h2 id="download-title">내 폰에서 시작하세요.</h2><p>기기에 맞는 스토어에서 설치한 뒤 앱의 인증키 안내를 따라 시작합니다.</p></div>
+    {{ downloads() }}
+    <p class="bike-note">App Store에는 기존 이름인 ‘Kaka HUD’로 표시될 수 있습니다. 같은 앱의 다운로드 링크이며, 화면과 기능은 설치된 버전에 따라 다를 수 있습니다.</p>
+  </section>
+
+  <nav class="bike-section-nav" aria-label="바이크타자 기능 안내"><a href="#screens">기종별 화면</a><a href="#tour">투어·공유</a><a href="#weather">경로 날씨</a><a href="#alerts">단속 알림</a><a href="#ledger">가계부</a><a href="#setup">시작하기</a></nav>
+
+  <section class="bike-section" id="screens" aria-labelledby="screens-title">
+    <div class="bike-heading"><span class="bike-kicker">ONE APP, YOUR STYLE</span><h2 id="screens-title">기종도, 화면 모드도<br>구분해서 살펴보세요.</h2><p>아이폰과 안드로이드의 화면 구성을 각각 확인하세요. 사진을 누르면 원본을 크게 볼 수 있습니다.</p></div>
+    <div class="bike-filter" hidden aria-label="기종과 화면 모드 선택">
+      <button type="button" id="tab-iphone-light" data-screen="iphone-light">iPhone · 라이트</button>
+      <button type="button" id="tab-iphone-dark" data-screen="iphone-dark">iPhone · 다크</button>
+      <button type="button" id="tab-android-light" data-screen="android-light">Android · 라이트</button>
+      <button type="button" id="tab-android-dark" data-screen="android-dark">Android · 다크</button>
+    </div>
+    <div class="bike-gallery-group" id="iphone-light" data-mode="light">
+      <h3>iPhone <span>라이트 모드</span></h3>
+      <div class="bike-shots">
+        {{ shot('iphone-light-auth.webp', 'iPhone · 라이트 / 시작·인증', '인증키 입력과 발급 안내를 확인하는 첫 화면입니다.') }}
+        {{ shot('iphone-light-home.webp', 'iPhone · 라이트 / 홈', 'D-day 일정, 투어 생성과 복귀를 밝은 테마로 확인합니다.') }}
+      </div>
+    </div>
+    <div class="bike-gallery-group" id="iphone-dark" data-mode="dark">
+      <h3>iPhone <span>다크 모드</span></h3>
+      <div class="bike-shots">
+        {{ shot('iphone-dark-home.webp', 'iPhone · 다크 / 홈', '오늘의 투어와 출발·도착 장소, 공유 버튼을 확인합니다.') }}
+        {{ shot('iphone-dark-tour.webp', 'iPhone · 다크 / 투어 생성', '달력에서 날짜를 선택하고 출발 시간과 경로를 정합니다.') }}
+      </div>
+    </div>
+    <div class="bike-gallery-group" id="android-light" data-mode="light">
+      <h3>Android <span>라이트 모드</span></h3>
+      <div class="bike-shots bike-shots-single">
+        {{ shot('android-light-auth.webp', 'Android · 라이트 / 시작·인증', '앱의 주요 기능과 인증키 입력·발급 버튼을 확인합니다.', 1080, 1920) }}
+        <div class="bike-gallery-copy"><span class="bike-kicker">START YOUR RIDE</span><h4>앱을 설치하고,<br>인증부터 간단하게.</h4><p>처음 실행하면 바이크 인증 화면이 열립니다. 인증키가 없다면 ‘인증키 발급’ 안내를 따라 신청하고, 승인된 키로 로그인하세요.</p><p>인증 후에는 홈·투어일정·주소지관리·가계부·설정의 다섯 메뉴를 이용합니다.</p></div>
+      </div>
+    </div>
+    <div class="bike-gallery-group" id="android-dark" data-mode="dark">
+      <h3>Android <span>다크 모드</span></h3>
+      <div class="bike-shots">
+        {{ shot('android-dark-home.webp', 'Android · 다크 / 홈', '예정된 투어와 생성·복귀 버튼을 확인합니다.', 1080, 1920) }}
+        {{ shot('android-dark-compact.webp', 'Android · 다크 / 작은 화면', '하단 시스템 탐색 버튼이 있는 안드로이드 화면 예시입니다.', 720, 1600) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="bike-section" id="tour" aria-labelledby="tour-title">
+    <div class="bike-heading"><span class="bike-kicker">01 / PLAN &amp; SHARE</span><h2 id="tour-title">다음 투어는 어디로 갈까요?</h2><p>날짜와 출발 시간, 출발지와 목적지를 정하면 준비 끝. 홈의 D-day 카드와 달력에서 일정을 다시 확인하세요.</p></div>
+    <div class="bike-tour-grid">
+      <ol class="bike-steps">
+        <li><span>1</span><div><h3>투어 일정 만들기</h3><p>홈에서 ‘투어 생성’을 누르고 날짜·시간을 정합니다. 장소 검색, 현재위치, 저장한 집·직장 주소로 출발지와 목적지를 선택하세요.</p></div></li>
+        <li><span>2</span><div><h3>함께 달릴 친구에게 공유</h3><p>투어 카드의 ‘공유’를 눌러 카카오톡으로 일정을 보냅니다. 받은 사람은 링크로 앱을 열고 같은 일정을 가져올 수 있습니다. 최초 이용자는 바이크 인증 후 불러옵니다.</p></div></li>
+        <li><span>3</span><div><h3>카카오내비로 출발</h3><p>투어 정보에서 ‘카카오내비 실행’을 누르면 공식 카카오내비 앱에 목적지를 전달합니다. 이륜차 조건으로 길안내를 요청하므로 카카오내비 앱을 미리 설치해 주세요.</p></div></li>
+        <li><span>4</span><div><h3>돌아온 뒤 기록하기</h3><p>시작한 일정은 ‘투어 완료로 기록’으로 직접 마무리합니다. 같은 경로로 새 투어를 만들거나, ‘투어 복귀’에서 저장한 집·직장으로 길안내를 요청하세요.</p></div></li>
+      </ol>
+      <div class="bike-share-card">
+        {{ shot('iphone-dark-share-open.webp', 'iPhone · 다크 / 공유 링크 열기', '공유 링크에서 바이크타자를 열 때 표시되는 확인 화면입니다.') }}
+        <p class="bike-note">공유되는 내용은 선택한 투어의 일정과 장소입니다. 인증키와 가계부는 투어 공유에 포함되지 않습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bike-section" id="weather" aria-labelledby="weather-title">
+    <div class="bike-heading"><span class="bike-kicker">02 / WEATHER ALONG THE WAY</span><h2 id="weather-title">목적지뿐 아니라,<br>지나갈 길의 날씨까지.</h2><p>저장한 투어의 출발 시간과 예상 경로를 바탕으로 경유 지역의 도착 예상 시각과 날씨를 함께 보여줍니다.</p></div>
+    <div class="bike-explain-grid">
+      <figure class="bike-illustration"><img src="/static/images/biketaja/route-weather.webp" alt="출발지부터 경유지와 목적지까지 해·비·바람을 살펴보는 기능 설명 그림" width="1672" height="941" loading="lazy"><figcaption>경로 날씨 기능을 설명하기 위한 일러스트입니다.</figcaption></figure>
+      <div class="bike-feature-copy"><h3>출발 전에 확인할 세 가지</h3><ul class="bike-checks"><li><strong>예상 거리·소요 시간</strong><span>이륜차 주행을 위한 경로 조건으로 투어를 준비합니다.</span></li><li><strong>경유 지역별 예보</strong><span>예상 도착 시각 주변 3시간의 기온, 강수확률·강수량, 바람을 확인합니다.</span></li><li><strong>강한 바람 안내</strong><span>조회 구간의 바람이 강한 경우 주의 문구가 표시됩니다.</span></li></ul></div>
+    </div>
+    <div class="bike-weather-example" aria-label="경로 날씨 설명용 예시, 실제 예보 아님">
+      <div class="bike-example-heading"><strong>예상 도착 시간에 맞춰 확인</strong><span>설명용 예시 · 실제 예보 아님</span></div>
+      <div class="bike-weather-stops"><article><span>출발 지역 · 09:00</span><strong>16℃</strong><p>강수확률 10%<br>바람 2m/s</p></article><article><span>경유 지역 · 10:00</span><strong>14℃</strong><p>강수확률 40%<br>바람 5m/s</p></article><article><span>도착 지역 · 11:00</span><strong>17℃</strong><p>강수확률 20%<br>바람 3m/s</p></article></div>
+    </div>
+    <p class="bike-note">예상 경로·시간과 예보를 이용한 참고 정보입니다. 실제 카카오내비 경로·교통상황에 따라 달라질 수 있고, 예보 범위를 벗어나거나 조회에 실패하면 정보가 표시되지 않을 수 있습니다. 날씨 데이터: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>.</p>
+  </section>
+
+  <section class="bike-section" id="alerts" aria-labelledby="alerts-title">
+    <div class="bike-heading"><span class="bike-kicker">03 / REAR CAMERA ALERT</span><h2 id="alerts-title">후방 단속카메라,<br>음성으로 미리 확인하세요.</h2><p>앱 상단의 알림 버튼을 눌러 시작합니다. 주행 방향의 후방 단속카메라 정보를 바탕으로 접근 안내와 과속 경고를 제공합니다.</p></div>
+    <div class="bike-alert-demo" role="img" aria-label="후방 단속카메라 알림 동작 예시: 접근하면 음성 안내, 안내 후 제한속도를 초과하면 경고음, 제한속도 이하가 되면 경고음 중지">
+      <span class="bike-kicker">알림 동작 예시</span>
+      <div class="bike-alert-stages"><div><span class="bike-alert-dot">01</span><strong>카메라 접근</strong><p>거리와 제한속도<br>음성 안내</p></div><b aria-hidden="true">→</b><div><span class="bike-alert-dot">02</span><strong>안내 후 과속</strong><p>제한속도 초과 시<br>경고음 반복</p></div><b aria-hidden="true">→</b><div><span class="bike-alert-dot">03</span><strong>제한속도 이하</strong><p>경고음 중지<br>다시 초과하면 재개</p></div></div>
+    </div>
+    <div class="bike-small-grid"><article><h3>HUD 없이 사용하는 바이크 알림</h3><p>휴대전화의 위치와 카메라 정보를 활용합니다. 차량용 HUD 연결 없이 바이크 알림을 시작할 수 있습니다.</p></article><article><h3>화면을 옮겨도 이어지는 알림</h3><p>앱의 메뉴를 이동해도 시작한 알림은 유지됩니다. 다른 앱 사용·화면 잠금 중 동작은 위치 권한과 운영체제의 백그라운드 설정에 영향을 받습니다.</p></article></div>
+    <p class="bike-note">후방 영상을 촬영하는 블랙박스 기능이 아니라 후방 <strong>단속카메라 위치 알림</strong>입니다. GPS·카메라 데이터·통화·음량·절전 설정 등에 따라 알림이 제한될 수 있습니다. 설정은 출발 전에 마치고 실제 도로 표지와 제한속도를 우선해 주세요.</p>
+  </section>
+
+  <section class="bike-section" id="ledger" aria-labelledby="ledger-title">
+    <div class="bike-heading"><span class="bike-kicker">04 / KEEP YOUR RIDING RECORDS</span><h2 id="ledger-title">기름을 넣은 날도,<br>엔진오일을 바꾼 날도.</h2><p>주유·소모품·튜닝 내역을 하나의 가계부에 모으세요. 직접 입력한 기록을 바탕으로 이번 달 지출과 주유 연비를 확인할 수 있습니다.</p></div>
+    <div class="bike-explain-grid bike-explain-reverse">
+      <figure class="bike-illustration"><img src="/static/images/biketaja/maintenance-log.webp" alt="주유기·엔진오일·공구·기록장과 백업 상자로 표현한 바이크 가계부 설명 그림" width="1672" height="941" loading="lazy"><figcaption>가계부·백업 기능을 설명하기 위한 일러스트입니다.</figcaption></figure>
+      <div class="bike-feature-copy"><ul class="bike-checks"><li><strong>주유 금액·유가·주유량</strong><span>세 값 중 두 값을 입력하면 나머지를 계산합니다. 주행거리와 완전 주유 기록을 바탕으로 연비를 확인합니다.</span></li><li><strong>소모품과 엔진오일</strong><span>교체 날짜, 누적 주행거리, 금액과 메모를 저장합니다. 엔진오일 교체 용량과 소모품 목록도 관리합니다.</span></li><li><strong>튜닝 내역과 월별 지출</strong><span>튜닝 제목·비용·내용을 남기고 이번 달 지출 합계를 확인합니다. 저장한 기록은 수정·삭제할 수 있습니다.</span></li></ul></div>
+    </div>
+    <div class="bike-small-grid"><article><span class="bike-kicker">SAVE &amp; RESTORE</span><h3>내 기록을 ZIP으로 보관</h3><p>설정에서 백업 파일을 저장하거나 공유하고, 파일을 선택해 복원합니다. 복원하면 현재 기록이 백업 내용으로 바뀌며 인증 정보는 백업에 포함되지 않습니다.</p></article><article><span class="bike-kicker">HOME &amp; WORK</span><h3>자주 가는 주소는 한 번만</h3><p>집과 직장 주소를 등록하면 새 투어를 만들거나 복귀할 때 다시 검색할 필요가 없습니다. 주소지관리에서 언제든 수정·삭제할 수 있습니다.</p></article></div>
+  </section>
+
+  <section class="bike-section" id="setup" aria-labelledby="setup-title">
+    <div class="bike-heading"><span class="bike-kicker">BEFORE YOUR FIRST RIDE</span><h2 id="setup-title">첫 라이딩, 이렇게 시작하세요.</h2></div>
+    <ol class="bike-setup"><li><b>01</b><h3>설치와 인증</h3><p>기기에 맞는 앱을 설치하고 바이크용 인증키를 확인합니다.</p></li><li><b>02</b><h3>위치·알림 설정</h3><p>앱 안내에 따라 정확한 위치와 필요한 알림 권한을 허용합니다.</p></li><li><b>03</b><h3>투어와 주소 준비</h3><p>집·직장 주소를 등록하고, 투어 일정과 경로 날씨를 확인합니다.</p></li><li><b>04</b><h3>정차 중 알림 시작</h3><p>상단 버튼으로 후방 단속 알림을 켜고 음량과 실행 상태를 확인합니다.</p></li></ol>
+    <div class="bike-faq">
+      <details><summary>카카오내비와 카카오톡이 필요한가요?</summary><p>투어의 길안내를 실행하려면 공식 카카오내비 앱이, 카카오톡으로 투어를 공유하려면 카카오톡이 필요합니다. 바이크타자는 CodeNote가 개발한 독립 앱이며 카카오의 공식 앱이 아닙니다.</p></details>
+      <details><summary>라이딩 경로와 주행거리가 자동으로 기록되나요?</summary><p>투어 일정의 시작·완료 상태와 사용자가 입력한 가계부 기록을 관리합니다. 이 소개의 ‘기록’은 GPS 이동 경로 자동 저장이나 주행거리 자동 누적을 의미하지 않습니다.</p></details>
+      <details><summary>자동차 HUD 기능도 사용할 수 있나요?</summary><p>설정의 ‘자동차 HUD 모드’에서 사용할 수 있습니다. 바이크용과 별도의 자동차 인증이 필요하며, HUD 표시 기능에는 호환되는 블루투스 HUD가 필요합니다. 자동차 내비게이션과 바이크 알림은 모드를 전환해 사용합니다.</p></details>
+      <details><summary>화면을 끄거나 앱을 종료해도 계속 동작하나요?</summary><p>사용자가 시작한 알림을 화면 잠금·다른 앱 사용 중에도 이어가도록 구성되어 있습니다. 다만 앱 강제 종료, 위치 권한 해제, 절전·운영체제 제한 상황에서는 유지가 보장되지 않습니다. 출발 전 실행 상태를 확인해 주세요.</p></details>
+    </div>
+  </section>
+  <section class="bike-closing" aria-labelledby="closing-title"><img src="/static/images/biketaja/app-icon.webp" width="72" height="72" alt=""><span class="bike-kicker">LET'S RIDE TOGETHER</span><h2 id="closing-title">다음 라이딩은,<br>바이크타자와 함께.</h2><p>일정을 준비하는 순간부터 돌아온 뒤의 기록까지.</p>{{ downloads() }}</section>
+  <section class="pg-related" aria-label="함께 살펴볼 프로젝트"><span class="pg-kicker">MORE FROM CODENOTE</span><h2>다른 프로젝트도 만나보세요.</h2><div class="pg-related-grid"><a href="/pocket-blackbox" class="project-card pg-project-tile"><div class="pg-tile-image"><img src="/static/images/projects/pocket-blackbox-640.webp" srcset="/static/images/projects/pocket-blackbox-640.webp 640w, /static/images/projects/pocket-blackbox.webp 1672w" sizes="(max-width:620px) 90vw, 460px" alt="" width="1672" height="941" loading="lazy" decoding="async"><span class="pg-tile-label">KEEP THE MOMENT</span></div><div class="pg-tile-copy"><h3>포켓 블랙박스</h3><p>충격·소리 감지와 수동 녹음으로 상황을 기록하고 기기 안에서 관리하는 개인 안전 보호 앱입니다.</p><div class="card-badges"><span>Android · iOS</span><span>감지·녹음</span><span>기기 내 기록</span></div><strong class="card-link">자세히 보기 <span aria-hidden="true">↗</span></strong></div></a><a href="/appblock" class="project-card pg-project-tile"><div class="pg-tile-image"><img src="/static/images/projects/appblock-640.webp" srcset="/static/images/projects/appblock-640.webp 640w, /static/images/projects/appblock.webp 1672w" sizes="(max-width:620px) 90vw, 460px" alt="" width="1672" height="941" loading="lazy" decoding="async"><span class="pg-tile-label">MAKE ROOM FOR FOCUS</span></div><div class="pg-tile-copy"><h3>학습용 스마트폰 전환 앱</h3><p>앱 사용 범위를 관리해 학습에 집중할 수 있는 스마트폰 환경을 구성합니다.</p><div class="card-badges"><span>Android · iOS</span><span>앱 사용 관리</span><span>관리자 설정</span></div><strong class="card-link">자세히 보기 <span aria-hidden="true">↗</span></strong></div></a></div></section><footer class="pg-footer"><a href="/#featured-apps">← 대표 앱 서비스</a><a href="/">CodeNote 메인으로</a></footer>
+</main>
+</body>
+</html>

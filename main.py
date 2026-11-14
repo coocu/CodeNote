@@ -249,6 +249,7 @@ def robots_txt():
 def sitemap_xml():
     public_paths = (
         "/",
+        "/biketaja",
         "/pocket-blackbox",
         "/appblock",
         "/recording",
@@ -269,6 +270,16 @@ def sitemap_xml():
         '</urlset>\n'
     )
     return Response(content=xml, media_type="application/xml")
+
+
+# 바이크타자 상세 페이지
+@app.get("/biketaja", response_class=HTMLResponse)
+def biketaja(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="biketaja.html",
+        context={"request": request, "title": "바이크타자 | 라이딩 준비부터 기록까지 · CodeNote"}
+    )
 
 
 # 포켓 블랙박스 상세 페이지

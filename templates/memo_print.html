@@ -1,79 +1,59 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="메모, 사진, 커스텀 내용을 열전사 프린터로 출력하는 CodeNote 메모프린트">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="/static/style.css?v=8">
-</head>
-<body class="detail-body">
-<div class="container detail-container kiosk-system-page">
-  <a href="/" class="back">← CodeNote</a>
-
-  <section class="detail-hero">
-    <span class="eyebrow">MEMO PRINT</span>
-    <h1>메모프린트</h1>
-    <p class="subtitle">
-      스마트폰에서 작성한 메모와 사진, 커스텀 내용을<br>
-      열전사 영수증 프린터로 간편하게 출력할 수 있습니다.
-    </p>
-    <div class="hero-badges">
-      <span>메모 출력</span>
-      <span>사진 출력</span>
-      <span>커스텀 출력</span>
-      <span>자주쓰는 문구</span>
-      <span>Android</span>
-      <span>iOS</span>
-    </div>
-  </section>
-
-  <div class="store-actions two kiosk-store-actions">
-    <a href="https://play.google.com/store/apps/details?id=com.codenote.memoprint" target="_blank" rel="noopener noreferrer" class="store-btn google-play">
-      <span>Android · MemoPrint</span><strong>Google Play에서 다운로드</strong>
-    </a>
-    <a href="https://apps.apple.com/kr/app/메모-프린트/id6799828697" target="_blank" rel="noopener noreferrer" class="store-btn app-store">
-      <span>iPhone · iPad</span><strong>App Store에서 다운로드</strong>
-    </a>
-  </div>
-
-  <section class="guide-section first-section">
-    <div class="section-heading">
-      <span class="step-number">01</span>
-      <div>
-        <h2>스마트폰에서 바로 출력</h2>
-        <p>메모 입력부터 사진, 커스텀 출력까지 필요한 내용을 구성해 열전사 프린터로 출력할 수 있습니다.</p>
-      </div>
-    </div>
-
-    <div class="screenshot-grid two">
-      <figure class="screenshot-card">
-        <img src="/static/images/kiosk_system/memoprint/memoprint_android_main.png" alt="Android 메모프린트 메인 화면">
-        <figcaption><strong>Android 메모프린트</strong><span>메모 입력 후 일반 출력, 사진 출력, 커스텀 출력을 한 화면에서 사용할 수 있습니다.</span></figcaption>
-      </figure>
-      <figure class="screenshot-card">
-        <img src="/static/images/kiosk_system/memoprint/memoprint_android_settings.png" alt="Android 메모프린트 설정 화면">
-        <figcaption><strong>프린터 설정</strong><span>USB, 네트워크 프린터와 키오스크 연결 모드 및 용지 설정을 관리할 수 있습니다.</span></figcaption>
-      </figure>
-      <figure class="screenshot-card">
-        <img src="/static/images/kiosk_system/memoprint/memoprint_ios_main.png" alt="iOS 메모프린트 메인 화면">
-        <figcaption><strong>iOS 메모프린트</strong><span>iPhone과 iPad에서 메모·사진·커스텀 출력을 지원하고 네트워크 프린터 검색 기능을 제공합니다.</span></figcaption>
-      </figure>
-      <figure class="screenshot-card">
-        <img src="/static/images/kiosk_system/memoprint/memoprint_ios_custom.png" alt="iOS 메모프린트 커스텀 출력 화면">
-        <figcaption><strong>커스텀 출력 구성</strong><span>제목, 구분선, 메모, 자주쓰는 문구, 사진, 날짜·시간 등을 원하는 순서로 구성할 수 있습니다.</span></figcaption>
-      </figure>
-    </div>
-
-    <div class="feature-grid">
-      <article><span class="feature-icon">T</span><h3>메모 출력</h3><p>입력한 메모를 열전사 영수증 프린터로 바로 출력할 수 있습니다.</p></article>
-      <article><span class="feature-icon">C</span><h3>커스텀 출력</h3><p>텍스트와 사진, 구분선, 날짜·시간 등 여러 요소의 출력 순서를 직접 구성합니다.</p></article>
-      <article><span class="feature-icon">F</span><h3>자주쓰는 문구</h3><p>반복해서 사용하는 내용을 저장하고 폴더로 정리해 빠르게 불러올 수 있습니다.</p></article>
-      <article><span class="feature-icon">B</span><h3>백업 · 복원</h3><p>프린터 설정과 자주쓰는 문구, 폴더 구성을 ZIP 파일로 백업하고 복원할 수 있습니다.</p></article>
-    </div>
-  </section>
-
-  <a href="/" class="bottom-home">CodeNote 메인으로</a>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="메모, 사진, 커스텀 내용을 열전사 프린터로 출력하는 CodeNote 메모프린트" name="description"/>
+<title>{{ title }}</title>
+<link href="/static/style.css?v=8" rel="stylesheet"/>
+<link href="/static/css/project-gallery.css?v=20261114-all" rel="stylesheet"/><meta content="메모프린트 | CodeNote" property="og:title"/><meta content="메모와 사진, 자주 쓰는 문구를 원하는 순서로 구성해 열전사 프린터로 출력하세요." property="og:description"/><meta content="website" property="og:type"/><meta content="https://codenote-5gc4.onrender.com/memo-print" property="og:url"/><meta content="https://codenote-5gc4.onrender.com/static/images/projects/memo-print.webp" property="og:image"/><meta content="메모프린트 서비스 활용 콘셉트 이미지" property="og:image:alt"/><link href="https://codenote-5gc4.onrender.com/memo-print" rel="canonical"/></head>
+<body class="detail-body pg-detail">
+<div class="container detail-container kiosk-system-page pg-container">
+<nav aria-label="페이지 이동" class="pg-topbar"><a class="pg-brand" href="/">CodeNote <span>/ 키오스크 시스템</span></a><a href="/#kiosk-management">키오스크 시스템 목록으로 ↗</a></nav>
+<header class="pg-hero" id="pg-top"><img alt="메모프린트 서비스 활용 콘셉트 이미지" class="pg-hero-image" fetchpriority="high" height="941" src="/static/images/projects/memo-print.webp" width="1672"/><div class="pg-hero-copy"><span class="pg-kicker">IDEAS INTO PRINT</span><h1>메모프린트</h1><p class="pg-hero-lead">휴대전화 속 메모를, 손에 잡히는 한 장으로.</p><p class="pg-hero-desc">메모와 사진, 자주 쓰는 문구를 원하는 순서로 구성해 열전사 프린터로 출력하세요.</p><div class="pg-hero-tags"><span>Android · iOS</span><span>메모·사진</span><span>커스텀 출력</span></div><div class="pg-hero-actions"><a href="#pg-downloads">다운로드·이용 안내 ↗</a><a href="#pg-guide">기능 살펴보기 ↓</a></div></div></header><div class="pg-concept-note">서비스 활용 콘셉트 이미지 · 실제 앱 화면은 아래에서 확인하세요.</div><section aria-label="서비스 한눈에 보기" class="pg-overview" id="pg-guide"><span class="pg-kicker">DESIGNED FOR YOUR EVERYDAY</span><h2>휴대전화 속 메모를, 손에 잡히는 한 장으로.</h2><p class="pg-original-summary">스마트폰에서 작성한 메모와 사진, 커스텀 내용을 열전사 영수증 프린터로 간편하게 출력할 수 있습니다.</p><div class="pg-highlights"><article><span>01</span><h3>쓰고 바로 출력</h3><p>휴대전화에서 입력한 메모와 선택한 사진을 출력합니다.</p></article><article><span>02</span><h3>내 방식으로 구성</h3><p>제목·구분선·문구·날짜 등 출력 요소의 순서를 정합니다.</p></article><article><span>03</span><h3>반복 작업은 더 짧게</h3><p>자주 쓰는 문구를 폴더로 정리하고 설정을 백업합니다.</p></article></div></section>
+<div class="store-actions two kiosk-store-actions" id="pg-downloads">
+<a class="store-btn google-play" href="https://play.google.com/store/apps/details?id=com.codenote.memoprint" rel="noopener noreferrer" target="_blank">
+<span>Android · MemoPrint</span><strong>Google Play에서 다운로드</strong>
+</a>
+<a class="store-btn app-store" href="https://apps.apple.com/kr/app/메모-프린트/id6799828697" rel="noopener noreferrer" target="_blank">
+<span>iPhone · iPad</span><strong>App Store에서 다운로드</strong>
+</a>
+</div>
+<nav aria-label="메모프린트 기능 바로가기" class="pg-section-nav"><a href="#pg-section-0-0">스마트폰에서 바로 출력</a></nav><section class="guide-section first-section" id="pg-section-0-0">
+<div class="section-heading">
+<span class="step-number">01</span>
+<div>
+<h2>스마트폰에서 바로 출력</h2>
+<p>메모 입력부터 사진, 커스텀 출력까지 필요한 내용을 구성해 열전사 프린터로 출력할 수 있습니다.</p>
+</div>
+</div>
+<div class="screenshot-grid two">
+<figure class="screenshot-card">
+<a aria-label="원본 이미지 크게 보기: Android 메모프린트 메인 화면" class="pg-image-link" href="/static/images/kiosk_system/memoprint/memoprint_android_main.png" rel="noopener noreferrer" target="_blank"><img alt="Android 메모프린트 메인 화면" decoding="async" loading="lazy" src="/static/images/kiosk_system/memoprint/memoprint_android_main.png"/></a>
+<figcaption><strong>Android 메모프린트</strong><span>메모 입력 후 일반 출력, 사진 출력, 커스텀 출력을 한 화면에서 사용할 수 있습니다.</span></figcaption>
+</figure>
+<figure class="screenshot-card">
+<a aria-label="원본 이미지 크게 보기: Android 메모프린트 설정 화면" class="pg-image-link" href="/static/images/kiosk_system/memoprint/memoprint_android_settings.png" rel="noopener noreferrer" target="_blank"><img alt="Android 메모프린트 설정 화면" decoding="async" loading="lazy" src="/static/images/kiosk_system/memoprint/memoprint_android_settings.png"/></a>
+<figcaption><strong>프린터 설정</strong><span>USB, 네트워크 프린터와 키오스크 연결 모드 및 용지 설정을 관리할 수 있습니다.</span></figcaption>
+</figure>
+<figure class="screenshot-card">
+<a aria-label="원본 이미지 크게 보기: iOS 메모프린트 메인 화면" class="pg-image-link" href="/static/images/kiosk_system/memoprint/memoprint_ios_main.png" rel="noopener noreferrer" target="_blank"><img alt="iOS 메모프린트 메인 화면" decoding="async" loading="lazy" src="/static/images/kiosk_system/memoprint/memoprint_ios_main.png"/></a>
+<figcaption><strong>iOS 메모프린트</strong><span>iPhone과 iPad에서 메모·사진·커스텀 출력을 지원하고 네트워크 프린터 검색 기능을 제공합니다.</span></figcaption>
+</figure>
+<figure class="screenshot-card">
+<a aria-label="원본 이미지 크게 보기: iOS 메모프린트 커스텀 출력 화면" class="pg-image-link" href="/static/images/kiosk_system/memoprint/memoprint_ios_custom.png" rel="noopener noreferrer" target="_blank"><img alt="iOS 메모프린트 커스텀 출력 화면" decoding="async" loading="lazy" src="/static/images/kiosk_system/memoprint/memoprint_ios_custom.png"/></a>
+<figcaption><strong>커스텀 출력 구성</strong><span>제목, 구분선, 메모, 자주쓰는 문구, 사진, 날짜·시간 등을 원하는 순서로 구성할 수 있습니다.</span></figcaption>
+</figure>
+</div>
+<div class="feature-grid">
+<article><span class="feature-icon">T</span><h3>메모 출력</h3><p>입력한 메모를 열전사 영수증 프린터로 바로 출력할 수 있습니다.</p></article>
+<article><span class="feature-icon">C</span><h3>커스텀 출력</h3><p>텍스트와 사진, 구분선, 날짜·시간 등 여러 요소의 출력 순서를 직접 구성합니다.</p></article>
+<article><span class="feature-icon">F</span><h3>자주쓰는 문구</h3><p>반복해서 사용하는 내용을 저장하고 폴더로 정리해 빠르게 불러올 수 있습니다.</p></article>
+<article><span class="feature-icon">B</span><h3>백업 · 복원</h3><p>프린터 설정과 자주쓰는 문구, 폴더 구성을 ZIP 파일로 백업하고 복원할 수 있습니다.</p></article>
+</div>
+</section>
+<section aria-label="함께 살펴볼 프로젝트" class="pg-related"><span class="pg-kicker">MORE FROM CODENOTE</span><h2>다른 프로젝트도 만나보세요.</h2><div class="pg-related-grid"><a class="project-card pg-project-tile" href="/local-kiosk"><div class="pg-tile-image"><img alt="" decoding="async" height="941" loading="lazy" sizes="(max-width:620px) 90vw, 460px" src="/static/images/projects/local-kiosk-640.webp" srcset="/static/images/projects/local-kiosk-640.webp 640w, /static/images/projects/local-kiosk.webp 1672w" width="1672"/><span class="pg-tile-label">LOCAL RESTAURANT KIOSK</span></div><div class="pg-tile-copy"><h3>일반 음식점 공기계 로컬 키오스크 시스템</h3><p>메뉴 선택부터 주문 접수와 출력까지. 키오스크와 매니저앱을 매장 안에서 연결합니다.</p><div class="card-badges"><span>Android 공기계</span><span>매장·포장 주문</span><span>로컬 연결</span></div><strong class="card-link">자세히 보기 <span aria-hidden="true">↗</span></strong></div></a><a class="project-card pg-project-tile" href="/kiosk-system"><div class="pg-tile-image"><img alt="" decoding="async" height="941" loading="lazy" sizes="(max-width:620px) 90vw, 460px" src="/static/images/projects/kiosk-system-640.webp" srcset="/static/images/projects/kiosk-system-640.webp 640w, /static/images/projects/kiosk-system.webp 1672w" width="1672"/><span class="pg-tile-label">ENTERPRISE QUEUE SYSTEM</span></div><div class="pg-tile-copy"><h3>기업용 대기표 키오스크 시스템</h3><p>일반 대기와 구매 문의를 구분하고 매니저앱에서 현장의 대기를 관리합니다.</p><div class="card-badges"><span>기업 인증</span><span>대기 유형 분리</span><span>매니저 호출</span></div><strong class="card-link">자세히 보기 <span aria-hidden="true">↗</span></strong></div></a></div></section><footer class="pg-footer"><a href="/#kiosk-management">← 키오스크 시스템</a><a href="/">CodeNote 메인으로</a></footer>
 </div>
 </body>
 </html>
