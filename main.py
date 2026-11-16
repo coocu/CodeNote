@@ -250,6 +250,7 @@ def sitemap_xml():
     public_paths = (
         "/",
         "/biketaja",
+        "/cat-study",
         "/pocket-blackbox",
         "/appblock",
         "/recording",
@@ -279,6 +280,16 @@ def biketaja(request: Request):
         request=request,
         name="biketaja.html",
         context={"request": request, "title": "바이크타자 | 라이딩 준비부터 기록까지 · CodeNote"}
+    )
+
+
+# 고양이와 공부 상세 페이지
+@app.get("/cat-study", response_class=HTMLResponse)
+def cat_study(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="cat_study.html",
+        context={"request": request, "title": "고양이와 공부 | 게임과 공부를 둘 다 잡는 학습 게임 · CodeNote"}
     )
 
 

@@ -1,0 +1,120 @@
+{% set android_url = 'https://play.google.com/store/apps/details?id=com.codenote.studygame' %}
+{% set ios_url = 'https://apps.apple.com/kr/app/%EA%B3%A0%EC%96%91%EC%9D%B4%EC%99%80-%EA%B3%B5%EB%B6%80-%EC%BD%94%EB%93%9C%EB%85%B8%ED%8A%B8/id6834703964' %}
+{% macro downloads() -%}
+<div class="store-actions two cat-downloads" aria-label="고양이와 공부 앱 다운로드">
+  <a class="store-btn google-play" href="{{ android_url }}" target="_blank" rel="noopener noreferrer"><span>Android · Google Play</span><strong>안드로이드 다운로드 ↗</strong></a>
+  <a class="store-btn app-store" href="{{ ios_url }}" target="_blank" rel="noopener noreferrer"><span>iPhone · App Store</span><strong>아이폰 다운로드 ↗</strong></a>
+</div>
+{%- endmacro %}
+{% macro shot(file, platform, title, description, width=1170, height=2532) -%}
+<figure class="cat-shot">
+  <span class="cat-platform">{{ platform }} · 실제 앱 화면</span>
+  <a href="/static/images/catstudy/{{ file }}" target="_blank" rel="noopener noreferrer" aria-label="{{ platform }} {{ title }} 원본 크게 보기, 새 창">
+    <img src="/static/images/catstudy/{{ file }}" alt="{{ platform }} {{ title }}" width="{{ width }}" height="{{ height }}" loading="lazy" decoding="async">
+  </a>
+  <figcaption><strong>{{ title }}</strong><span>{{ description }}</span></figcaption>
+</figure>
+{%- endmacro %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="공부하면서 고양이를 키우는 앱, 고양이와 공부. 문제를 풀어 고양이를 돌보고 집을 업그레이드하며 게임과 공부를 둘 다 잡아보세요. Android와 iPhone에서 함께합니다.">
+  <link rel="canonical" href="https://codenote-5gc4.onrender.com/cat-study">
+  <meta property="og:title" content="고양이와 공부 | 게임과 공부를 둘 다 잡는 학습 게임">
+  <meta property="og:description" content="문제를 풀면 고양이가 자라요. 공부하고, 돌보고, 함께 성장하는 CodeNote의 고양이 육성 학습 게임.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://codenote-5gc4.onrender.com/cat-study">
+  <meta property="og:image" content="https://codenote-5gc4.onrender.com/static/images/catstudy/app-icon.webp">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="고양이와 공부의 삼색 고양이 앱 아이콘">
+  <meta property="og:site_name" content="코드노트">
+  <link rel="icon" type="image/webp" href="/static/images/catstudy/app-icon.webp">
+  <link rel="stylesheet" href="/static/style.css?v=9">
+  <link rel="stylesheet" href="/static/css/project-gallery.css?v=20261114-align2">
+  <link rel="stylesheet" href="/static/css/catstudy.css?v=20261116">
+</head>
+<body class="detail-body pg-detail">
+<a class="cat-skip" href="#cat-content">본문으로 이동</a>
+<main class="container pg-container cat-container" id="cat-content">
+  <nav class="pg-topbar" aria-label="프로젝트 탐색"><a class="pg-brand" href="/">CodeNote <span>PROJECTS</span></a><a href="/#featured-apps">← 대표 앱 서비스</a></nav>
+
+  <header class="pg-hero cat-hero">
+    <div class="pg-hero-copy">
+      <div class="cat-app-brand"><img src="/static/images/catstudy/app-icon.webp" alt="" width="1024" height="1024"><span class="pg-kicker">LEARN, PLAY &amp; GROW TOGETHER</span></div>
+      <h1>고양이와 공부</h1>
+      <p class="pg-hero-lead cat-hero-lead">게임과 공부를 둘 다 잡는<br>고양이 키우기 학습 게임.</p>
+      <p class="pg-hero-desc">공부하면서 나만의 고양이를 키워보세요. 문제를 풀어 먹이를 주고, 함께 놀고, 더 멋진 집으로 업그레이드하며 배움과 성장의 재미를 함께 느껴요.</p>
+      <div class="pg-hero-tags"><span>학년별 문제 풀이</span><span>고양이 키우기</span><span>집 업그레이드</span></div>
+      <div class="pg-hero-actions"><a href="#cat-download">앱 다운로드</a><a href="#cat-how">어떻게 즐기나요?</a></div>
+    </div>
+    <div class="cat-hero-preview">
+      <div class="cat-device-pair">
+        <figure><img src="/static/images/catstudy/android-home.webp" alt="Android에서 작은 삼색 고양이를 돌보는 홈 화면" width="1080" height="1920" fetchpriority="high" decoding="async"><figcaption>Android · 나의 첫 고양이</figcaption></figure>
+        <figure><img src="/static/images/catstudy/ios-home.webp" alt="iPhone에서 작은 삼색 고양이를 돌보는 홈 화면" width="1170" height="2532" decoding="async"><figcaption>iPhone · 나의 첫 고양이</figcaption></figure>
+      </div>
+    </div>
+  </header>
+  <p class="cat-image-note">Android · iPhone 실제 앱 화면입니다. 앱 버전에 따라 화면 구성은 달라질 수 있습니다.</p>
+
+  <section id="cat-download" aria-label="앱 설치">
+    {{ downloads() }}
+  </section>
+  <nav class="pg-section-nav" aria-label="고양이와 공부 소개 목차"><a href="#cat-how">공부와 게임</a><a href="#cat-learning">학년별 문제</a><a href="#cat-care">고양이 돌보기</a><a href="#cat-growth">함께 성장하기</a><a href="#cat-routine">휴식과 백업</a></nav>
+
+  <section class="cat-section" id="cat-how" aria-labelledby="cat-how-title">
+    <div class="cat-heading"><span class="pg-kicker">01 / STUDY BECOMES PLAY</span><h2 id="cat-how-title">한 문제의 배움이,<br>고양이의 하루가 돼요.</h2><p>고양이와 공부는 공부하면서 고양이를 키우는 앱입니다. 귀여운 친구를 돌보는 게임 속에 문제 풀이를 연결해, 게임을 즐기는 재미와 공부하는 경험을 함께 담았습니다.</p></div>
+    <div class="cat-loop">
+      <article><span>01 · 고르기</span><h3>돌보고 싶은 일을 골라요</h3><p>먹이와 물을 챙기거나 놀아주기 등 고양이에게 필요한 일을 선택해요.</p></article>
+      <article><span>02 · 공부하기</span><h3>문제를 직접 풀어요</h3><p>선택한 학년에 맞는 과목 또는 상식 문제에 도전해요. 어려울 때는 힌트로 도움을 받아요.</p></article>
+      <article><span>03 · 성장하기</span><h3>고양이와 함께 자라요</h3><p>정답을 맞히면 돌보기가 완료되고 성장 보상을 받아요. 모은 다이아로 집 업그레이드에도 도전해요.</p></article>
+    </div>
+  </section>
+
+  <section class="cat-section" id="cat-learning" aria-labelledby="cat-learning-title">
+    <div class="cat-heading"><span class="pg-kicker">02 / FIND YOUR LEVEL</span><h2 id="cat-learning-title">내 학년에 맞춰,<br>하나씩 풀어가는 즐거움.</h2><p>초등학교 1~6학년, 중학교 1~3학년, 고등학교 1~3학년과 상식 문제를 선택할 수 있어요. 국어·수학·영어를 비롯해 선택한 학년에 맞는 과목으로 문제를 풀어요.</p><div class="cat-grades"><span>초등학생</span><span>중학생</span><span>고등학생</span><span>상식</span></div></div>
+    <div class="cat-shots">
+      {{ shot('android-quiz.webp', 'Android', '차근차근 답을 만들어요', '문제에 맞는 숫자나 글자, 선택지를 눌러 답해요.', 1080, 1920) }}
+      {{ shot('ios-quiz.webp', 'iPhone', '모르면 배우고 다시 도전해요', '힌트와 정답 확인으로 이해한 뒤, 새 문제를 직접 풀어요.') }}
+    </div>
+    <div class="cat-explainer"><p><strong>풀어가는 흐름에 맞춰 난이도도 조절돼요.</strong> 같은 과목에서 3문제를 연속으로 맞히면 난이도가 올라가고, 틀리거나 어렵다고 선택하면 낮아져요. 정답을 미리 본 문제는 연습으로 처리되며, 다음 문제를 직접 맞혀야 돌보기 보상을 받을 수 있어요.</p></div>
+  </section>
+
+  <section class="cat-section" id="cat-care" aria-labelledby="cat-care-title">
+    <div class="cat-heading"><span class="pg-kicker">03 / A LITTLE CARE EVERY DAY</span><h2 id="cat-care-title">공부할 이유가 하나 더.<br>나를 기다리는 작은 친구.</h2><p>이름을 지어준 고양이의 하루를 함께해요. 해야 할 일을 살펴보고, 문제를 풀어 하나씩 돌봐주세요.</p></div>
+    <div class="cat-feature">
+      {{ shot('android-care.webp', 'Android', '할 일을 한눈에 확인해요', '여러 고양이의 돌보기 목록을 확인하고 순서대로 챙겨요.', 1080, 1920) }}
+      <div class="cat-feature-copy"><h3>먹이부터 놀아주기까지,<br>돌봄이 공부로 이어져요.</h3><p>먹이를 주고, 물을 챙기고, 화장실을 치워주세요. 고양이가 아플 때는 병원 문제를 풀어 회복을 도울 수 있어요.</p><div class="cat-care-tags"><span>먹이 주기</span><span>간식 주기</span><span>물 주기</span><span>화장실 치우기</span><span>놀아주기</span><span>병원 다녀오기</span></div><p>고양이의 상태에 맞춰 필요한 돌봄을 골라요. 아직 충분한데 먹이나 간식을 계속 주면 배탈이 날 수 있어요.</p></div>
+    </div>
+  </section>
+
+  <section class="cat-section" id="cat-growth" aria-labelledby="cat-growth-title">
+    <div class="cat-heading"><span class="pg-kicker">04 / GROW YOUR LITTLE WORLD</span><h2 id="cat-growth-title">작은 고양이 한 마리에서,<br>다섯 친구가 사는 집으로.</h2><p>문제를 풀고 돌볼수록 고양이가 성장해요. 함께 사는 고양이들을 Lv.20까지 키우면 새로운 친구를 입양할 수 있어요. 다이아를 모아 업그레이드 문제를 풀면 집도 한 단계 발전해요.</p></div>
+    <div class="cat-stats"><div><strong>5마리</strong><span>함께 키울 수 있는 고양이</span></div><div><strong>Lv.20</strong><span>고양이의 성장 목표</span></div><div><strong>50단계</strong><span>차근차근 발전하는 집</span></div></div>
+    <div class="cat-shots">
+      {{ shot('ios-family.webp', 'iPhone', '각자 다른 매력의 다섯 친구', '삼색·검은·흰·젖소무늬·카오스 고양이를 만나보세요.') }}
+      {{ shot('ios-growth.webp', 'iPhone', '성장과 집의 변화를 확인해요', '고양이의 레벨과 집 업그레이드 목표를 함께 살펴봐요.') }}
+    </div>
+  </section>
+
+  <section class="cat-section" id="cat-routine" aria-labelledby="cat-routine-title">
+    <div class="cat-heading"><span class="pg-kicker">05 / REST &amp; COME BACK</span><h2 id="cat-routine-title">쉬어갈 때도,<br>다시 시작할 때도 함께.</h2><p>고양이도 밤에는 쉬어요. 소중하게 키운 친구들은 백업 파일로 저장해 다른 기기에서도 이어 키울 수 있어요.</p></div>
+    <div class="cat-rest-cards">
+      <article class="cat-rest-card"><span class="pg-kicker">21:00 → 08:00</span><h3>밤에는 고양이도 꿈나라로</h3><p>기기 시간 기준 밤 9시부터 아침 8시까지는 잠자는 시간이에요. 이 시간에는 문제 풀이와 돌보기가 쉬어가고, 잠자는 시간은 돌봄 대기·질병 경과 시간에 포함되지 않아요.</p>{{ shot('ios-sleep.webp', 'iPhone', '함께 쉬는 밤', '아침이 되면 다시 고양이의 하루를 시작해요.') }}</article>
+      <article class="cat-rest-card"><span class="pg-kicker">ANDROID ↔ IPHONE</span><h3>기기가 바뀌어도 이어 키워요</h3><p>설정에서 고양이·집·다이아·공부 기록을 ZIP 파일로 백업해요. 저장한 파일을 Android 또는 iPhone에서 불러와 이어 키워요. 복원할 기록을 확인한 뒤 현재 진행 상태를 교체해요.</p>{{ shot('android-backup.webp', 'Android', '파일로 백업하고 복원해요', '설정의 백업 및 복원에서 진행 내용을 직접 관리해요.', 1080, 1920) }}</article>
+    </div>
+  </section>
+
+  <section class="cat-section cat-closing" aria-labelledby="cat-start-title"><img src="/static/images/catstudy/app-icon.webp" alt="" width="1024" height="1024" loading="lazy"><span class="pg-kicker">YOUR FIRST LITTLE FRIEND</span><h2 id="cat-start-title">게임과 공부, 둘 다 잡아볼까요?</h2><p>앱을 열고 고양이의 이름과 풀어볼 문제를 선택해요.<br>공부하면서 고양이를 키우는 즐거움, 지금 시작하세요.</p>{{ downloads() }}</section>
+
+  <section class="pg-related" aria-label="함께 살펴볼 프로젝트"><span class="pg-kicker">MORE FROM CODENOTE</span><h2>다른 프로젝트도 만나보세요.</h2><div class="pg-related-grid">
+    <a href="/biketaja" class="project-card pg-project-tile"><div class="pg-tile-image"><img src="/static/images/biketaja/touring-hero.webp" alt="" width="1672" height="941" loading="lazy" decoding="async"><span class="pg-tile-label">YOUR RIDING COMPANION</span></div><div class="pg-tile-copy"><h3>바이크타자</h3><p>투어 일정·공유부터 경로 날씨, 후방 단속카메라 알림과 바이크 가계부까지.</p><strong class="card-link">자세히 보기 ↗</strong></div></a>
+    <a href="/appblock" class="project-card pg-project-tile"><div class="pg-tile-image"><img src="/static/images/projects/appblock-640.webp" alt="" width="640" height="360" loading="lazy" decoding="async"><span class="pg-tile-label">MAKE ROOM FOR FOCUS</span></div><div class="pg-tile-copy"><h3>학습용 스마트폰 전환 앱</h3><p>앱 사용 범위를 관리해 학습에 집중할 수 있는 스마트폰 환경을 구성해요.</p><strong class="card-link">자세히 보기 ↗</strong></div></a>
+  </div></section>
+  <footer class="pg-footer"><a href="/#featured-apps">← 대표 앱 서비스</a><a href="/">CodeNote 메인으로</a><a href="#cat-content">맨 위로 ↑</a></footer>
+</main>
+</body>
+</html>
